@@ -54,7 +54,7 @@ public class BeamCannonBlockEntity extends BlockEntity {
 		}
 	};
 	public static final double PULL_RATE = 2000.0;
-	public static final int FIRE_THRESHOLD = 400;
+	public static final int FIRE_THRESHOLD = AlchemyTabletBlockEntity.SPARK_THRESHOLD;
 	public static final float DAMAGE = 25.0f;
 	public static final int MAX_DISTANCE = 64;
 
