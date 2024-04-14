@@ -166,7 +166,7 @@ public class AlchemyTabletBlockEntity extends BlockEntity implements ISparkable,
 				}
 			}
 
-			if (level.getGameTime() % 10 == 0) {
+			if (level.getGameTime() % 10 == 0 && pedestals.size() > 0) {
 				AlchemyPedestalTopBlockEntity pedestal = pedestals.get(rand.nextInt(pedestals.size()));
 				float dx = (pos.getX() + 0.5f) - (pedestal.getBlockPos().getX() + 0.5f);
 				float dy = (pos.getY() + 0.875f) - (pedestal.getBlockPos().getY() + 0.75f);
@@ -236,6 +236,9 @@ public class AlchemyTabletBlockEntity extends BlockEntity implements ISparkable,
 							}
 							blockEntity.outputMode = true;
 						}
+					} else {
+						blockEntity.progress = 0;
+						blockEntity.setChanged();
 					}
 				}
 			}
