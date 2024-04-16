@@ -111,7 +111,7 @@ public class BlastingCoreAugment extends AugmentBase {
 
 	@SubscribeEvent
 	public void onHit(LivingHurtEvent event) {
-		if (!blastedEntities.contains(event.getEntity()) && event.getSource().getEntity() != event.getEntity() && event.getSource().getDirectEntity() != event.getEntity())
+		if (!blastedEntities.contains(event.getEntity()) && event.getSource().getEntity() != event.getEntity() && event.getSource().getDirectEntity() != event.getEntity()) {
 			try {
 				if (event.getSource().getEntity() instanceof Player damager) {
 					blastedEntities.add(damager);
@@ -123,11 +123,13 @@ public class BlastingCoreAugment extends AugmentBase {
 							float strength = (float) ((resonance + 1) * (Math.atan(0.6 * (blastingLevel)) / (Math.PI)));
 
 							EmberInventoryUtil.removeEmber(damager, cost);
+							blastedEntities.add(event.getEntity());
 							List<LivingEntity> entities = damager.level().getEntitiesOfClass(LivingEntity.class, new AABB(event.getEntity().getX() - 4.0 * strength, event.getEntity().getY() - 4.0 * strength, event.getEntity().getZ() - 4.0 * strength,
 									event.getEntity().getX() + 4.0 * strength, event.getEntity().getY() + 4.0 * strength, event.getEntity().getZ() + 4.0 * strength));
-							Explosion explosion = damager.level().explode(damager, event.getEntity().getX(), event.getEntity().getY() + event.getEntity().getBbHeight() / 2.0, event.getEntity().getZ(), 0.5f, ExplosionInteraction.BLOCK);
+							Explosion explosion = damager.level().explode(damager, event.getEntity().getX(), event.getEntity().getY() + event.getEntity().getBbHeight() / 2.0, event.getEntity().getZ(), 0.5f, ExplosionInteraction.NONE);
 							for (LivingEntity e : entities) {
 								if (!Objects.equals(e.getUUID(), damager.getUUID())) {
+									blastedEntities.add(e);
 									e.hurt(damager.level().damageSources().explosion(explosion), event.getAmount() * strength);
 									e.hurtTime = 0;
 								}
@@ -143,7 +145,7 @@ public class BlastingCoreAugment extends AugmentBase {
 						EmberInventoryUtil.removeEmber(damager, cost);
 						List<LivingEntity> entities = damager.level().getEntitiesOfClass(LivingEntity.class, new AABB(damager.getX() - 4.0 * strength, damager.getY() - 4.0 * strength, damager.getZ() - 4.0 * strength,
 								damager.getX() + 4.0 * strength, damager.getY() + 4.0 * strength, damager.getZ() + 4.0 * strength));
-						Explosion explosion = damager.level().explode(damager, damager.getX(), damager.getY() + damager.getBbHeight() / 2.0, damager.getZ(), 0.5f, ExplosionInteraction.BLOCK);
+						Explosion explosion = damager.level().explode(damager, damager.getX(), damager.getY() + damager.getBbHeight() / 2.0, damager.getZ(), 0.5f, ExplosionInteraction.NONE);
 						for (LivingEntity e : entities) {
 							if (!Objects.equals(e.getUUID(), event.getEntity().getUUID())) {
 								blastedEntities.add(e);
@@ -157,5 +159,6 @@ public class BlastingCoreAugment extends AugmentBase {
 			} finally {
 				blastedEntities.clear();
 			}
+		}
 	}
 }
