@@ -75,9 +75,12 @@ public class EmbersBlockTags extends BlockTagsProvider {
 	public static final TagKey<Block> GOLD_SEED = BlockTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/gold"));
 	public static final TagKey<Block> LEAD_SEED = BlockTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/lead"));
 	public static final TagKey<Block> SILVER_SEED = BlockTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/silver"));
-	public static final TagKey<Block> ALUMINUM_SEED = BlockTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/aluminum"));
 	public static final TagKey<Block> NICKEL_SEED = BlockTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/nickel"));
 	public static final TagKey<Block> TIN_SEED = BlockTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/tin"));
+	public static final TagKey<Block> ALUMINUM_SEED = BlockTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/aluminum"));
+	public static final TagKey<Block> ZINC_SEED = BlockTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/zinc"));
+	public static final TagKey<Block> PLATINUM_SEED = BlockTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/platinum"));
+	public static final TagKey<Block> URANIUM_SEED = BlockTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/uranium"));
 	public static final TagKey<Block> DAWNSTONE_SEED = BlockTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/dawnstone"));
 
 	//tags not used in this class
@@ -338,15 +341,18 @@ public class EmbersBlockTags extends BlockTagsProvider {
 		tag(SILVER_BLOCK).add(RegistryManager.SILVER_BLOCK.get());
 		tag(DAWNSTONE_BLOCK).add(RegistryManager.DAWNSTONE_BLOCK.get());
 
-		tag(CRYSTAL_SEEDS).addTags(COPPER_SEED, IRON_SEED, GOLD_SEED, LEAD_SEED, SILVER_SEED, ALUMINUM_SEED, NICKEL_SEED, TIN_SEED, DAWNSTONE_SEED);
+		tag(CRYSTAL_SEEDS).addTags(COPPER_SEED, IRON_SEED, GOLD_SEED, LEAD_SEED, SILVER_SEED, NICKEL_SEED, TIN_SEED, ALUMINUM_SEED, ZINC_SEED, PLATINUM_SEED, URANIUM_SEED, DAWNSTONE_SEED);
 		tag(COPPER_SEED).add(RegistryManager.COPPER_CRYSTAL_SEED.BLOCK.get());
 		tag(IRON_SEED).add(RegistryManager.IRON_CRYSTAL_SEED.BLOCK.get());
 		tag(GOLD_SEED).add(RegistryManager.GOLD_CRYSTAL_SEED.BLOCK.get());
 		tag(LEAD_SEED).add(RegistryManager.LEAD_CRYSTAL_SEED.BLOCK.get());
 		tag(SILVER_SEED).add(RegistryManager.SILVER_CRYSTAL_SEED.BLOCK.get());
-		tag(ALUMINUM_SEED).add(RegistryManager.ALUMINUM_CRYSTAL_SEED.BLOCK.get());
 		tag(NICKEL_SEED).add(RegistryManager.NICKEL_CRYSTAL_SEED.BLOCK.get());
 		tag(TIN_SEED).add(RegistryManager.TIN_CRYSTAL_SEED.BLOCK.get());
+		tag(ALUMINUM_SEED).add(RegistryManager.ALUMINUM_CRYSTAL_SEED.BLOCK.get());
+		tag(ZINC_SEED).add(RegistryManager.ZINC_CRYSTAL_SEED.BLOCK.get());
+		tag(PLATINUM_SEED).add(RegistryManager.PLATINUM_CRYSTAL_SEED.BLOCK.get());
+		tag(URANIUM_SEED).add(RegistryManager.URANIUM_CRYSTAL_SEED.BLOCK.get());
 		tag(DAWNSTONE_SEED).add(RegistryManager.DAWNSTONE_CRYSTAL_SEED.BLOCK.get());
 	}
 

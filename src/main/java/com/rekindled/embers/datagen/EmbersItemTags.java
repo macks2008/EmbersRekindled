@@ -108,9 +108,12 @@ public class EmbersItemTags extends ItemTagsProvider {
 	public static final TagKey<Item> GOLD_SEED = ItemTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/gold"));
 	public static final TagKey<Item> LEAD_SEED = ItemTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/lead"));
 	public static final TagKey<Item> SILVER_SEED = ItemTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/silver"));
-	public static final TagKey<Item> ALUMINUM_SEED = ItemTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/aluminum"));
 	public static final TagKey<Item> NICKEL_SEED = ItemTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/nickel"));
 	public static final TagKey<Item> TIN_SEED = ItemTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/tin"));
+	public static final TagKey<Item> ALUMINUM_SEED = ItemTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/aluminum"));
+	public static final TagKey<Item> ZINC_SEED = ItemTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/zinc"));
+	public static final TagKey<Item> PLATINUM_SEED = ItemTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/platinum"));
+	public static final TagKey<Item> URANIUM_SEED = ItemTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/uranium"));
 	public static final TagKey<Item> DAWNSTONE_SEED = ItemTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/dawnstone"));
 
 	public EmbersItemTags(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTagProvider, ExistingFileHelper existingFileHelper) {
@@ -226,9 +229,12 @@ public class EmbersItemTags extends ItemTagsProvider {
 		copy(EmbersBlockTags.GOLD_SEED, GOLD_SEED);
 		copy(EmbersBlockTags.LEAD_SEED, LEAD_SEED);
 		copy(EmbersBlockTags.SILVER_SEED, SILVER_SEED);
-		copy(EmbersBlockTags.ALUMINUM_SEED, ALUMINUM_SEED);
 		copy(EmbersBlockTags.NICKEL_SEED, NICKEL_SEED);
 		copy(EmbersBlockTags.TIN_SEED, TIN_SEED);
+		copy(EmbersBlockTags.ALUMINUM_SEED, ALUMINUM_SEED);
+		copy(EmbersBlockTags.ZINC_SEED, ZINC_SEED);
+		copy(EmbersBlockTags.PLATINUM_SEED, PLATINUM_SEED);
+		copy(EmbersBlockTags.URANIUM_SEED, URANIUM_SEED);
 		copy(EmbersBlockTags.DAWNSTONE_SEED, DAWNSTONE_SEED);
 
 		//compat stuff
