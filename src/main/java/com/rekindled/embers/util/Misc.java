@@ -414,16 +414,22 @@ public class Misc {
 	public static Ingredient getRepairIngredient(Item item) {
 		if (item instanceof TieredItem tool) {
 			try {
-				return tool.getTier().getRepairIngredient();
-			} catch (NullPointerException e) {
-				Embers.LOGGER.error("Item: \"" + ForgeRegistries.ITEMS.getKey(item) + "\" has no proper repair ingredient.", e);
+				Ingredient ingredient = tool.getTier().getRepairIngredient();
+				if (ingredient != null)
+					return ingredient;
+				Embers.LOGGER.error("Item: \"" + ForgeRegistries.ITEMS.getKey(item) + "\" has no proper repair ingredient, this is a bug and should be reported to " + ForgeRegistries.ITEMS.getKey(item).getNamespace());
+			} catch (Exception e) {
+				Embers.LOGGER.error("Item: \"" + ForgeRegistries.ITEMS.getKey(item) + "\" has no proper tool tier, this is a bug and should be reported to " + ForgeRegistries.ITEMS.getKey(item).getNamespace(), e);
 			}
 		}
 		if (item instanceof ArmorItem armor) {
 			try {
-				return armor.getMaterial().getRepairIngredient();
-			} catch (NullPointerException e) {
-				Embers.LOGGER.error("Item: \"" + ForgeRegistries.ITEMS.getKey(item) + "\" of material: \"" + armor.getMaterial().getName() + "\" has no proper repair ingredient.", e);
+				Ingredient ingredient = armor.getMaterial().getRepairIngredient();
+				if (ingredient != null)
+					return ingredient;
+				Embers.LOGGER.error("Item: \"" + ForgeRegistries.ITEMS.getKey(item) + "\" of material: \"" + armor.getMaterial().getName() + "\" has no proper repair ingredient, this is a bug and should be reported to " + ForgeRegistries.ITEMS.getKey(item).getNamespace());
+			} catch (Exception e) {
+				Embers.LOGGER.error("Item: \"" + ForgeRegistries.ITEMS.getKey(item) + "\" has no proper armor material, this is a bug and should be reported to " + ForgeRegistries.ITEMS.getKey(item).getNamespace(), e);
 			}
 		}
 		return Ingredient.EMPTY;
