@@ -27,6 +27,7 @@ import com.rekindled.embers.blockentity.render.InfernoForgeTopBlockEntityRendere
 import com.rekindled.embers.blockentity.render.MechanicalPumpBlockEntityRenderer;
 import com.rekindled.embers.blockentity.render.StamperBlockEntityRenderer;
 import com.rekindled.embers.datagen.EmbersBlockTags;
+import com.rekindled.embers.datagen.EmbersItemTags;
 import com.rekindled.embers.render.EmbersRenderTypes;
 import com.rekindled.embers.util.EmberGenUtil;
 import com.rekindled.embers.util.GlowingTextTooltip;
@@ -59,6 +60,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.ModelEvent;
+import net.minecraftforge.client.event.MovementInputUpdateEvent;
 import net.minecraftforge.client.event.RenderHighlightEvent;
 import net.minecraftforge.client.event.RenderLevelStageEvent;
 import net.minecraftforge.client.event.RenderTooltipEvent;
@@ -101,6 +103,13 @@ public class EmbersClientEvents {
 					}
 				}
 			}
+		}
+	}
+
+	public static void onMovementInput(MovementInputUpdateEvent event) {
+		if (event.getEntity().isUsingItem() && !event.getEntity().isPassenger() && event.getEntity().getItemInHand(event.getEntity().getUsedItemHand()).is(EmbersItemTags.NORMAL_WALK_SPEED_TOOL)) {
+			event.getInput().forwardImpulse /= 0.2f;
+			event.getInput().leftImpulse /= 0.2f;
 		}
 	}
 

@@ -32,6 +32,8 @@ public class EmbersItemTags extends ItemTagsProvider {
 
 	public static final TagKey<Item> TOOLS_HAMMERS = ItemTags.create(new ResourceLocation("forge", "tools/hammers"));
 
+	public static final TagKey<Item> NORMAL_WALK_SPEED_TOOL = ItemTags.create(new ResourceLocation(Embers.MODID, "normal_walk_speed_tool"));
+
 	public static final TagKey<Item> AUGMENTABLE = ItemTags.create(new ResourceLocation(Embers.MODID, "augmentables"));
 	public static final TagKey<Item> AUGMENTABLE_TOOLS_AND_ARMORS = ItemTags.create(new ResourceLocation(Embers.MODID, "augmentables/tools_armors"));
 	public static final TagKey<Item> AUGMENTABLE_TOOLS = ItemTags.create(new ResourceLocation(Embers.MODID, "augmentables/tools"));
@@ -126,6 +128,7 @@ public class EmbersItemTags extends ItemTagsProvider {
 		tag(PIPE_UNCLOGGER).addTag(Tags.Items.RODS);
 		tag(TINKER_HAMMER).add(RegistryManager.TINKER_HAMMER.get());
 		tag(INSCRIBABLE_PAPER).add(Items.PAPER);
+		tag(NORMAL_WALK_SPEED_TOOL).add(RegistryManager.BLAZING_RAY.get()).add(RegistryManager.CINDER_STAFF.get());
 
 		tag(AUGMENTABLE).addTag(AUGMENTABLE_TOOLS).addTag(AUGMENTABLE_PROJECTILE_WEAPONS).addTag(AUGMENTABLE_ARMORS);
 		tag(AUGMENTABLE_TOOLS_AND_ARMORS).addTag(AUGMENTABLE_TOOLS).addTag(AUGMENTABLE_ARMORS);

@@ -264,6 +264,7 @@ public class Embers {
 			IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 			modEventBus.addListener(EmbersClientEvents::afterModelBake);
 			MinecraftForge.EVENT_BUS.addListener(EmbersClientEvents::onClientTick);
+			MinecraftForge.EVENT_BUS.addListener(EmbersClientEvents::onMovementInput);
 			MinecraftForge.EVENT_BUS.addListener(EmbersClientEvents::onBlockHighlight);
 			MinecraftForge.EVENT_BUS.addListener(EmbersClientEvents::onLevelRender);
 			MinecraftForge.EVENT_BUS.addListener(EmbersClientEvents::onTooltip);
