@@ -769,6 +769,7 @@
   "embers.tooltip.goggles.upgrade": "• Machine Upgrade",
   "embers.tooltip.goggles.upgrade_slot": "• Machine Upgrade Slot",
   "embers.tooltip.heat_amount": "Heat:",
+  "embers.tooltip.heat_debug": "Heat: %s/%s",
   "embers.tooltip.heat_level": "Level: ",
   "embers.tooltip.inflictor": "Attuned Damage: %s",
   "embers.tooltip.inflictor.none": "Attuned Damage: none",

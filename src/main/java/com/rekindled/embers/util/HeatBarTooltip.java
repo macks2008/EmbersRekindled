@@ -58,7 +58,8 @@ public class HeatBarTooltip implements TooltipComponent {
 
 			float x1 = x + offset + 3;
 			float x2 = x + tooltip.barWidth - 3;
-			x2 = x1 + (x2 - x1) * (tooltip.heat / tooltip.maxHeat);
+			float progress = tooltip.heat >= tooltip.maxHeat ? 1.0f : (tooltip.heat / (tooltip.maxHeat + tooltip.maxHeat * 0.1f));
+			x2 = x1 + (x2 - x1) * progress;
 			for (float j = 0; j < 10; j++) {
 				float coeff = j / 10.0f;
 				float coeff2 = (j + 1.0f) / 10.0f;
@@ -73,7 +74,7 @@ public class HeatBarTooltip implements TooltipComponent {
 			}
 			x1 = x + offset + 3;
 			x2 = x + tooltip.barWidth - 3;
-			float point = x1 + (x2 - x1) * (tooltip.heat / tooltip.maxHeat);
+			float point = x1 + (x2 - x1) * progress;
 
 			for (float k = 0; k < 4; k += 0.5) {
 				float thick = (float) (k / 4.0);
@@ -85,7 +86,7 @@ public class HeatBarTooltip implements TooltipComponent {
 			}
 			x1 = x + offset + 3;
 			x2 = x + tooltip.barWidth - 3;
-			x1 = x2 - (x2 - x1) * (1.0f - (tooltip.heat / tooltip.maxHeat));
+			x1 = x2 - (x2 - x1) * (1.0f - progress);
 			for (float j = 0; j < 10; j++) {
 				float coeff = j / 10.0f;
 				float coeff2 = (j + 1.0f) / 10.0f;

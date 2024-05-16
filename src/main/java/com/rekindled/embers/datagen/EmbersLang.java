@@ -386,6 +386,7 @@ public class EmbersLang extends LanguageProvider {
 		add(Embers.MODID + ".tooltip.numstop", "Stop That");
 
 		add(Embers.MODID + ".tooltip.heat_amount", "Heat:");
+		add(Embers.MODID + ".tooltip.heat_debug", "Heat: %s/%s");
 		add(Embers.MODID + ".tooltip.heat_level", "Level: ");
 		add(Embers.MODID + ".tooltip.augment_slots", "Augment slots: ");
 		add(Embers.MODID + ".tooltip.augments", "Augments:");

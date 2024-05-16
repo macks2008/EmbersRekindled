@@ -367,6 +367,7 @@ public class EmbersClientEvents {
 		return model.bake(bakerImpl, Material::sprite, BlockModelRotation.X0_Y0, location);
 	}
 
+	@SuppressWarnings("resource")
 	public static void onTooltip(RenderTooltipEvent.GatherComponents event) {
 		if (AugmentUtil.hasHeat(event.getItemStack())) {
 			event.getTooltipElements().add(Either.left(Component.empty()));
@@ -376,7 +377,12 @@ public class EmbersClientEvents {
 				if (slots > 0)
 					event.getTooltipElements().add(Either.right(new GlowingTextTooltip(Component.translatable(Embers.MODID + ".tooltip.augment_slots").withStyle(ChatFormatting.GRAY).getVisualOrderText(), Component.literal("" + slots).getVisualOrderText())));
 			}
-			event.getTooltipElements().add(Either.right(new HeatBarTooltip(Component.translatable(Embers.MODID + ".tooltip.heat_amount").withStyle(ChatFormatting.GRAY).getVisualOrderText(), AugmentUtil.getHeat(event.getItemStack()), AugmentUtil.getMaxHeat(event.getItemStack()))));
+			float heat = AugmentUtil.getHeat(event.getItemStack());
+			float maxHeat = AugmentUtil.getMaxHeat(event.getItemStack());
+			event.getTooltipElements().add(Either.right(new HeatBarTooltip(Component.translatable(Embers.MODID + ".tooltip.heat_amount").withStyle(ChatFormatting.GRAY).getVisualOrderText(), heat, maxHeat)));
+			if (Minecraft.getInstance().options.advancedItemTooltips)
+				event.getTooltipElements().add(Either.left(Component.translatable(Embers.MODID + ".tooltip.heat_debug", heat, maxHeat).withStyle(ChatFormatting.DARK_GRAY)));
+
 			List<IAugment> augments = AugmentUtil.getAugments(event.getItemStack()).stream().filter(x -> x.shouldRenderTooltip()).collect(Collectors.toList());
 			if (augments.size() > 0) {
 				event.getTooltipElements().add(Either.left(Component.translatable(Embers.MODID + ".tooltip.augments").withStyle(ChatFormatting.GRAY)));
