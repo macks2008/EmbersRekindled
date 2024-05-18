@@ -142,18 +142,8 @@ public class EntropicEnumeratorBlockEntity extends BlockEntity implements IExtra
 	public void solveInefficient() { //this takes at least several hours to finish calculating a solution
 		solving = true;
 		//cut current queue short
-		int currentMove = moveQueue.length - 1;
-		long turnTicks = level.getGameTime() - nextMoveTime;
-		for (int i = 0; i < moveQueue.length - 1; i++) {
-			turnTicks -= offsetQueue[i];
-			if (turnTicks < (float) offsetQueue[i + 1]) {
-				currentMove = i;
-				break;
-			}
-		}
-		for (int i = 0; i <= currentMove; i++) {
-			moveQueue[i].makeMove(cube);
-		}
+		applyCurrentQueue(cube);
+
 		nextMoveTime = level.getGameTime() + moveTime / 2;
 
 		Cubie[][][] cubeClone = new Cubie[2][2][2];
@@ -280,9 +270,7 @@ public class EntropicEnumeratorBlockEntity extends BlockEntity implements IExtra
 	public static final Move[] PBL_DIAG_U = { Move.R, Move.U_, Move.R_, Move.U_, Move.F2, Move.U_, Move.R, Move.U, Move.R_, Move.U, Move.F2 }; //incorrect cubie front right
 	public static final Move[] PBL_DIAG_D = { Move.R_, Move.D, Move.R, Move.D, Move.F2, Move.D, Move.R_, Move.D_, Move.R, Move.D_, Move.F2 }; //incorrect cubie front right
 
-	public void solve() {
-		solving = true;
-		//cut current queue short
+	public void applyCurrentQueue(Cubie[][][] cube) {
 		int currentMove = moveQueue.length - 1;
 		long turnTicks = level.getGameTime() - nextMoveTime;
 		for (int i = 0; i < moveQueue.length - 1; i++) {
@@ -295,6 +283,12 @@ public class EntropicEnumeratorBlockEntity extends BlockEntity implements IExtra
 		for (int i = 0; i <= currentMove; i++) {
 			moveQueue[i].makeMove(cube);
 		}
+	}
+
+	public void solve(boolean direct, int delay) {
+		solving = true;
+		//cut current queue short
+		applyCurrentQueue(cube);
 
 		//clone current cube
 		Cubie[][][] cubeClone = new Cubie[2][2][2];
@@ -805,8 +799,10 @@ public class EntropicEnumeratorBlockEntity extends BlockEntity implements IExtra
 		if (moveQueue.length > 0)
 			offsetQueue[0] = 0;
 
-		//alchemy takes about 400 ticks
-		nextMoveTime = level.getGameTime() + 390 + seededRand.nextInt(solvingMoveTime) - moveQueue.length * solvingMoveTime;
+		if (direct)
+			nextMoveTime = level.getGameTime() + delay;
+		else
+			nextMoveTime = level.getGameTime() + delay + seededRand.nextInt(solvingMoveTime) - moveQueue.length * solvingMoveTime;
 		setChanged();
 	}
 
@@ -853,13 +849,62 @@ public class EntropicEnumeratorBlockEntity extends BlockEntity implements IExtra
 		return algorithm;
 	}
 
-	public static boolean isSolved(Cubie[][][] cube) {
-		Quaterniond base = cube[1][1][1].rotation;
+	public boolean isSolved() {
+		Cubie[][][] cubeClone = new Cubie[2][2][2];
 		for (int x = 0; x < 2; x++) {
 			for (int y = 0; y < 2; y++) {
 				for (int z = 0; z < 2; z++) {
-					if (!cube[x][y][z].rotation.equals(base, 0.1))
-						return false;
+					cubeClone[x][y][z] = new Cubie(cube[x][y][z].basePosition, cube[x][y][z].baseColors, new Quaterniond(cube[x][y][z].rotation));
+				}
+			}
+		}
+		applyCurrentQueue(cubeClone);
+		return isSolved(cubeClone);
+	}
+
+	public static boolean isSolved(Cubie[][][] cube) {
+		Vector3d[][][] colors = new Vector3d[2][2][2];
+		updateColors(cube, colors);
+
+		double downCol = colors[0][0][0].y;
+		double upCol = 7 - downCol;
+		double northCol = colors[0][0][0].z;
+		double southCol = 7 - northCol;
+		double westCol = colors[0][0][0].x;
+		double eastCol = 7 - westCol;
+
+		for (int x = 0; x < 2; x++) {
+			for (int y = 0; y < 2; y++) {
+				for (int z = 0; z < 2; z++) {
+					if (y == 0) {
+						if (colors[x][y][z].y != downCol) {
+							return false;
+						}
+					} else {
+						if (colors[x][y][z].y != upCol) {
+							return false;
+						}
+					}
+
+					if (z == 0) {
+						if (colors[x][y][z].z != northCol) {
+							return false;
+						}
+					} else {
+						if (colors[x][y][z].z != southCol) {
+							return false;
+						}
+					}
+
+					if (x == 0) {
+						if (colors[x][y][z].x != westCol) {
+							return false;
+						}
+					} else {
+						if (colors[x][y][z].x != eastCol) {
+							return false;
+						}
+					}
 				}
 			}
 		}

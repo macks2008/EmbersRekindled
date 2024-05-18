@@ -28,7 +28,7 @@ public class EntropicEnumeratorUpgrade extends DefaultUpgradeProvider {
 	public void throwEvent(BlockEntity tile, List<UpgradeContext> upgrades, UpgradeEvent event, int distance, int count) {
 		if (event instanceof AlchemyStartEvent alchemyEvent && alchemyEvent.getRecipe() != null && this.tile instanceof EntropicEnumeratorBlockEntity enumerator) {
 			if (alchemyEvent.getRecipe().getResult(alchemyEvent.context).blackPins != alchemyEvent.getRecipe().getInputs().size())
-				enumerator.solve();
+				enumerator.solve(false, 390); //alchemy takes about 400 ticks
 		}
 		if (event instanceof AlchemyResultEvent alchemyEvent && this.tile instanceof EntropicEnumeratorBlockEntity enumerator) {
 			int blackPins = alchemyEvent.getResult().blackPins;
