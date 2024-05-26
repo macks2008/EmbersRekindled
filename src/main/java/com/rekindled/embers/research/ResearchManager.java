@@ -9,6 +9,7 @@ import java.util.Set;
 
 import com.rekindled.embers.Embers;
 import com.rekindled.embers.RegistryManager;
+import com.rekindled.embers.compat.curios.CuriosCompat;
 import com.rekindled.embers.item.EmberStorageItem;
 import com.rekindled.embers.network.PacketHandler;
 import com.rekindled.embers.network.message.MessageResearchData;
@@ -31,6 +32,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.network.PacketDistributor;
 
 public class ResearchManager {
@@ -376,17 +378,14 @@ public class ResearchManager {
 		else
 			mechanicalPowerSwitch = new ResearchBase("mystical_mechanics", ItemStack.EMPTY, 8, 7).setIconBackground(PAGE_ICONS, PAGE_ICON_SIZE * 0, PAGE_ICON_SIZE * 2);
 		mechanicalPowerSwitch.addAncestor(access);
-
-		ResearchBase baublesSwitch;
-		if (ConfigManager.isBaublesIntegrationEnabled()) {
-			baublesSwitch = makeCategorySwitch(subCategoryBaubles, 5, 7, ItemStack.EMPTY, 5, 1);
-
-			BaublesIntegration.initBaublesCategory();
-		}
-		else
-			baublesSwitch = new ResearchBase("baubles", ItemStack.EMPTY, 5, 7).setIconBackground(PAGE_ICONS, PAGE_ICON_SIZE * 1, PAGE_ICON_SIZE * 2);
-		baublesSwitch.addAncestor(cluster);
 		 */
+		if (ModList.get().isLoaded("curios")) {
+			ResearchBase baublesSwitch = makeCategorySwitch(subCategoryBaubles, 5, 7, ItemStack.EMPTY, 5, 1);
+
+			CuriosCompat.initCuriosCategory();
+			baublesSwitch.addAncestor(cluster);
+			categoryAlchemy.addResearch(baublesSwitch);
+		}
 
 		ResearchBase pipeSwitch = makeCategorySwitch(subCategoryPipes, 3, 0, new ItemStack(RegistryManager.FLUID_PIPE_ITEM.get()), 0, 1).addAncestor(hammer);
 		ResearchBase weaponAugmentSwitch = makeCategorySwitch(subCategoryWeaponAugments, 2, 1, ItemStack.EMPTY, 1, 1).setMinEntries(2).addAncestor(inferno_forge);
@@ -467,7 +466,6 @@ public class ResearchManager {
 		.addResearch(tyrfing)
 		.addResearch(glimmer)
 		//.addResearch(metallurgic_dust)
-		//.addResearch(baublesSwitch)
 		.addResearch(wildfireSwitch);
 		categorySmithing
 		.addResearch(dawnstone_anvil)

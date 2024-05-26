@@ -5,10 +5,12 @@ import com.rekindled.embers.api.event.EmberRemoveEvent;
 import com.rekindled.embers.api.item.IHeldEmberCell;
 import com.rekindled.embers.api.item.IInventoryEmberCell;
 import com.rekindled.embers.api.power.IEmberCapability;
+import com.rekindled.embers.compat.curios.CuriosCompat;
 
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.ModList;
 
 public class EmberInventoryUtil {
 
@@ -28,9 +30,9 @@ public class EmberInventoryUtil {
 		if (capabilityMainHand != null && capabilityMainHand instanceof IHeldEmberCell) {
 			amount += capabilityMainHand.getEmberCapacity();
 		}
-		/*if (ConfigManager.isBaublesIntegrationEnabled()) {
-			amount += BaublesIntegration.getEmberCapacityTotal(player);
-		}*/
+		if (ModList.get().isLoaded("curios")) {
+			amount += CuriosCompat.getEmberCapacityTotal(player);
+		}
 		return amount;
 	}
 
@@ -50,9 +52,9 @@ public class EmberInventoryUtil {
 		if (capabilityMainHand != null && capabilityMainHand instanceof IHeldEmberCell) {
 			amount += capabilityMainHand.getEmber();
 		}
-		/*if (ConfigManager.isBaublesIntegrationEnabled()) {
-			amount += BaublesIntegration.getEmberTotal(player);
-		}*/
+		if (ModList.get().isLoaded("curios")) {
+			amount += CuriosCompat.getEmberTotal(player);
+		}
 		return amount;
 	}
 
@@ -73,11 +75,11 @@ public class EmberInventoryUtil {
 			if (temp <= 0)
 				return;
 		}
-		/*if (ConfigManager.isBaublesIntegrationEnabled()) {
-			temp = BaublesIntegration.removeEmber(player, temp);
+		if (ModList.get().isLoaded("curios")) {
+			temp = CuriosCompat.removeEmber(player, temp);
 			if (temp <= 0)
 				return;
-		}*/
+		}
 		for (int i = 0; i < Inventory.INVENTORY_SIZE; i++) {
 			IEmberCapability capability = player.getInventory().getItem(i).getCapability(EmbersCapabilities.EMBER_CAPABILITY, null).orElse(null);
 			if (capability != null && capability instanceof IInventoryEmberCell) {

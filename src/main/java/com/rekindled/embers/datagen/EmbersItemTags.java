@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 import com.rekindled.embers.Embers;
 import com.rekindled.embers.RegistryManager;
 import com.rekindled.embers.RegistryManager.ToolSet;
+import com.rekindled.embers.compat.curios.CuriosCompat;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -117,6 +118,9 @@ public class EmbersItemTags extends ItemTagsProvider {
 	public static final TagKey<Item> PLATINUM_SEED = ItemTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/platinum"));
 	public static final TagKey<Item> URANIUM_SEED = ItemTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/uranium"));
 	public static final TagKey<Item> DAWNSTONE_SEED = ItemTags.create(new ResourceLocation(Embers.MODID, "crystal_seeds/dawnstone"));
+
+	//curios
+	public static final TagKey<Item> ANY_CURIO = ItemTags.create(new ResourceLocation("curios", "curio"));
 
 	public EmbersItemTags(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTagProvider, ExistingFileHelper existingFileHelper) {
 		super(output, lookupProvider, blockTagProvider, Embers.MODID, existingFileHelper);
@@ -274,6 +278,8 @@ public class EmbersItemTags extends ItemTagsProvider {
 		.addOptional(new ResourceLocation("tetra", "modular_single"))
 		.addOptional(new ResourceLocation("tetra", "modular_double"))
 		.addOptional(new ResourceLocation("tetra", "modular_sword"));
+
+		tag(ANY_CURIO).addOptional(CuriosCompat.EMBER_BULB.getId());
 	}
 
 	public void toolTags(ToolSet set) {

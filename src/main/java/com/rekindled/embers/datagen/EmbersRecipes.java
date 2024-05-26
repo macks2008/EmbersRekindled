@@ -10,6 +10,7 @@ import com.rekindled.embers.Embers;
 import com.rekindled.embers.RegistryManager;
 import com.rekindled.embers.RegistryManager.StoneDecoBlocks;
 import com.rekindled.embers.RegistryManager.ToolSet;
+import com.rekindled.embers.compat.curios.CuriosCompat;
 import com.rekindled.embers.recipe.AlchemyRecipeBuilder;
 import com.rekindled.embers.recipe.AnvilAugmentRecipeBuilder;
 import com.rekindled.embers.recipe.AnvilAugmentRemoveRecipe;
@@ -692,6 +693,17 @@ public class EmbersRecipes extends RecipeProvider implements IConditionBuilder {
 		.define('G', Tags.Items.GLASS_SILICA)
 		.unlockedBy("has_charger", has(RegistryManager.COPPER_CHARGER.get()))
 		.save(consumer, getResource("ember_cartridge"));
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, CuriosCompat.EMBER_BULB.get())
+		.pattern(" CI")
+		.pattern("GSG")
+		.pattern(" G ")
+		.define('I', itemTag("forge", "ingots/lead"))
+		.define('C', itemTag("forge", "plates/dawnstone"))
+		.define('S', RegistryManager.EMBER_CRYSTAL_CLUSTER.get())
+		.define('G', Tags.Items.GLASS_SILICA)
+		.unlockedBy("has_cluster", has(RegistryManager.EMBER_CRYSTAL_CLUSTER.get()))
+		.save(consumer, getResource("ember_bulb"));
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, RegistryManager.CLOCKWORK_PICKAXE.get())
 		.pattern("ISI")

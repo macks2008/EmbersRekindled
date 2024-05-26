@@ -41,6 +41,7 @@ import com.rekindled.embers.blockentity.render.MnemonicInscriberBlockEntityRende
 import com.rekindled.embers.blockentity.render.ReservoirBlockEntityRenderer;
 import com.rekindled.embers.blockentity.render.StampBaseBlockEntityRenderer;
 import com.rekindled.embers.blockentity.render.StamperBlockEntityRenderer;
+import com.rekindled.embers.compat.curios.CuriosCompat;
 import com.rekindled.embers.datagen.EmbersBiomeModifiers;
 import com.rekindled.embers.datagen.EmbersBlockStates;
 import com.rekindled.embers.datagen.EmbersBlockTags;
@@ -91,6 +92,7 @@ import com.rekindled.embers.util.HeatBarTooltip.HeatBarClientTooltip;
 import com.rekindled.embers.util.Misc;
 
 import net.minecraft.advancements.critereon.ItemPredicate;
+import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -133,6 +135,7 @@ import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -178,6 +181,9 @@ public class Embers {
 		EmbersSounds.init();
 
 		ConfigManager.register();
+
+		if (ModList.get().isLoaded("curios"))
+			CuriosCompat.init();
 	}
 
 	public void commonSetup(final FMLCommonSetupEvent event) {
@@ -371,7 +377,10 @@ public class Embers {
 		@OnlyIn(Dist.CLIENT)
 		@SubscribeEvent
 		static void registerItemColorHandlers(RegisterColorHandlersEvent.Item event) {
-			event.register(new EmberStorageItem.ColorHandler(), RegistryManager.EMBER_JAR.get(), RegistryManager.EMBER_CARTRIDGE.get());
+			ItemColor emberContainerColor = new EmberStorageItem.ColorHandler();
+			if (ModList.get().isLoaded("curios"))
+				CuriosCompat.registerColorHandler(event, emberContainerColor);
+			event.register(emberContainerColor, RegistryManager.EMBER_JAR.get(), RegistryManager.EMBER_CARTRIDGE.get());
 			event.register(new TyrfingItem.ColorHandler(), RegistryManager.TYRFING.get());
 		}
 

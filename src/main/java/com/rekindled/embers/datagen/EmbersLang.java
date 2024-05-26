@@ -8,6 +8,7 @@ import com.rekindled.embers.RegistryManager.FluidStuff;
 import com.rekindled.embers.RegistryManager.StoneDecoBlocks;
 import com.rekindled.embers.RegistryManager.ToolSet;
 import com.rekindled.embers.api.augment.IAugment;
+import com.rekindled.embers.compat.curios.CuriosCompat;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.sounds.SoundEvent;
@@ -159,6 +160,7 @@ public class EmbersLang extends LanguageProvider {
 		addItem(RegistryManager.ANCIENT_CODEX, "Ancient Codex");
 		addItem(RegistryManager.EMBER_JAR, "Mantle Jar");
 		addItem(RegistryManager.EMBER_CARTRIDGE, "Mantle Cartridge");
+		addItem(CuriosCompat.EMBER_BULB, "Mantle Bulb");
 		addItem(RegistryManager.CLOCKWORK_PICKAXE, "Clockwork Pickaxe");
 		addItem(RegistryManager.CLOCKWORK_AXE, "Clockwork Axe");
 		addItem(RegistryManager.GRANDHAMMER, "Grandhammer");
@@ -904,37 +906,37 @@ public class EmbersLang extends LanguageProvider {
 
 		add(Embers.MODID + ".research.page.cost_reduction", "Ember Jewelry");
 		add(Embers.MODID + ".research.page.cost_reduction.title", "Cost Reduction");
-		add(Embers.MODID + ".research.page.cost_reduction.tags", "Ember;Ring;Amulet;Belt;Bauble;");
+		add(Embers.MODID + ".research.page.cost_reduction.tags", "Ember;Ring;Amulet;Belt;Bauble;Curio;");
 		add(Embers.MODID + ".research.page.cost_reduction.desc", "Using clockwork tools or Ember-powered weaponry can be quite cumbersome, as Mantle Jars or Cartridges need to be refilled periodically. These pieces of jewelry counteract this by reducing the amount of Ember consumed by a factor. The ring, amulet and belt all have different reduction rates, but they all stack together additively.");
 
 		add(Embers.MODID + ".research.page.mantle_bulb", "Mantle Bulb");
 		add(Embers.MODID + ".research.page.mantle_bulb.title", "Tucked Away");
-		add(Embers.MODID + ".research.page.mantle_bulb.tags", "Ember;Storage;Bulb;Mantle;Bauble;Portable;");
-		add(Embers.MODID + ".research.page.mantle_bulb.desc", "If holding a Mantle Cartridge in your offhand or even just holding a Mantle Jar in your pack is too unwieldy for you, this bauble can help. Instead of holding it in your inventory, this Ember container can be worn in any bauble slot. This comes, however, at a vastly reduced capacity.");
+		add(Embers.MODID + ".research.page.mantle_bulb.tags", "Ember;Storage;Bulb;Mantle;Bauble;Curio;Portable;");
+		add(Embers.MODID + ".research.page.mantle_bulb.desc", "If holding a Mantle Cartridge in your offhand or even just holding a Mantle Jar in your pack is too unwieldy for you, this curio can help. Instead of holding it in your inventory, this Ember container can be worn in any curio slot. This comes, however, at a vastly reduced capacity.");
 
 		add(Embers.MODID + ".research.page.explosion_charm", "Explosion Charm");
 		add(Embers.MODID + ".research.page.explosion_charm.title", "Manufacted Nethicite");
-		add(Embers.MODID + ".research.page.explosion_charm.tags", "Explosion;Charm;Bauble;");
+		add(Embers.MODID + ".research.page.explosion_charm.tags", "Explosion;Charm;Bauble;Curio;");
 		add(Embers.MODID + ".research.page.explosion_charm.desc", "While wearing this charm, explosions that go off near you will be dissipated, their destructive force absorbed into the charm, but unfortunately, for no other special effect.");
 
 		add(Embers.MODID + ".research.page.explosion_pedestal", "Explosion Charm Pedestal");
 		add(Embers.MODID + ".research.page.explosion_pedestal.title", "Vylon Sphere");
-		add(Embers.MODID + ".research.page.explosion_pedestal.tags", "Explosion;Charm;Pedestal;Bauble;");
+		add(Embers.MODID + ".research.page.explosion_pedestal.tags", "Explosion;Charm;Pedestal;Bauble;Curio;");
 		add(Embers.MODID + ".research.page.explosion_pedestal.desc", "Explosion Charms are useful, but normally only usable while on your person. By making minor modifications to the pedestal used in alchemy, you've managed to suspend a charm on it to act as a passive explosion absorbent.");
 
 		add(Embers.MODID + ".research.page.nonbeliever_amulet", "Amulet of the Heretic");
 		add(Embers.MODID + ".research.page.nonbeliever_amulet.title", "And it goes away");
-		add(Embers.MODID + ".research.page.nonbeliever_amulet.tags", "Amulet;Heretic;Magic;Witch;Bauble;");
+		add(Embers.MODID + ".research.page.nonbeliever_amulet.tags", "Amulet;Heretic;Magic;Witch;Bauble;Curio;");
 		add(Embers.MODID + ".research.page.nonbeliever_amulet.desc", "Damn witches and their resistance to the otherworldly... This amulet will be the gateway to becoming like them. When you are hit by any magical attack while wearing the amulet, 90%% of the damage will be nullified. Note however, that you will always take at least half a heart of damage from magical attacks.");
 
 		add(Embers.MODID + ".research.page.ashen_amulet", "Ashen Amulet");
 		add(Embers.MODID + ".research.page.ashen_amulet.title", "Ashes to Ashes");
-		add(Embers.MODID + ".research.page.ashen_amulet.tags", "Amulet;Ash;Ashen;Bauble;");
+		add(Embers.MODID + ".research.page.ashen_amulet.tags", "Amulet;Ash;Ashen;Bauble;Curio;");
 		add(Embers.MODID + ".research.page.ashen_amulet.desc", "Turning things to ash is... certainly a display of power. Not very well thought-out power, but power that rests in this amulet regardless. When a creature is slain or a block is broken while wearing this amulet, it will instantly be turned to ash, and drop nothing but ash.");
 
 		add(Embers.MODID + ".research.page.dawnstone_mail", "Dawnstone Mail");
 		add(Embers.MODID + ".research.page.dawnstone_mail.title", "Defense Position");
-		add(Embers.MODID + ".research.page.dawnstone_mail.tags", "Mail;Dawnstone;Knockback;Armor;Bauble;");
+		add(Embers.MODID + ".research.page.dawnstone_mail.tags", "Mail;Dawnstone;Knockback;Armor;Bauble;Curio;");
 		add(Embers.MODID + ".research.page.dawnstone_mail.desc", "Dawnstone is a material with many properties that make it suitable for vestments and armor. This Dawnstone Mail will protect the wearer from all knockback. Just don't question why mail is made from plates.");
 
 
@@ -1015,10 +1017,10 @@ public class EmbersLang extends LanguageProvider {
 		add(Embers.MODID + ".research.page.mystical_mechanics.tags", "Mechanical;Gear;Axle;Engine;");
 		add(Embers.MODID + ".research.page.mystical_mechanics.desc", "Embers has Mystical Mechanics compatibility, but it's an optional dependency, and it's currently either turned off in the config, or Mystical Mechanics is not installed.");
 
-		add(Embers.MODID + ".research.page.baubles", "Baubles");
+		add(Embers.MODID + ".research.page.baubles", "Curios");
 		add(Embers.MODID + ".research.page.baubles.title", "Not the mod you're looking for");
-		add(Embers.MODID + ".research.page.baubles.tags", "Bauble;Amulet;Ring;Belt;Charm;");
-		add(Embers.MODID + ".research.page.baubles.desc", "Embers has Baubles compatibility, but it's an optional dependency, and it's currently either turned off in the config, or Baubles is not installed.");
+		add(Embers.MODID + ".research.page.baubles.tags", "Bauble;Curio;Amulet;Ring;Belt;Charm;");
+		add(Embers.MODID + ".research.page.baubles.desc", "Embers has Curios compatibility, but it's an optional dependency, and it's currently either turned off in the config, or Curios is not installed.");
 
 		add(Embers.MODID + ".research.page.diffraction_barrel", "Diffraction Barrel");
 		add(Embers.MODID + ".research.page.diffraction_barrel.title", "This... is my Boomstick!");
@@ -1045,7 +1047,7 @@ public class EmbersLang extends LanguageProvider {
 		add(Embers.MODID + ".research.page.mystical_mechanics_category", "Mystical Mechanics");
 		add(Embers.MODID + ".research.page.simple_alchemy_category", "Simple Alchemy");
 		add(Embers.MODID + ".research.page.wildfire_category", "Wildfire Core");
-		add(Embers.MODID + ".research.page.baubles_category", "Baubles");
+		add(Embers.MODID + ".research.page.baubles_category", "Curios");
 		add(Embers.MODID + ".research.page.weapon_augments_category", "Weapon Augments");
 		add(Embers.MODID + ".research.page.armor_augments_category", "Armor Augments");
 		add(Embers.MODID + ".research.page.projectile_augments_category", "Projectile Augments");

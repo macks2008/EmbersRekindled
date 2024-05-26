@@ -924,7 +924,7 @@ public class RegistryManager {
 					output.accept(item.get());
 					if (item == COPPER_CELL_ITEM)
 						output.accept(CopperCellBlockItem.getCharged());
-					if (item == EMBER_JAR || item == EMBER_CARTRIDGE)
+					if (item.get() instanceof EmberStorageItem)
 						output.accept(EmberStorageItem.withFill(item.get(), ((EmberStorageItem) item.get()).getCapacity()));
 				}
 			})

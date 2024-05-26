@@ -4,6 +4,7 @@ import com.rekindled.embers.Embers;
 import com.rekindled.embers.RegistryManager;
 import com.rekindled.embers.RegistryManager.FluidStuff;
 import com.rekindled.embers.RegistryManager.ToolSet;
+import com.rekindled.embers.compat.curios.CuriosCompat;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -39,6 +40,7 @@ public class EmbersItemModels extends ItemModelProvider {
 		basicItem(RegistryManager.ANCIENT_CODEX.get());
 		layeredItem(RegistryManager.EMBER_JAR, "item/generated", "ember_jar_glass", "ember_jar_glass_shine", "ember_jar");
 		layeredItem(RegistryManager.EMBER_CARTRIDGE, "item/generated", "ember_cartridge_glass", "ember_cartridge_glass_shine", "ember_cartridge");
+		layeredItem(CuriosCompat.EMBER_BULB, "item/generated", "ember_bulb_glass", "ember_bulb_glass_shine", "ember_bulb");
 		itemWithTexture(RegistryManager.MUSIC_DISC_7F_PATTERNS, "music_disc_ember");
 		basicItem(RegistryManager.ALCHEMICAL_WASTE.get());
 		withExistingParent(RegistryManager.ALCHEMICAL_NOTE.getId().getPath(), new ResourceLocation("forge", "item/default")).customLoader(SeparateTransformsModelBuilder::begin)
