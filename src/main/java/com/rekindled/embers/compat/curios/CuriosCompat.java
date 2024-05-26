@@ -1,10 +1,12 @@
 package com.rekindled.embers.compat.curios;
 
 import java.util.Map;
+import java.util.function.Predicate;
 
 import com.rekindled.embers.RegistryManager;
 import com.rekindled.embers.api.capabilities.EmbersCapabilities;
 import com.rekindled.embers.api.power.IEmberCapability;
+import com.rekindled.embers.item.DawnstoneMailItem;
 import com.rekindled.embers.item.EmberBulbItem;
 import com.rekindled.embers.item.EmberDiscountBaubleItem;
 import com.rekindled.embers.item.EmberStorageItem;
@@ -33,7 +35,7 @@ public class CuriosCompat {
 	public static final RegistryObject<Item> EMBER_BELT = RegistryManager.ITEMS.register("ember_belt", () -> new EmberDiscountBaubleItem(new Item.Properties().stacksTo(1), 0.25));
 	public static final RegistryObject<Item> EMBER_AMULET = RegistryManager.ITEMS.register("ember_amulet", () -> new EmberDiscountBaubleItem(new Item.Properties().stacksTo(1), 0.2));
 	public static final RegistryObject<Item> EMBER_BULB = RegistryManager.ITEMS.register("ember_bulb", () -> new EmberBulbItem(new Item.Properties().stacksTo(1)));
-	//public static final RegistryObject<Item> DAWNSTONE_MAIL = RegistryManager.ITEMS.register("dawnstone_mail", () -> new EmberBulbItem(new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> DAWNSTONE_MAIL = RegistryManager.ITEMS.register("dawnstone_mail", () -> new DawnstoneMailItem(new Item.Properties().stacksTo(1)));
 	//public static final RegistryObject<Item> ASHEN_AMULET = RegistryManager.ITEMS.register("ashen_amulet", () -> new EmberBulbItem(new Item.Properties().stacksTo(1)));
 	//public static final RegistryObject<Item> NONBELEIVER_AMULET = RegistryManager.ITEMS.register("nonbeliever_amulet", () -> new EmberBulbItem(new Item.Properties().stacksTo(1)));
 	//public static final RegistryObject<Item> EXPLOSION_CHARM = RegistryManager.ITEMS.register("explosion_charm", () -> new EmberBulbItem(new Item.Properties().stacksTo(1)));
@@ -47,6 +49,21 @@ public class CuriosCompat {
 	@OnlyIn(Dist.CLIENT)
 	public static void registerColorHandler(RegisterColorHandlersEvent.Item event, ItemColor itemColor) {
 		event.register(itemColor, EMBER_BULB.get());
+	}
+
+	public static boolean checkForCurios(LivingEntity living, Predicate<ItemStack> predicate) {
+		LazyOptional<ICuriosItemHandler> inv = CuriosApi.getCuriosInventory(living);
+		if (inv.isPresent()) {
+			Map<String, ICurioStacksHandler> curios = inv.resolve().get().getCurios();
+			for (ICurioStacksHandler curio : curios.values()) {
+				for (int i = 0; i < curio.getStacks().getSlots(); i++) {
+					if (predicate.test(curio.getStacks().getStackInSlot(i))) {
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 	public static double getEmberCapacityTotal(LivingEntity living) {
@@ -109,7 +126,7 @@ public class CuriosCompat {
 		//ResearchManager.explosion_charm = new ResearchBase("explosion_charm", new ItemStack(EXPLOSION_CHARM.get()), 9, 2);
 		//ResearchManager.nonbeliever_amulet = new ResearchBase("nonbeliever_amulet", new ItemStack(NONBELEIVER_AMULET.get()), 1, 3);
 		//ResearchManager.ashen_amulet = new ResearchBase("ashen_amulet", new ItemStack(ASHEN_AMULET.get()), 4, 3);
-		//ResearchManager.dawnstone_mail = new ResearchBase("dawnstone_mail", new ItemStack(DAWNSTONE_MAIL.get()), 3, 7);
+		ResearchManager.dawnstone_mail = new ResearchBase("dawnstone_mail", new ItemStack(DAWNSTONE_MAIL.get()), 3, 7);
 		//ResearchManager.explosion_pedestal = new ResearchBase("explosion_pedestal", new ItemStack(EXPLOSION_PEDESTAL_ITEM.get()), 11, 1).addAncestor(ResearchManager.explosion_charm);
 
 		ResearchManager.subCategoryBaubles.addResearch(ResearchManager.cost_reduction);
@@ -117,7 +134,7 @@ public class CuriosCompat {
 		//ResearchManager.subCategoryBaubles.addResearch(ResearchManager.explosion_charm);
 		//ResearchManager.subCategoryBaubles.addResearch(ResearchManager.nonbeliever_amulet);
 		//ResearchManager.subCategoryBaubles.addResearch(ResearchManager.ashen_amulet);
-		//ResearchManager.subCategoryBaubles.addResearch(ResearchManager.dawnstone_mail);
+		ResearchManager.subCategoryBaubles.addResearch(ResearchManager.dawnstone_mail);
 		//ResearchManager.subCategoryBaubles.addResearch(ResearchManager.explosion_pedestal);
 	}
 }

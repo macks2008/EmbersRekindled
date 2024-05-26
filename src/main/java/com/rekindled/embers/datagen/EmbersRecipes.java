@@ -830,6 +830,13 @@ public class EmbersRecipes extends RecipeProvider implements IConditionBuilder {
 		.define('L', Tags.Items.LEATHER)
 		.unlockedBy("has_cluster", has(RegistryManager.EMBER_CRYSTAL_CLUSTER.get()))
 		.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, CuriosCompat.DAWNSTONE_MAIL.get())
+		.pattern("P P")
+		.pattern("PPP")
+		.pattern("PPP")
+		.define('P', itemTag("forge", "plates/dawnstone"))
+		.unlockedBy("has_dawnstone_plate", has(itemTag("forge", "plates/dawnstone")))
+		.save(consumer);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RegistryManager.MECHANICAL_CORE.get())
 		.pattern("IBI")

@@ -124,6 +124,7 @@ public class EmbersItemTags extends ItemTagsProvider {
 	public static final TagKey<Item> RING_CURIO = ItemTags.create(new ResourceLocation("curios", "ring"));
 	public static final TagKey<Item> BELT_CURIO = ItemTags.create(new ResourceLocation("curios", "belt"));
 	public static final TagKey<Item> AMULET_CURIO = ItemTags.create(new ResourceLocation("curios", "necklace"));
+	public static final TagKey<Item> BODY_CURIO = ItemTags.create(new ResourceLocation("curios", "body"));
 
 	public EmbersItemTags(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagLookup<Block>> blockTagProvider, ExistingFileHelper existingFileHelper) {
 		super(output, lookupProvider, blockTagProvider, Embers.MODID, existingFileHelper);
@@ -286,6 +287,7 @@ public class EmbersItemTags extends ItemTagsProvider {
 		tag(RING_CURIO).addOptional(CuriosCompat.EMBER_RING.getId());
 		tag(BELT_CURIO).addOptional(CuriosCompat.EMBER_BELT.getId());
 		tag(AMULET_CURIO).addOptional(CuriosCompat.EMBER_AMULET.getId());
+		tag(BODY_CURIO).addOptional(CuriosCompat.DAWNSTONE_MAIL.getId());
 	}
 
 	public void toolTags(ToolSet set) {
