@@ -260,6 +260,10 @@ public class EmbersLang extends LanguageProvider {
 		addTools(RegistryManager.SILVER_TOOLS, "Silver");
 		addTools(RegistryManager.DAWNSTONE_TOOLS, "Dawnstone");
 
+		addItem(CuriosCompat.EMBER_RING, "Ember Ring");
+		addItem(CuriosCompat.EMBER_BELT, "Ember Belt");
+		addItem(CuriosCompat.EMBER_AMULET, "Ember Amulet");
+
 		addItem(RegistryManager.ANCIENT_GOLEM_SPAWN_EGG, "Ancient Golem Spawn Egg");
 		addEntityType(RegistryManager.ANCIENT_GOLEM, "Ancient Golem");
 		addEntityType(RegistryManager.EMBER_PACKET, "Ember Packet");

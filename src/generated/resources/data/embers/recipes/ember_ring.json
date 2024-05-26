@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "C": {
+      "item": "embers:ember_crystal_cluster"
+    },
+    "N": {
+      "tag": "forge:ingots/dawnstone"
+    }
+  },
+  "pattern": [
+    "CN ",
+    "N N",
+    " N "
+  ],
+  "result": {
+    "item": "embers:ember_ring"
+  },
+  "show_notification": true
+}

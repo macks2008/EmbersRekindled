@@ -803,6 +803,34 @@ public class EmbersRecipes extends RecipeProvider implements IConditionBuilder {
 		toolRecipes(RegistryManager.SILVER_TOOLS, EmbersItemTags.SILVER_INGOT, RegistryManager.SILVER_NUGGET.get(), consumer);
 		toolRecipes(RegistryManager.DAWNSTONE_TOOLS, EmbersItemTags.DAWNSTONE_INGOT, RegistryManager.DAWNSTONE_NUGGET.get(), consumer);
 
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, CuriosCompat.EMBER_RING.get())
+		.pattern("CN ")
+		.pattern("N N")
+		.pattern(" N ")
+		.define('C', RegistryManager.EMBER_CRYSTAL_CLUSTER.get())
+		.define('N', itemTag("forge", "ingots/dawnstone"))
+		.unlockedBy("has_cluster", has(RegistryManager.EMBER_CRYSTAL_CLUSTER.get()))
+		.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, CuriosCompat.EMBER_BELT.get())
+		.pattern("LIL")
+		.pattern("L L")
+		.pattern("PCP")
+		.define('C', RegistryManager.EMBER_CRYSTAL_CLUSTER.get())
+		.define('I', itemTag("forge", "ingots/dawnstone"))
+		.define('P', itemTag("forge", "plates/dawnstone"))
+		.define('L', Tags.Items.LEATHER)
+		.unlockedBy("has_cluster", has(RegistryManager.EMBER_CRYSTAL_CLUSTER.get()))
+		.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, CuriosCompat.EMBER_AMULET.get())
+		.pattern(" L ")
+		.pattern("L L")
+		.pattern("NCN")
+		.define('C', RegistryManager.EMBER_CRYSTAL_CLUSTER.get())
+		.define('N', itemTag("forge", "ingots/dawnstone"))
+		.define('L', Tags.Items.LEATHER)
+		.unlockedBy("has_cluster", has(RegistryManager.EMBER_CRYSTAL_CLUSTER.get()))
+		.save(consumer);
+
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RegistryManager.MECHANICAL_CORE.get())
 		.pattern("IBI")
 		.pattern(" P ")

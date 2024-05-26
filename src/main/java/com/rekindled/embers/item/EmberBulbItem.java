@@ -5,9 +5,8 @@ import org.jetbrains.annotations.Nullable;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-public class EmberBulbItem extends EmberStorageItem implements ICurioItem {
+public class EmberBulbItem extends EmberStorageItem implements IEmbersCurioItem {
 
 	public static final double CAPACITY = 1000.0;
 

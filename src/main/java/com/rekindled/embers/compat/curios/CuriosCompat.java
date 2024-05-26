@@ -6,9 +6,11 @@ import com.rekindled.embers.RegistryManager;
 import com.rekindled.embers.api.capabilities.EmbersCapabilities;
 import com.rekindled.embers.api.power.IEmberCapability;
 import com.rekindled.embers.item.EmberBulbItem;
+import com.rekindled.embers.item.EmberDiscountBaubleItem;
 import com.rekindled.embers.item.EmberStorageItem;
 import com.rekindled.embers.research.ResearchBase;
 import com.rekindled.embers.research.ResearchManager;
+import com.rekindled.embers.research.subtypes.ResearchShowItem;
 
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.world.entity.LivingEntity;
@@ -27,9 +29,9 @@ public class CuriosCompat {
 
 	//public static final RegistryObject<Block> EXPLOSION_PEDESTAL = RegistryManager.BLOCKS.register("explosion_pedestal", () -> new AlchemyPedestalBlock(Properties.of().mapColor(MapColor.TERRACOTTA_YELLOW).sound(EmbersSounds.CAMINITE).requiresCorrectToolForDrops().strength(1.6f).noOcclusion(), EmbersSounds.MULTIBLOCK_EXTRA));
 
-	//public static final RegistryObject<Item> EMBER_RING = RegistryManager.ITEMS.register("ember_ring", () -> new EmberBulbItem(new Item.Properties().stacksTo(1)));
-	//public static final RegistryObject<Item> EMBER_BELT = RegistryManager.ITEMS.register("ember_belt", () -> new EmberBulbItem(new Item.Properties().stacksTo(1)));
-	//public static final RegistryObject<Item> EMBER_AMULET = RegistryManager.ITEMS.register("ember_amulet", () -> new EmberBulbItem(new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> EMBER_RING = RegistryManager.ITEMS.register("ember_ring", () -> new EmberDiscountBaubleItem(new Item.Properties().stacksTo(1), 0.15));
+	public static final RegistryObject<Item> EMBER_BELT = RegistryManager.ITEMS.register("ember_belt", () -> new EmberDiscountBaubleItem(new Item.Properties().stacksTo(1), 0.25));
+	public static final RegistryObject<Item> EMBER_AMULET = RegistryManager.ITEMS.register("ember_amulet", () -> new EmberDiscountBaubleItem(new Item.Properties().stacksTo(1), 0.2));
 	public static final RegistryObject<Item> EMBER_BULB = RegistryManager.ITEMS.register("ember_bulb", () -> new EmberBulbItem(new Item.Properties().stacksTo(1)));
 	//public static final RegistryObject<Item> DAWNSTONE_MAIL = RegistryManager.ITEMS.register("dawnstone_mail", () -> new EmberBulbItem(new Item.Properties().stacksTo(1)));
 	//public static final RegistryObject<Item> ASHEN_AMULET = RegistryManager.ITEMS.register("ashen_amulet", () -> new EmberBulbItem(new Item.Properties().stacksTo(1)));
@@ -102,7 +104,7 @@ public class CuriosCompat {
 	public static void initCuriosCategory() {
 		ItemStack fullBulb = EmberStorageItem.withFill(EMBER_BULB.get(), ((EmberBulbItem)EMBER_BULB.get()).getCapacity());
 
-		//ResearchManager.cost_reduction = new ResearchShowItem("cost_reduction", new ItemStack(EMBER_AMULET.get()), 5, 5).addItem(new ResearchShowItem.DisplayItem(new ItemStack(EMBER_AMULET.get()), new ItemStack(EMBER_BELT.get()), new ItemStack(EMBER_RING.get())));
+		ResearchManager.cost_reduction = new ResearchShowItem("cost_reduction", new ItemStack(EMBER_AMULET.get()), 5, 5).addItem(new ResearchShowItem.DisplayItem(new ItemStack(EMBER_AMULET.get()), new ItemStack(EMBER_BELT.get()), new ItemStack(EMBER_RING.get())));
 		ResearchManager.mantle_bulb = new ResearchBase("mantle_bulb", fullBulb, 7, 3);
 		//ResearchManager.explosion_charm = new ResearchBase("explosion_charm", new ItemStack(EXPLOSION_CHARM.get()), 9, 2);
 		//ResearchManager.nonbeliever_amulet = new ResearchBase("nonbeliever_amulet", new ItemStack(NONBELEIVER_AMULET.get()), 1, 3);
@@ -110,7 +112,7 @@ public class CuriosCompat {
 		//ResearchManager.dawnstone_mail = new ResearchBase("dawnstone_mail", new ItemStack(DAWNSTONE_MAIL.get()), 3, 7);
 		//ResearchManager.explosion_pedestal = new ResearchBase("explosion_pedestal", new ItemStack(EXPLOSION_PEDESTAL_ITEM.get()), 11, 1).addAncestor(ResearchManager.explosion_charm);
 
-		//ResearchManager.subCategoryBaubles.addResearch(ResearchManager.cost_reduction);
+		ResearchManager.subCategoryBaubles.addResearch(ResearchManager.cost_reduction);
 		ResearchManager.subCategoryBaubles.addResearch(ResearchManager.mantle_bulb);
 		//ResearchManager.subCategoryBaubles.addResearch(ResearchManager.explosion_charm);
 		//ResearchManager.subCategoryBaubles.addResearch(ResearchManager.nonbeliever_amulet);

@@ -132,6 +132,10 @@ public class EmbersItemModels extends ItemModelProvider {
 		toolModels(RegistryManager.SILVER_TOOLS);
 		toolModels(RegistryManager.DAWNSTONE_TOOLS);
 
+		basicItem(CuriosCompat.EMBER_RING.get());
+		basicItem(CuriosCompat.EMBER_BELT.get());
+		basicItem(CuriosCompat.EMBER_AMULET.get());
+
 		spawnEgg(RegistryManager.ANCIENT_GOLEM_SPAWN_EGG);
 		buttonInventory(RegistryManager.CAMINITE_BUTTON_ITEM.getId().getPath(), new ResourceLocation(Embers.MODID, "block/caminite_button"));
 	}
