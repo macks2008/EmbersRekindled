@@ -286,7 +286,7 @@ public class EmbersItemTags extends ItemTagsProvider {
 		tag(ANY_CURIO).addOptional(CuriosCompat.EMBER_BULB.getId());
 		tag(RING_CURIO).addOptional(CuriosCompat.EMBER_RING.getId());
 		tag(BELT_CURIO).addOptional(CuriosCompat.EMBER_BELT.getId());
-		tag(AMULET_CURIO).addOptional(CuriosCompat.EMBER_AMULET.getId());
+		tag(AMULET_CURIO).addOptional(CuriosCompat.EMBER_AMULET.getId()).addOptional(CuriosCompat.ASHEN_AMULET.getId());
 		tag(BODY_CURIO).addOptional(CuriosCompat.DAWNSTONE_MAIL.getId());
 	}
 

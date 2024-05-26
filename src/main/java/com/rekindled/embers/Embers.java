@@ -89,6 +89,7 @@ import com.rekindled.embers.util.GlowingTextTooltip;
 import com.rekindled.embers.util.GlowingTextTooltip.GlowingTextClientTooltip;
 import com.rekindled.embers.util.HeatBarTooltip;
 import com.rekindled.embers.util.HeatBarTooltip.HeatBarClientTooltip;
+import com.rekindled.embers.util.MatchCurioLootCondition;
 import com.rekindled.embers.util.Misc;
 
 import net.minecraft.advancements.critereon.ItemPredicate;
@@ -258,6 +259,9 @@ public class Embers {
 
 			CraftingHelper.register(new ResourceLocation(MODID, "has_heat"), HeatIngredient.Serializer.INSTANCE);
 			CraftingHelper.register(new ResourceLocation(MODID, "has_augment"), AugmentIngredient.Serializer.INSTANCE);
+		}
+		if (event.getRegistryKey().equals(Registries.LOOT_CONDITION_TYPE)) {
+			event.register(Registries.LOOT_CONDITION_TYPE, new ResourceLocation(MODID, "match_curio"), () -> MatchCurioLootCondition.LOOT_CONDITION_TYPE);
 		}
 	}
 

@@ -2,8 +2,11 @@ package com.rekindled.embers.datagen;
 
 import com.rekindled.embers.Embers;
 import com.rekindled.embers.RegistryManager;
+import com.rekindled.embers.compat.curios.CuriosCompat;
+import com.rekindled.embers.util.AshenAmuletLootModifier;
 import com.rekindled.embers.util.AugmentPredicate;
 import com.rekindled.embers.util.GrandhammerLootModifier;
+import com.rekindled.embers.util.MatchCurioLootCondition;
 import com.rekindled.embers.util.SuperHeaterLootModifier;
 
 import net.minecraft.advancements.critereon.ItemPredicate;
@@ -22,5 +25,6 @@ public class EmbersLootModifiers extends GlobalLootModifierProvider {
 	protected void start() {
 		add("grandhammer", new GrandhammerLootModifier(new LootItemCondition[]{MatchTool.toolMatches(ItemPredicate.Builder.item().of(RegistryManager.GRANDHAMMER.get())).build()}));
 		add("superheater", new SuperHeaterLootModifier(new LootItemCondition[]{new MatchTool(new AugmentPredicate(RegistryManager.SUPERHEATER_AUGMENT, 1))}));
+		add("ashenamulet", new AshenAmuletLootModifier(new LootItemCondition[]{MatchCurioLootCondition.curioMatches(ItemPredicate.Builder.item().of(CuriosCompat.ASHEN_AMULET.get())).build()}));
 	}
 }

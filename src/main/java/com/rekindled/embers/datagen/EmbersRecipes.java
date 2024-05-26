@@ -837,6 +837,15 @@ public class EmbersRecipes extends RecipeProvider implements IConditionBuilder {
 		.define('P', itemTag("forge", "plates/dawnstone"))
 		.unlockedBy("has_dawnstone_plate", has(itemTag("forge", "plates/dawnstone")))
 		.save(consumer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, CuriosCompat.ASHEN_AMULET.get())
+		.pattern(" L ")
+		.pattern("L L")
+		.pattern("NCN")
+		.define('C', EmbersItemTags.ASH_DUST)
+		.define('N', RegistryManager.ARCHAIC_BRICK.get())
+		.define('L', Tags.Items.LEATHER)
+		.unlockedBy("has_ash", has(EmbersItemTags.ASH_DUST))
+		.save(consumer);
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RegistryManager.MECHANICAL_CORE.get())
 		.pattern("IBI")

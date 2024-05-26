@@ -3,6 +3,10 @@
     {
       "id": "embers:ember_amulet",
       "required": false
+    },
+    {
+      "id": "embers:ashen_amulet",
+      "required": false
     }
   ]
 }
