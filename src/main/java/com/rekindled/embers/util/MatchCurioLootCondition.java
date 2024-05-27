@@ -50,7 +50,7 @@ public class MatchCurioLootCondition implements LootItemCondition {
 			user = context.getParam(LootContextParams.THIS_ENTITY);
 
 		if (user instanceof LivingEntity)
-			return CuriosCompat.checkForCurios((LivingEntity) user, this.predicate);
+			return CuriosCompat.checkForCurios((LivingEntity) user, stack -> this.predicate.matches(stack));
 		return false;
 	}
 

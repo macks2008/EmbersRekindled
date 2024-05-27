@@ -281,6 +281,10 @@ public class EmbersRecipes extends RecipeProvider implements IConditionBuilder {
 		.inputs(EmbersItemTags.DAWNSTONE_PLATE, EmbersItemTags.DAWNSTONE_PLATE, EmbersItemTags.DAWNSTONE_PLATE, EmbersItemTags.DAWNSTONE_PLATE)
 		.aspects(EmbersItemTags.COPPER_ASPECTUS, EmbersItemTags.DAWNSTONE_ASPECTUS).save(consumer);
 
+		AlchemyRecipeBuilder.create(CuriosCompat.NONBELEIVER_AMULET.get()).tablet(CuriosCompat.ASHEN_AMULET.get()).folder(alchemyFolder)
+		.inputs(RegistryManager.ELDRITCH_INSIGNIA.get(), RegistryManager.ARCHAIC_CIRCUIT.get(), RegistryManager.ARCHAIC_BRICK.get(), RegistryManager.ARCHAIC_CIRCUIT.get())
+		.aspects(EmbersItemTags.DAWNSTONE_ASPECTUS, EmbersItemTags.SILVER_ASPECTUS, EmbersItemTags.LEAD_ASPECTUS, EmbersItemTags.IRON_ASPECTUS).save(consumer);
+
 		//boiling
 		BoilingRecipeBuilder.create(RegistryManager.STEAM.FLUID.get(), 5).folder(boilingFolder).input(FluidTags.WATER, 1).save(consumer);
 		BoilingRecipeBuilder.create(RegistryManager.DWARVEN_GAS.FLUID.get(), 1).folder(boilingFolder).input(RegistryManager.DWARVEN_OIL.FLUID.get(), 1).save(consumer);

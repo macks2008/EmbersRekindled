@@ -7,6 +7,10 @@
     {
       "id": "embers:ashen_amulet",
       "required": false
+    },
+    {
+      "id": "embers:nonbeliever_amulet",
+      "required": false
     }
   ]
 }
