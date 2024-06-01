@@ -64,6 +64,7 @@ public class EmbersBlockStates extends BlockStateProvider {
 		blockWithItemTexture(RegistryManager.SILVER_BLOCK, "block_silver");
 
 		blockWithItemTexture(RegistryManager.DAWNSTONE_BLOCK, "block_dawnstone");
+		blockWithItem(RegistryManager.MITHRIL_BLOCK, "mithril_block");
 
 		blockWithItem(RegistryManager.CAMINITE_BRICKS);
 		decoBlocks(RegistryManager.CAMINITE_BRICKS_DECO);

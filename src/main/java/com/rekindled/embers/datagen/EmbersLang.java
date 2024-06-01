@@ -256,6 +256,8 @@ public class EmbersLang extends LanguageProvider {
 		addItem(RegistryManager.DAWNSTONE_NUGGET, "Dawnstone Nugget");
 		addItem(RegistryManager.DAWNSTONE_PLATE, "Dawnstone Plate");
 
+		addBlock(RegistryManager.MITHRIL_BLOCK, "Block of Mithril");
+
 		addTools(RegistryManager.LEAD_TOOLS, "Lead");
 		addTools(RegistryManager.SILVER_TOOLS, "Silver");
 		addTools(RegistryManager.DAWNSTONE_TOOLS, "Dawnstone");

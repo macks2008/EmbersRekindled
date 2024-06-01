@@ -95,6 +95,7 @@ import com.rekindled.embers.block.MechanicalPumpBlock;
 import com.rekindled.embers.block.MelterBlock;
 import com.rekindled.embers.block.MiniBoilerBlock;
 import com.rekindled.embers.block.MirrorRelayBlock;
+import com.rekindled.embers.block.MithrilBlock;
 import com.rekindled.embers.block.MixerCentrifugeBlock;
 import com.rekindled.embers.block.MnemonicInscriberBlock;
 import com.rekindled.embers.block.PressureRefineryBlock;
@@ -160,6 +161,7 @@ import com.rekindled.embers.blockentity.MelterBottomBlockEntity;
 import com.rekindled.embers.blockentity.MelterTopBlockEntity;
 import com.rekindled.embers.blockentity.MiniBoilerBlockEntity;
 import com.rekindled.embers.blockentity.MirrorRelayBlockEntity;
+import com.rekindled.embers.blockentity.MithrilBlockEntity;
 import com.rekindled.embers.blockentity.MixerCentrifugeBottomBlockEntity;
 import com.rekindled.embers.blockentity.MixerCentrifugeTopBlockEntity;
 import com.rekindled.embers.blockentity.MnemonicInscriberBlockEntity;
@@ -401,6 +403,7 @@ public class RegistryManager {
 	public static final RegistryObject<Block> SILVER_BLOCK = BLOCKS.register("silver_block", () -> new Block(Properties.of().mapColor(MapColor.ICE).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
 
 	public static final RegistryObject<Block> DAWNSTONE_BLOCK = BLOCKS.register("dawnstone_block", () -> new Block(Properties.of().mapColor(MapColor.TERRACOTTA_YELLOW).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
+	public static final RegistryObject<Block> MITHRIL_BLOCK = BLOCKS.register("mithril_block", () -> new MithrilBlock(Properties.of().mapColor(MapColor.GLOW_LICHEN).sound(SoundType.METAL).requiresCorrectToolForDrops().strength(5.0F, 6.0F).noOcclusion()));
 
 	public static final RegistryObject<Block> CAMINITE_BRICKS = BLOCKS.register("caminite_bricks", () -> new Block(Properties.of().mapColor(MapColor.WOOD).sound(EmbersSounds.CAMINITE).requiresCorrectToolForDrops().strength(1.6f)));
 	public static final StoneDecoBlocks CAMINITE_BRICKS_DECO = new StoneDecoBlocks("caminite_bricks", CAMINITE_BRICKS, Properties.of().mapColor(MapColor.WOOD).sound(EmbersSounds.CAMINITE).requiresCorrectToolForDrops().strength(1.6f));
@@ -703,6 +706,7 @@ public class RegistryManager {
 	public static final RegistryObject<Item> DAWNSTONE_PLATE = ITEMS.register("dawnstone_plate", () -> new Item(new Item.Properties()));
 
 	public static final RegistryObject<Item> DAWNSTONE_BLOCK_ITEM = ITEMS.register("dawnstone_block", () -> new BlockItem(DAWNSTONE_BLOCK.get(), new Item.Properties()));
+	public static final RegistryObject<Item> MITHRIL_BLOCK_ITEM = ITEMS.register("mithril_block", () -> new BlockItem(MITHRIL_BLOCK.get(), new Item.Properties()));
 
 	public static final ToolSet LEAD_TOOLS = new ToolSet("lead", EmbersTiers.LEAD);
 	public static final ToolSet SILVER_TOOLS = new ToolSet("silver", EmbersTiers.SILVER);
@@ -914,6 +918,7 @@ public class RegistryManager {
 	public static final RegistryObject<BlockEntityType<CharInstillerBlockEntity>> CHAR_INSTILLER_ENTITY = BLOCK_ENTITY_TYPES.register("char_instiller", () -> BlockEntityType.Builder.of(CharInstillerBlockEntity::new, CHAR_INSTILLER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<AtmosphericBellowsBlockEntity>> ATMOSPHERIC_BELLOWS_ENTITY = BLOCK_ENTITY_TYPES.register("atmospheric_bellows", () -> BlockEntityType.Builder.of(AtmosphericBellowsBlockEntity::new, ATMOSPHERIC_BELLOWS.get()).build(null));
 	public static final RegistryObject<BlockEntityType<EntropicEnumeratorBlockEntity>> ENTROPIC_ENUMERATOR_ENTITY = BLOCK_ENTITY_TYPES.register("entropic_enumerator", () -> BlockEntityType.Builder.of(EntropicEnumeratorBlockEntity::new, ENTROPIC_ENUMERATOR.get()).build(null));
+	public static final RegistryObject<BlockEntityType<MithrilBlockEntity>> MITHRIL_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register("mithril_block", () -> BlockEntityType.Builder.of(MithrilBlockEntity::new, MITHRIL_BLOCK.get()).build(null));
 
 	//creative tabs
 	public static final RegistryObject<CreativeModeTab> EMBERS_TAB = CREATIVE_TABS.register("main_tab", () -> CreativeModeTab.builder()
@@ -922,6 +927,8 @@ public class RegistryManager {
 			.withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
 			.displayItems((params, output) -> {
 				for (RegistryObject<Item> item : ITEMS.getEntries()) {
+					if (item == MITHRIL_BLOCK_ITEM)
+						continue;
 					output.accept(item.get());
 					if (item == COPPER_CELL_ITEM)
 						output.accept(CopperCellBlockItem.getCharged());

@@ -263,12 +263,19 @@ public class EmbersRenderTypes extends RenderType {
 	}
 
 	//render type used for mithril
+	public static ResourceLocation MITHRIL_REFLECTION = new ResourceLocation(Embers.MODID + ":textures/misc/mithril_reflection.png");
 	public static RenderType MITHRIL = create(
 			Embers.MODID + ":mithril_render_type",
 			DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 256, true, false,
 			RenderType.CompositeState.builder()
 			.setShaderState(MITHRIL_SHADER)
-			.setTextureState(RenderStateShard.MultiTextureStateShard.builder().add(InventoryMenu.BLOCK_ATLAS, false, false).add(InventoryMenu.BLOCK_ATLAS, false, false).add(InventoryMenu.BLOCK_ATLAS, false, false).add(new ResourceLocation(Embers.MODID + ":textures/misc/mithril_reflection.png"), true, false).build())
+			.setTextureState(new RenderStateShard.EmptyTextureStateShard(() -> {
+				TextureManager texturemanager = Minecraft.getInstance().getTextureManager();
+				texturemanager.getTexture(InventoryMenu.BLOCK_ATLAS).setFilter(false, false);
+				RenderSystem.setShaderTexture(0, InventoryMenu.BLOCK_ATLAS);
+				texturemanager.getTexture(MITHRIL_REFLECTION).setFilter(true, false);
+				RenderSystem.setShaderTexture(3, MITHRIL_REFLECTION);
+			}, () -> {}))
 			.setOverlayState(OVERLAY)
 			.setLightmapState(LIGHTMAP)
 			.createCompositeState(true));

@@ -138,6 +138,7 @@ public class EmbersBlockTags extends BlockTagsProvider {
 				RegistryManager.RAW_SILVER_BLOCK.get(),
 				RegistryManager.SILVER_BLOCK.get(),
 				RegistryManager.DAWNSTONE_BLOCK.get(),
+				RegistryManager.MITHRIL_BLOCK.get(),
 				RegistryManager.CAMINITE_BRICKS.get(),
 				RegistryManager.CAMINITE_LARGE_BRICKS.get(),
 				RegistryManager.CAMINITE_LARGE_TILE.get(),
@@ -254,7 +255,8 @@ public class EmbersBlockTags extends BlockTagsProvider {
 				RegistryManager.DEEPSLATE_SILVER_ORE.get(),
 				RegistryManager.RAW_SILVER_BLOCK.get(),
 				RegistryManager.SILVER_BLOCK.get(),
-				RegistryManager.DAWNSTONE_BLOCK.get());
+				RegistryManager.DAWNSTONE_BLOCK.get(),
+				RegistryManager.MITHRIL_BLOCK.get());
 
 		tag(RELOCATION_NOT_SUPPORTED).add(
 				RegistryManager.EMBER_BORE.get(),

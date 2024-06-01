@@ -51,6 +51,7 @@ public class EmbersBlockLootTables extends BlockLootSubProvider {
 		dropSelf(RegistryManager.SILVER_BLOCK.get());
 
 		dropSelf(RegistryManager.DAWNSTONE_BLOCK.get());
+		dropSelf(RegistryManager.MITHRIL_BLOCK.get());
 
 		dropSelf(RegistryManager.CAMINITE_BRICKS.get());
 		decoDrops(RegistryManager.CAMINITE_BRICKS_DECO);
