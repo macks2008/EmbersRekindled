@@ -10,6 +10,7 @@ import com.rekindled.embers.item.DawnstoneMailItem;
 import com.rekindled.embers.item.EmberBulbItem;
 import com.rekindled.embers.item.EmberDiscountBaubleItem;
 import com.rekindled.embers.item.EmberStorageItem;
+import com.rekindled.embers.item.ExplosionCharmItem;
 import com.rekindled.embers.item.GenericCurioItemItem;
 import com.rekindled.embers.item.NonbeleiverAmuletItem;
 import com.rekindled.embers.research.ResearchBase;
@@ -40,7 +41,7 @@ public class CuriosCompat {
 	public static final RegistryObject<Item> DAWNSTONE_MAIL = RegistryManager.ITEMS.register("dawnstone_mail", () -> new DawnstoneMailItem(new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> ASHEN_AMULET = RegistryManager.ITEMS.register("ashen_amulet", () -> new GenericCurioItemItem(new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> NONBELEIVER_AMULET = RegistryManager.ITEMS.register("nonbeliever_amulet", () -> new NonbeleiverAmuletItem(new Item.Properties().stacksTo(1)));
-	//public static final RegistryObject<Item> EXPLOSION_CHARM = RegistryManager.ITEMS.register("explosion_charm", () -> new EmberBulbItem(new Item.Properties().stacksTo(1)));
+	public static final RegistryObject<Item> EXPLOSION_CHARM = RegistryManager.ITEMS.register("explosion_charm", () -> new ExplosionCharmItem(new Item.Properties().stacksTo(1)));
 
 	//public static final RegistryObject<Item> EXPLOSION_PEDESTAL_ITEM = RegistryManager.ITEMS.register("explosion_pedestal", () -> new BlockItem(EXPLOSION_PEDESTAL.get(), new Item.Properties()));
 
@@ -128,7 +129,7 @@ public class CuriosCompat {
 		ResearchManager.dawnstone_mail = new ResearchBase("dawnstone_mail", new ItemStack(DAWNSTONE_MAIL.get()), 3, 7);
 		ResearchManager.ashen_amulet = new ResearchBase("ashen_amulet", new ItemStack(ASHEN_AMULET.get()), 4, 3);
 		ResearchManager.nonbeliever_amulet = new ResearchBase("nonbeliever_amulet", new ItemStack(NONBELEIVER_AMULET.get()), 1, 3);
-		//ResearchManager.explosion_charm = new ResearchBase("explosion_charm", new ItemStack(EXPLOSION_CHARM.get()), 9, 2);
+		ResearchManager.explosion_charm = new ResearchBase("explosion_charm", new ItemStack(EXPLOSION_CHARM.get()), 9, 2);
 		//ResearchManager.explosion_pedestal = new ResearchBase("explosion_pedestal", new ItemStack(EXPLOSION_PEDESTAL_ITEM.get()), 11, 1).addAncestor(ResearchManager.explosion_charm);
 
 		ResearchManager.subCategoryBaubles.addResearch(ResearchManager.cost_reduction);
@@ -136,7 +137,7 @@ public class CuriosCompat {
 		ResearchManager.subCategoryBaubles.addResearch(ResearchManager.dawnstone_mail);
 		ResearchManager.subCategoryBaubles.addResearch(ResearchManager.ashen_amulet);
 		ResearchManager.subCategoryBaubles.addResearch(ResearchManager.nonbeliever_amulet);
-		//ResearchManager.subCategoryBaubles.addResearch(ResearchManager.explosion_charm);
+		ResearchManager.subCategoryBaubles.addResearch(ResearchManager.explosion_charm);
 		//ResearchManager.subCategoryBaubles.addResearch(ResearchManager.explosion_pedestal);
 	}
 }

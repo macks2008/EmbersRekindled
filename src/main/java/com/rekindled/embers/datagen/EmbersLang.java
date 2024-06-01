@@ -266,6 +266,7 @@ public class EmbersLang extends LanguageProvider {
 		addItem(CuriosCompat.DAWNSTONE_MAIL, "Dawnstone Mail");
 		addItem(CuriosCompat.ASHEN_AMULET, "Ashen Amulet");
 		addItem(CuriosCompat.NONBELEIVER_AMULET, "Amulet of the Heretic");
+		addItem(CuriosCompat.EXPLOSION_CHARM, "Explosion Charm");
 
 		addItem(RegistryManager.ANCIENT_GOLEM_SPAWN_EGG, "Ancient Golem Spawn Egg");
 		addEntityType(RegistryManager.ANCIENT_GOLEM, "Ancient Golem");

@@ -38,10 +38,10 @@ public class SuperHeaterLootModifier extends LootModifier {
 
 	@Override
 	public ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
-		Entity user;
+		Entity user = null;
 		if (context.hasParam(LootContextParams.KILLER_ENTITY))
 			user = context.getParam(LootContextParams.KILLER_ENTITY);
-		else
+		else if (context.hasParam(LootContextParams.THIS_ENTITY))
 			user = context.getParam(LootContextParams.THIS_ENTITY);
 
 		if (user instanceof Player player && EmberInventoryUtil.getEmberTotal(player) >= RegistryManager.SUPERHEATER_AUGMENT.getCost()) {

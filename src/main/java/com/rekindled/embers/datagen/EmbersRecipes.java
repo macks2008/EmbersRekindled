@@ -65,6 +65,7 @@ import net.minecraftforge.common.crafting.IntersectionIngredient;
 import net.minecraftforge.common.crafting.conditions.AndCondition;
 import net.minecraftforge.common.crafting.conditions.ICondition;
 import net.minecraftforge.common.crafting.conditions.IConditionBuilder;
+import net.minecraftforge.common.crafting.conditions.ModLoadedCondition;
 import net.minecraftforge.common.crafting.conditions.NotCondition;
 import net.minecraftforge.common.crafting.conditions.TagEmptyCondition;
 
@@ -283,7 +284,10 @@ public class EmbersRecipes extends RecipeProvider implements IConditionBuilder {
 
 		AlchemyRecipeBuilder.create(CuriosCompat.NONBELEIVER_AMULET.get()).tablet(CuriosCompat.ASHEN_AMULET.get()).folder(alchemyFolder)
 		.inputs(RegistryManager.ELDRITCH_INSIGNIA.get(), RegistryManager.ARCHAIC_CIRCUIT.get(), RegistryManager.ARCHAIC_BRICK.get(), RegistryManager.ARCHAIC_CIRCUIT.get())
-		.aspects(EmbersItemTags.DAWNSTONE_ASPECTUS, EmbersItemTags.SILVER_ASPECTUS, EmbersItemTags.LEAD_ASPECTUS, EmbersItemTags.IRON_ASPECTUS).save(consumer);
+		.aspects(EmbersItemTags.DAWNSTONE_ASPECTUS, EmbersItemTags.SILVER_ASPECTUS, EmbersItemTags.LEAD_ASPECTUS, EmbersItemTags.IRON_ASPECTUS).save(ConsumerWrapperBuilder.wrap().addCondition(new ModLoadedCondition("curios")).build(consumer));
+		AlchemyRecipeBuilder.create(CuriosCompat.EXPLOSION_CHARM.get()).tablet(RegistryManager.EMBER_CRYSTAL_CLUSTER.get()).folder(alchemyFolder)
+		.inputs(Ingredient.of(RegistryManager.ARCHAIC_BRICK.get()), Ingredient.of(RegistryManager.ARCHAIC_BRICK.get()), Ingredient.of(Tags.Items.LEATHER), Ingredient.of(RegistryManager.ARCHAIC_BRICK.get()))
+		.aspects(EmbersItemTags.DAWNSTONE_ASPECTUS, EmbersItemTags.SILVER_ASPECTUS, EmbersItemTags.COPPER_ASPECTUS, EmbersItemTags.IRON_ASPECTUS).save(ConsumerWrapperBuilder.wrap().addCondition(new ModLoadedCondition("curios")).build(consumer));
 
 		//boiling
 		BoilingRecipeBuilder.create(RegistryManager.STEAM.FLUID.get(), 5).folder(boilingFolder).input(FluidTags.WATER, 1).save(consumer);
@@ -707,7 +711,7 @@ public class EmbersRecipes extends RecipeProvider implements IConditionBuilder {
 		.define('S', RegistryManager.EMBER_CRYSTAL_CLUSTER.get())
 		.define('G', Tags.Items.GLASS_SILICA)
 		.unlockedBy("has_cluster", has(RegistryManager.EMBER_CRYSTAL_CLUSTER.get()))
-		.save(consumer, getResource("ember_bulb"));
+		.save(ConsumerWrapperBuilder.wrap().addCondition(new ModLoadedCondition("curios")).build(consumer));
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, RegistryManager.CLOCKWORK_PICKAXE.get())
 		.pattern("ISI")
@@ -814,7 +818,7 @@ public class EmbersRecipes extends RecipeProvider implements IConditionBuilder {
 		.define('C', RegistryManager.EMBER_CRYSTAL_CLUSTER.get())
 		.define('N', itemTag("forge", "ingots/dawnstone"))
 		.unlockedBy("has_cluster", has(RegistryManager.EMBER_CRYSTAL_CLUSTER.get()))
-		.save(consumer);
+		.save(ConsumerWrapperBuilder.wrap().addCondition(new ModLoadedCondition("curios")).build(consumer));
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, CuriosCompat.EMBER_BELT.get())
 		.pattern("LIL")
 		.pattern("L L")
@@ -824,7 +828,7 @@ public class EmbersRecipes extends RecipeProvider implements IConditionBuilder {
 		.define('P', itemTag("forge", "plates/dawnstone"))
 		.define('L', Tags.Items.LEATHER)
 		.unlockedBy("has_cluster", has(RegistryManager.EMBER_CRYSTAL_CLUSTER.get()))
-		.save(consumer);
+		.save(ConsumerWrapperBuilder.wrap().addCondition(new ModLoadedCondition("curios")).build(consumer));
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, CuriosCompat.EMBER_AMULET.get())
 		.pattern(" L ")
 		.pattern("L L")
@@ -833,14 +837,14 @@ public class EmbersRecipes extends RecipeProvider implements IConditionBuilder {
 		.define('N', itemTag("forge", "ingots/dawnstone"))
 		.define('L', Tags.Items.LEATHER)
 		.unlockedBy("has_cluster", has(RegistryManager.EMBER_CRYSTAL_CLUSTER.get()))
-		.save(consumer);
+		.save(ConsumerWrapperBuilder.wrap().addCondition(new ModLoadedCondition("curios")).build(consumer));
 		ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, CuriosCompat.DAWNSTONE_MAIL.get())
 		.pattern("P P")
 		.pattern("PPP")
 		.pattern("PPP")
 		.define('P', itemTag("forge", "plates/dawnstone"))
 		.unlockedBy("has_dawnstone_plate", has(itemTag("forge", "plates/dawnstone")))
-		.save(consumer);
+		.save(ConsumerWrapperBuilder.wrap().addCondition(new ModLoadedCondition("curios")).build(consumer));
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, CuriosCompat.ASHEN_AMULET.get())
 		.pattern(" L ")
 		.pattern("L L")
@@ -849,7 +853,7 @@ public class EmbersRecipes extends RecipeProvider implements IConditionBuilder {
 		.define('N', RegistryManager.ARCHAIC_BRICK.get())
 		.define('L', Tags.Items.LEATHER)
 		.unlockedBy("has_ash", has(EmbersItemTags.ASH_DUST))
-		.save(consumer);
+		.save(ConsumerWrapperBuilder.wrap().addCondition(new ModLoadedCondition("curios")).build(consumer));
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RegistryManager.MECHANICAL_CORE.get())
 		.pattern("IBI")

@@ -43,10 +43,10 @@ public class MatchCurioLootCondition implements LootItemCondition {
 		if (!ModList.get().isLoaded("curios"))
 			return false;
 
-		Entity user;
+		Entity user = null;
 		if (context.hasParam(LootContextParams.KILLER_ENTITY))
 			user = context.getParam(LootContextParams.KILLER_ENTITY);
-		else
+		else if (context.hasParam(LootContextParams.THIS_ENTITY))
 			user = context.getParam(LootContextParams.THIS_ENTITY);
 
 		if (user instanceof LivingEntity)

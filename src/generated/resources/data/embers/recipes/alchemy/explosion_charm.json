@@ -8,7 +8,7 @@
       "tag": "embers:aspectus/silver"
     },
     {
-      "tag": "embers:aspectus/lead"
+      "tag": "embers:aspectus/copper"
     },
     {
       "tag": "embers:aspectus/iron"
@@ -22,22 +22,22 @@
   ],
   "inputs": [
     {
-      "item": "embers:eldritch_insignia"
-    },
-    {
-      "item": "embers:archaic_circuit"
+      "item": "embers:archaic_brick"
     },
     {
       "item": "embers:archaic_brick"
     },
     {
-      "item": "embers:archaic_circuit"
+      "tag": "forge:leather"
+    },
+    {
+      "item": "embers:archaic_brick"
     }
   ],
   "output": {
-    "item": "embers:nonbeliever_amulet"
+    "item": "embers:explosion_charm"
   },
   "tablet": {
-    "item": "embers:ashen_amulet"
+    "item": "embers:ember_crystal_cluster"
   }
 }

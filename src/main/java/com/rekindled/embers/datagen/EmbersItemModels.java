@@ -138,6 +138,7 @@ public class EmbersItemModels extends ItemModelProvider {
 		basicItem(CuriosCompat.DAWNSTONE_MAIL.get());
 		basicItem(CuriosCompat.ASHEN_AMULET.get());
 		basicItem(CuriosCompat.NONBELEIVER_AMULET.get());
+		basicItem(CuriosCompat.EXPLOSION_CHARM.get());
 
 		spawnEgg(RegistryManager.ANCIENT_GOLEM_SPAWN_EGG);
 		buttonInventory(RegistryManager.CAMINITE_BUTTON_ITEM.getId().getPath(), new ResourceLocation(Embers.MODID, "block/caminite_button"));
