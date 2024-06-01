@@ -14,6 +14,7 @@ import com.rekindled.embers.block.FieldChartBlock;
 import com.rekindled.embers.block.ItemTransferBlock;
 import com.rekindled.embers.block.MechEdgeBlockBase;
 import com.rekindled.embers.block.MnemonicInscriberBlock;
+import com.rekindled.embers.compat.curios.CuriosCompat;
 import com.rekindled.embers.block.MechEdgeBlockBase.MechEdge;
 import com.rekindled.embers.render.PipeModelBuilder;
 
@@ -476,6 +477,12 @@ public class EmbersBlockStates extends BlockStateProvider {
 		getVariantBuilder(RegistryManager.ALCHEMY_PEDESTAL.get()).forAllStates(state -> {
 			return ConfiguredModel.builder()
 					.modelFile(state.getValue(BlockStateProperties.DOUBLE_BLOCK_HALF) == DoubleBlockHalf.LOWER ? models().getExistingFile(new ResourceLocation(Embers.MODID, "alchemy_pedestal_bottom")) : models().getExistingFile(new ResourceLocation(Embers.MODID, "alchemy_pedestal_top")))
+					.uvLock(false)
+					.build();
+		});
+		getVariantBuilder(CuriosCompat.EXPLOSION_PEDESTAL.get()).forAllStates(state -> {
+			return ConfiguredModel.builder()
+					.modelFile(state.getValue(BlockStateProperties.DOUBLE_BLOCK_HALF) == DoubleBlockHalf.LOWER ? models().getExistingFile(new ResourceLocation(Embers.MODID, "alchemy_pedestal_bottom")) : models().getExistingFile(new ResourceLocation(Embers.MODID, "explosion_pedestal_top")))
 					.uvLock(false)
 					.build();
 		});

@@ -288,6 +288,9 @@ public class EmbersRecipes extends RecipeProvider implements IConditionBuilder {
 		AlchemyRecipeBuilder.create(CuriosCompat.EXPLOSION_CHARM.get()).tablet(RegistryManager.EMBER_CRYSTAL_CLUSTER.get()).folder(alchemyFolder)
 		.inputs(Ingredient.of(RegistryManager.ARCHAIC_BRICK.get()), Ingredient.of(RegistryManager.ARCHAIC_BRICK.get()), Ingredient.of(Tags.Items.LEATHER), Ingredient.of(RegistryManager.ARCHAIC_BRICK.get()))
 		.aspects(EmbersItemTags.DAWNSTONE_ASPECTUS, EmbersItemTags.SILVER_ASPECTUS, EmbersItemTags.COPPER_ASPECTUS, EmbersItemTags.IRON_ASPECTUS).save(ConsumerWrapperBuilder.wrap().addCondition(new ModLoadedCondition("curios")).build(consumer));
+		AlchemyRecipeBuilder.create(CuriosCompat.EXPLOSION_PEDESTAL_ITEM.get()).tablet(RegistryManager.ALCHEMY_PEDESTAL_ITEM.get()).folder(alchemyFolder)
+		.inputs(CuriosCompat.EXPLOSION_CHARM.get())
+		.aspects(EmbersItemTags.SILVER_ASPECTUS).save(ConsumerWrapperBuilder.wrap().addCondition(new ModLoadedCondition("curios")).build(consumer));
 
 		//boiling
 		BoilingRecipeBuilder.create(RegistryManager.STEAM.FLUID.get(), 5).folder(boilingFolder).input(FluidTags.WATER, 1).save(consumer);

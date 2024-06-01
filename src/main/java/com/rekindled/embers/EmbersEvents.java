@@ -1,11 +1,14 @@
 package com.rekindled.embers;
 
+import java.util.HashMap;
+
 import com.rekindled.embers.api.augment.AugmentUtil;
 import com.rekindled.embers.api.event.EmberProjectileEvent;
 import com.rekindled.embers.api.item.IInflictorGem;
 import com.rekindled.embers.api.item.IInflictorGemHolder;
 import com.rekindled.embers.api.item.ITyrfingWeapon;
 import com.rekindled.embers.augment.ShiftingScalesAugment;
+import com.rekindled.embers.blockentity.ExplosionPedestalBlockEntity;
 import com.rekindled.embers.datagen.EmbersDamageTypes;
 import com.rekindled.embers.datagen.EmbersItemTags;
 import com.rekindled.embers.datagen.EmbersSounds;
@@ -15,9 +18,11 @@ import com.rekindled.embers.network.message.MessageWorldSeed;
 import com.rekindled.embers.research.ResearchManager;
 import com.rekindled.embers.util.EmberGenUtil;
 import com.rekindled.embers.util.EmberWorldData;
+import com.rekindled.embers.util.ExplosionCharmWorldInfo;
 import com.rekindled.embers.util.Misc;
 
 import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -35,8 +40,10 @@ import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.TickEvent.LevelTickEvent;
@@ -44,6 +51,7 @@ import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.ArrowLooseEvent;
 import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.event.level.ExplosionEvent;
 import net.minecraftforge.event.level.LevelEvent;
 import net.minecraftforge.network.PacketDistributor;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -200,6 +208,31 @@ public class EmbersEvents {
 			if (changed) {
 				PacketHandler.INSTANCE.send(PacketDistributor.ALL.noArg(), new MessageEmberGenOffset(EmberGenUtil.offX, EmberGenUtil.offZ));
 				EmberWorldData.get(ServerLifecycleHooks.getCurrentServer().overworld()).setDirty();
+			}
+		}
+	}
+
+	public static HashMap<ResourceLocation, ExplosionCharmWorldInfo> explosionCharmData = new HashMap<>();
+
+	public static void putExplosionCharm(Level world, BlockPos pos) {
+		if (!explosionCharmData.containsKey(world.dimension().location()))
+			explosionCharmData.put(world.dimension().location(), new ExplosionCharmWorldInfo());
+		ExplosionCharmWorldInfo data = explosionCharmData.get(world.dimension().location());
+		data.put(pos);
+	}
+
+	public static void onExplosion(ExplosionEvent.Start event) {
+		Level world = event.getLevel();
+		Explosion explosion = event.getExplosion();
+		ExplosionCharmWorldInfo data = explosionCharmData.get(world.dimension().location());
+		if (data == null)
+			return;
+		BlockPos charmPos = data.getClosestExplosionCharm(world, BlockPos.containing(explosion.getPosition()), 8);
+		if (charmPos != null) {
+			BlockEntity tile = world.getBlockEntity(charmPos);
+			if (tile instanceof ExplosionPedestalBlockEntity) {
+				((ExplosionPedestalBlockEntity) tile).absorb(explosion);
+				event.setCanceled(true);
 			}
 		}
 	}

@@ -25,6 +25,10 @@
     "embers:combustion_chamber",
     "embers:catalysis_chamber",
     "embers:inferno_forge",
-    "#embers:crystal_seeds"
+    "#embers:crystal_seeds",
+    {
+      "id": "embers:explosion_pedestal",
+      "required": false
+    }
   ]
 }

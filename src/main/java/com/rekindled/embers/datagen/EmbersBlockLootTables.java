@@ -9,6 +9,7 @@ import javax.annotation.Nonnull;
 import com.rekindled.embers.Embers;
 import com.rekindled.embers.RegistryManager;
 import com.rekindled.embers.RegistryManager.StoneDecoBlocks;
+import com.rekindled.embers.compat.curios.CuriosCompat;
 
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -140,6 +141,7 @@ public class EmbersBlockLootTables extends BlockLootSubProvider {
 		dropSelf(RegistryManager.ITEM_TRANSFER.get());
 		dropSelf(RegistryManager.FLUID_TRANSFER.get());
 		dropSelf(RegistryManager.ALCHEMY_PEDESTAL.get());
+		dropSelf(CuriosCompat.EXPLOSION_PEDESTAL.get());
 		dropSelf(RegistryManager.ALCHEMY_TABLET.get());
 		dropSelf(RegistryManager.BEAM_CANNON.get());
 		dropSelf(RegistryManager.MECHANICAL_PUMP.get());

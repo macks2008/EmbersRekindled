@@ -130,6 +130,10 @@
     "embers:inferno_forge",
     "embers:inferno_forge_edge",
     "embers:mnemonic_inscriber",
-    "embers:entropic_enumerator"
+    "embers:entropic_enumerator",
+    {
+      "id": "embers:explosion_pedestal",
+      "required": false
+    }
   ]
 }

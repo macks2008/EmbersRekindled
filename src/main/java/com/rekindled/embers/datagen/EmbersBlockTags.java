@@ -5,6 +5,7 @@ import java.util.concurrent.CompletableFuture;
 import com.rekindled.embers.Embers;
 import com.rekindled.embers.RegistryManager;
 import com.rekindled.embers.RegistryManager.StoneDecoBlocks;
+import com.rekindled.embers.compat.curios.CuriosCompat;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -233,7 +234,7 @@ public class EmbersBlockTags extends BlockTagsProvider {
 				RegistryManager.INFERNO_FORGE.get(),
 				RegistryManager.INFERNO_FORGE_EDGE.get(),
 				RegistryManager.MNEMONIC_INSCRIBER.get(),
-				RegistryManager.ENTROPIC_ENUMERATOR.get());
+				RegistryManager.ENTROPIC_ENUMERATOR.get()).addOptional(CuriosCompat.EXPLOSION_PEDESTAL.getId());
 
 		tag(BlockTags.MINEABLE_WITH_AXE).add(
 				RegistryManager.SEALED_PLANKS.get(),
@@ -284,7 +285,7 @@ public class EmbersBlockTags extends BlockTagsProvider {
 				RegistryManager.COMBUSTION_CHAMBER.get(),
 				RegistryManager.CATALYSIS_CHAMBER.get(),
 				RegistryManager.INFERNO_FORGE.get())
-		.addTag(CRYSTAL_SEEDS);
+		.addTag(CRYSTAL_SEEDS).addOptional(CuriosCompat.EXPLOSION_PEDESTAL.getId());
 
 		tag(MECH_CORE_PROXYABLE).add(
 				RegistryManager.EMBER_BORE.get(),

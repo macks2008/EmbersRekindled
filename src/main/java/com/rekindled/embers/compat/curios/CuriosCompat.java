@@ -6,6 +6,9 @@ import java.util.function.Predicate;
 import com.rekindled.embers.RegistryManager;
 import com.rekindled.embers.api.capabilities.EmbersCapabilities;
 import com.rekindled.embers.api.power.IEmberCapability;
+import com.rekindled.embers.block.ExplosionPedestalBlock;
+import com.rekindled.embers.blockentity.ExplosionPedestalBlockEntity;
+import com.rekindled.embers.datagen.EmbersSounds;
 import com.rekindled.embers.item.DawnstoneMailItem;
 import com.rekindled.embers.item.EmberBulbItem;
 import com.rekindled.embers.item.EmberDiscountBaubleItem;
@@ -19,8 +22,13 @@ import com.rekindled.embers.research.subtypes.ResearchShowItem;
 
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
+import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
@@ -32,7 +40,7 @@ import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 
 public class CuriosCompat {
 
-	//public static final RegistryObject<Block> EXPLOSION_PEDESTAL = RegistryManager.BLOCKS.register("explosion_pedestal", () -> new AlchemyPedestalBlock(Properties.of().mapColor(MapColor.TERRACOTTA_YELLOW).sound(EmbersSounds.CAMINITE).requiresCorrectToolForDrops().strength(1.6f).noOcclusion(), EmbersSounds.MULTIBLOCK_EXTRA));
+	public static final RegistryObject<Block> EXPLOSION_PEDESTAL = RegistryManager.BLOCKS.register("explosion_pedestal", () -> new ExplosionPedestalBlock(Properties.of().mapColor(MapColor.COLOR_ORANGE).sound(EmbersSounds.CAMINITE).requiresCorrectToolForDrops().strength(1.6f).noOcclusion(), EmbersSounds.MULTIBLOCK_EXTRA));
 
 	public static final RegistryObject<Item> EMBER_RING = RegistryManager.ITEMS.register("ember_ring", () -> new EmberDiscountBaubleItem(new Item.Properties().stacksTo(1), 0.15));
 	public static final RegistryObject<Item> EMBER_BELT = RegistryManager.ITEMS.register("ember_belt", () -> new EmberDiscountBaubleItem(new Item.Properties().stacksTo(1), 0.25));
@@ -43,9 +51,9 @@ public class CuriosCompat {
 	public static final RegistryObject<Item> NONBELEIVER_AMULET = RegistryManager.ITEMS.register("nonbeliever_amulet", () -> new NonbeleiverAmuletItem(new Item.Properties().stacksTo(1)));
 	public static final RegistryObject<Item> EXPLOSION_CHARM = RegistryManager.ITEMS.register("explosion_charm", () -> new ExplosionCharmItem(new Item.Properties().stacksTo(1)));
 
-	//public static final RegistryObject<Item> EXPLOSION_PEDESTAL_ITEM = RegistryManager.ITEMS.register("explosion_pedestal", () -> new BlockItem(EXPLOSION_PEDESTAL.get(), new Item.Properties()));
+	public static final RegistryObject<Item> EXPLOSION_PEDESTAL_ITEM = RegistryManager.ITEMS.register("explosion_pedestal", () -> new BlockItem(EXPLOSION_PEDESTAL.get(), new Item.Properties()));
 
-	//public static final RegistryObject<BlockEntityType<AlchemyPedestalBlockEntity>> EXPLOSION_PEDESTAL_ENTITY = RegistryManager.BLOCK_ENTITY_TYPES.register("explosion_pedestal", () -> BlockEntityType.Builder.of(AlchemyPedestalBlockEntity::new, EXPLOSION_PEDESTAL.get()).build(null));
+	public static final RegistryObject<BlockEntityType<ExplosionPedestalBlockEntity>> EXPLOSION_PEDESTAL_ENTITY = RegistryManager.BLOCK_ENTITY_TYPES.register("explosion_pedestal", () -> BlockEntityType.Builder.of(ExplosionPedestalBlockEntity::new, EXPLOSION_PEDESTAL.get()).build(null));
 
 	public static void init() {}
 
@@ -130,7 +138,7 @@ public class CuriosCompat {
 		ResearchManager.ashen_amulet = new ResearchBase("ashen_amulet", new ItemStack(ASHEN_AMULET.get()), 4, 3);
 		ResearchManager.nonbeliever_amulet = new ResearchBase("nonbeliever_amulet", new ItemStack(NONBELEIVER_AMULET.get()), 1, 3);
 		ResearchManager.explosion_charm = new ResearchBase("explosion_charm", new ItemStack(EXPLOSION_CHARM.get()), 9, 2);
-		//ResearchManager.explosion_pedestal = new ResearchBase("explosion_pedestal", new ItemStack(EXPLOSION_PEDESTAL_ITEM.get()), 11, 1).addAncestor(ResearchManager.explosion_charm);
+		ResearchManager.explosion_pedestal = new ResearchBase("explosion_pedestal", new ItemStack(EXPLOSION_PEDESTAL_ITEM.get()), 11, 1).addAncestor(ResearchManager.explosion_charm);
 
 		ResearchManager.subCategoryBaubles.addResearch(ResearchManager.cost_reduction);
 		ResearchManager.subCategoryBaubles.addResearch(ResearchManager.mantle_bulb);
@@ -138,6 +146,6 @@ public class CuriosCompat {
 		ResearchManager.subCategoryBaubles.addResearch(ResearchManager.ashen_amulet);
 		ResearchManager.subCategoryBaubles.addResearch(ResearchManager.nonbeliever_amulet);
 		ResearchManager.subCategoryBaubles.addResearch(ResearchManager.explosion_charm);
-		//ResearchManager.subCategoryBaubles.addResearch(ResearchManager.explosion_pedestal);
+		ResearchManager.subCategoryBaubles.addResearch(ResearchManager.explosion_pedestal);
 	}
 }
