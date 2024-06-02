@@ -110,6 +110,8 @@ public class EmbersClientEvents {
 		if (event.getEntity().isUsingItem() && !event.getEntity().isPassenger() && event.getEntity().getItemInHand(event.getEntity().getUsedItemHand()).is(EmbersItemTags.NORMAL_WALK_SPEED_TOOL)) {
 			event.getInput().forwardImpulse /= 0.2f;
 			event.getInput().leftImpulse /= 0.2f;
+			if (event.getEntity().isSprinting())
+				event.getEntity().setSprinting(false);
 		}
 	}
 
