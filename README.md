@@ -35,10 +35,10 @@ You can also talk about Embers Rekindled and contact me about the port on my dis
 - Atmospheric gauges can now be placed in the world and a comparator can read them
 - Resistances from inflictor gems are now added up across all armor pieces
 - Caminite rings now always place in the center even when you click on the edge of a reservoir or camanite ring
-- The recipe tem and fluid transfers now produces 3 transfers instead of 1
+- The recipes for item and fluid transfers now produces 3 transfers instead of 1
 - The question mark in the bottom left of the codex now glows to draw attention to it
 - Ember production now generates 1/4th of the steam so boilers don't instantly explode on pressure refineries
-- The mean cannon requires at least 1000 ember in it to fire, which is the minimum required to initate alchemy
+- The beam cannon requires at least 1000 ember in it to fire, which is the minimum required to initate alchemy
 - The cinder staff and blazing ray now allow you to walk at normal speed while charging, sprinting is still prevented
 
 ## Things I want to change:
