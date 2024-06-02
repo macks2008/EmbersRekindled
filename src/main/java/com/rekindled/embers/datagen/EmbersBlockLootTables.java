@@ -176,6 +176,7 @@ public class EmbersBlockLootTables extends BlockLootSubProvider {
 		dropSelf(RegistryManager.CHAR_INSTILLER.get());
 		dropSelf(RegistryManager.ATMOSPHERIC_BELLOWS.get());
 		dropSelf(RegistryManager.ENTROPIC_ENUMERATOR.get());
+		dropSelf(RegistryManager.HEAT_EXCHANGER.get());
 	}
 
 	public void decoDrops(StoneDecoBlocks deco) {

@@ -1514,6 +1514,16 @@ public class EmbersRecipes extends RecipeProvider implements IConditionBuilder {
 		.define('P', RegistryManager.SEALED_PLANKS.get())
 		.unlockedBy("has_hearth_coil", has(RegistryManager.HEARTH_COIL.get()))
 		.save(consumer, getResource("atmospheric_bellows"));
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RegistryManager.HEAT_EXCHANGER.get())
+		.pattern("C C")
+		.pattern("IPI")
+		.pattern("IPI")
+		.define('P', itemTag("forge", "plates/copper"))
+		.define('I', itemTag("forge", "ingots/iron"))
+		.define('C', itemTag("forge", "ingots/copper"))
+		.unlockedBy("has_activator", has(RegistryManager.EMBER_ACTIVATOR.get()))
+		.save(consumer);
 	}
 
 	public void fullOreRecipes(String name, ImmutableList<ItemLike> ores, Fluid fluid, Item raw, Item rawBlock, Item block, Item ingot, Item nugget, Item plate, Consumer<FinishedRecipe> consumer, MeltingBonus... bonusses) {

@@ -153,6 +153,7 @@ public class EmbersLang extends LanguageProvider {
 		addBlock(RegistryManager.CHAR_INSTILLER, "Char Instiller");
 		addBlock(RegistryManager.ATMOSPHERIC_BELLOWS, "Atmospheric Bellows");
 		addBlock(RegistryManager.ENTROPIC_ENUMERATOR, "Entropic Enumerator");
+		addBlock(RegistryManager.HEAT_EXCHANGER, "Heat Exchanger");
 
 		addItem(RegistryManager.TINKER_HAMMER, "Tinker's Hammer");
 		addItem(RegistryManager.TINKER_LENS, "Tinker's Lens");
@@ -483,6 +484,11 @@ public class EmbersLang extends LanguageProvider {
 		add(Embers.MODID + ".research.page.activator.tags", "Ember;Activator;Generator;");
 		add(Embers.MODID + ".research.page.activator.desc", "The Ember Activator is an ingenious device, finally allowing you to extract usable energy from Ember Crystals and Shards. Simply insert said Crystals and Shards into the bottom of the device using a Hopper or other item transportation method, and soon, marked by a fiery burst, activated Ember will appear within the copper cage atop the machine.");
 
+		add(Embers.MODID + ".research.page.heat_exchanger", "Heat Exchanger");
+		add(Embers.MODID + ".research.page.heat_exchanger.title", "Inequivalent Exchange");
+		add(Embers.MODID + ".research.page.heat_exchanger.tags", "Ember;Upgrade;Bonus;Grit;");
+		add(Embers.MODID + ".research.page.heat_exchanger.desc", "By itself, the Ember Activator is unfortunately insufficient to process all the products from your Ember Bore. The Heat Exchanger multiplies the produced ember by 0.9 but adds a flat bonus of 300 ember, allowing you to process Ember Grit as well as getting some extra ember for Shards and Crystals.");
+
 		add(Embers.MODID + ".research.page.crystals", "Crystallized Ember");
 		add(Embers.MODID + ".research.page.crystals.title", "Solid Heat");
 		add(Embers.MODID + ".research.page.crystals.tags", "Ember;Crystal;Shard;Ore;");
@@ -531,7 +537,7 @@ public class EmbersLang extends LanguageProvider {
 
 		add(Embers.MODID + ".research.page.mini_boiler", "Mini Boiler");
 		add(Embers.MODID + ".research.page.mini_boiler.title", "Piggy-backing for explosions");
-		add(Embers.MODID + ".research.page.mini_boiler.tags", "Boiler;Pressure;Water;Steam;Heat;Explosion;Oil;Gas;");
+		add(Embers.MODID + ".research.page.mini_boiler.tags", "Boiler;Pressure;Water;Steam;Heat;Explosion;Oil;Gas;Upgrade;");
 		add(Embers.MODID + ".research.page.mini_boiler.desc", "Ember is a highly energetic substance, that produces heat both, when consumed and when produced. It would be a shame to let that heat go to waste. By attaching this pressure vessel to the side of an Ember-consuming or -producing machine, you can boil water into steam for other purposes. But beware that at high pressures, the boiler can easily rupture...");
 
 		add(Embers.MODID + ".research.page.reaction_chamber", "Reaction Chamber");

@@ -131,6 +131,7 @@
     "embers:inferno_forge_edge",
     "embers:mnemonic_inscriber",
     "embers:entropic_enumerator",
+    "embers:heat_exchanger",
     {
       "id": "embers:explosion_pedestal",
       "required": false

@@ -41,7 +41,7 @@ public class ResearchManager {
 	public static final double PAGE_ICON_SIZE = 48;
 	public static List<ResearchCategory> researches = new ArrayList<ResearchCategory>();
 
-	public static ResearchBase dials, ores, hammer, ancient_golem, gauge, caminite, access, bore, crystals, activator, tinker_lens, reaction_chamber, //WORLD
+	public static ResearchBase dials, ores, hammer, ancient_golem, gauge, caminite, access, bore, crystals, activator, tinker_lens, reaction_chamber, heat_exchanger, //WORLD
 	copper_cell, emitters, relays, dawnstone, melter, stamper, mixer, breaker, hearth_coil, char_instiller, atmospheric_bellows, pressureRefinery, mini_boiler, pump, clockwork_attenuator, geo_separator, //MECHANISMS
 	beam_cannon, pulser, splitter, crystal_cell, cinder_staff, clockwork_tools, blazing_ray, charger, jars, alchemy, cinder_plinth, aspecti, ember_siphon, //METALLURGY
 	tyrfing, waste, slate, mnemonic_inscriber, entropic_enumerator, catalytic_plug, cluster, ashen_cloak, inflictor, materia, field_chart, glimmer, metallurgic_dust, //ALCHEMY
@@ -183,6 +183,7 @@ public class ResearchManager {
 		dials = new ResearchBase("dials", new ItemStack(RegistryManager.EMBER_DIAL_ITEM.get()), 5, 5).addAncestor(hammer);
 		tinker_lens = new ResearchBase("tinker_lens", new ItemStack(RegistryManager.TINKER_LENS.get()),4,7).addAncestor(hammer);
 		//reaction_chamber = new ResearchBase("reaction_chamber", new ItemStack(RegistryManager.reaction_chamber), 12, 5).addAncestor(mini_boiler);
+		heat_exchanger = new ResearchBase("heat_exchanger", new ItemStack(RegistryManager.HEAT_EXCHANGER_ITEM.get()), 12, 7).addAncestor(activator);
 
 		pipes = new ResearchBase("pipes", new ItemStack(RegistryManager.FLUID_EXTRACTOR_ITEM.get()), 2, 4);
 		pipes.addPage(new ResearchShowItem("routing",ItemStack.EMPTY,0,0).addItem(new DisplayItem(new ItemStack(RegistryManager.ITEM_PIPE_ITEM.get()),new ItemStack(RegistryManager.FLUID_PIPE_ITEM.get()))));
@@ -418,7 +419,8 @@ public class ResearchManager {
 		.addResearch(crystals)
 		.addResearch(activator)
 		//.addResearch(reaction_chamber)
-		.addResearch(dials);
+		.addResearch(dials)
+		.addResearch(heat_exchanger);
 		categoryMechanisms
 		.addResearch(melter)
 		.addResearch(stamper)

@@ -667,6 +667,10 @@ public class EmbersBlockStates extends BlockStateProvider {
 
 		directionalBlock(RegistryManager.ENTROPIC_ENUMERATOR.get(), models().getExistingFile(new ResourceLocation(Embers.MODID, "entropic_enumerator_base")));
 		simpleBlockItem(RegistryManager.ENTROPIC_ENUMERATOR.get(), models().getExistingFile(new ResourceLocation(Embers.MODID, "entropic_enumerator")));
+
+		ExistingModelFile exchangererModel = models().getExistingFile(new ResourceLocation(Embers.MODID, "heat_exchanger"));
+		horizontalBlock(RegistryManager.HEAT_EXCHANGER.get(), exchangererModel);
+		simpleBlockItem(RegistryManager.HEAT_EXCHANGER.get(), exchangererModel);
 	}
 
 	public void blockWithItem(RegistryObject<? extends Block> registryObject) {
