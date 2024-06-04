@@ -82,6 +82,7 @@ import com.rekindled.embers.block.GlimmerBlock;
 import com.rekindled.embers.block.HearthCoilBlock;
 import com.rekindled.embers.block.HearthCoilEdgeBlock;
 import com.rekindled.embers.block.HeatExchangerBlock;
+import com.rekindled.embers.block.HeatInsulationBlock;
 import com.rekindled.embers.block.IgnemReactorBlock;
 import com.rekindled.embers.block.InfernoForgeBlock;
 import com.rekindled.embers.block.InfernoForgeEdgeBlock;
@@ -148,6 +149,7 @@ import com.rekindled.embers.blockentity.FluidVesselBlockEntity;
 import com.rekindled.embers.blockentity.GeologicSeparatorBlockEntity;
 import com.rekindled.embers.blockentity.HearthCoilBlockEntity;
 import com.rekindled.embers.blockentity.HeatExchangerBlockEntity;
+import com.rekindled.embers.blockentity.HeatInsulationBlockEntity;
 import com.rekindled.embers.blockentity.IgnemReactorBlockEntity;
 import com.rekindled.embers.blockentity.InfernoForgeBottomBlockEntity;
 import com.rekindled.embers.blockentity.InfernoForgeTopBlockEntity;
@@ -528,6 +530,7 @@ public class RegistryManager {
 	public static final RegistryObject<Block> ATMOSPHERIC_BELLOWS = BLOCKS.register("atmospheric_bellows", () -> new AtmosphericBellowsBlock(Properties.of().mapColor(MapColor.TERRACOTTA_BROWN).sound(SoundType.WOOD).requiresCorrectToolForDrops().strength(1.6f)));
 	public static final RegistryObject<Block> ENTROPIC_ENUMERATOR = BLOCKS.register("entropic_enumerator", () -> new EntropicEnumeratorBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).sound(EmbersSounds.ASHEN_STONE).requiresCorrectToolForDrops().strength(1.6f)));
 	public static final RegistryObject<Block> HEAT_EXCHANGER = BLOCKS.register("heat_exchanger", () -> new HeatExchangerBlock(Properties.of().mapColor(MapColor.COLOR_ORANGE).sound(EmbersSounds.SOLID_METAL).requiresCorrectToolForDrops().strength(1.6f)));
+	public static final RegistryObject<Block> HEAT_INSULATION = BLOCKS.register("heat_insulation", () -> new HeatInsulationBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).sound(EmbersSounds.MACHINE).requiresCorrectToolForDrops().strength(1.6f)));
 
 	//items
 	public static final RegistryObject<Item> TINKER_HAMMER = ITEMS.register("tinker_hammer", () -> new TinkerHammerItem(new Item.Properties().stacksTo(1)));
@@ -617,6 +620,7 @@ public class RegistryManager {
 	public static final RegistryObject<Item> ATMOSPHERIC_BELLOWS_ITEM = ITEMS.register("atmospheric_bellows", () -> new BlockItem(ATMOSPHERIC_BELLOWS.get(), new Item.Properties()));
 	public static final RegistryObject<Item> ENTROPIC_ENUMERATOR_ITEM = ITEMS.register("entropic_enumerator", () -> new BlockItem(ENTROPIC_ENUMERATOR.get(), new Item.Properties()));
 	public static final RegistryObject<Item> HEAT_EXCHANGER_ITEM = ITEMS.register("heat_exchanger", () -> new BlockItem(HEAT_EXCHANGER.get(), new Item.Properties()));
+	public static final RegistryObject<Item> HEAT_INSULATION_ITEM = ITEMS.register("heat_insulation", () -> new BlockItem(HEAT_INSULATION.get(), new Item.Properties()));
 
 	public static final RegistryObject<Item> EMBER_CRYSTAL = ITEMS.register("ember_crystal", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> EMBER_SHARD = ITEMS.register("ember_shard", () -> new Item(new Item.Properties()));
@@ -924,6 +928,7 @@ public class RegistryManager {
 	public static final RegistryObject<BlockEntityType<EntropicEnumeratorBlockEntity>> ENTROPIC_ENUMERATOR_ENTITY = BLOCK_ENTITY_TYPES.register("entropic_enumerator", () -> BlockEntityType.Builder.of(EntropicEnumeratorBlockEntity::new, ENTROPIC_ENUMERATOR.get()).build(null));
 	public static final RegistryObject<BlockEntityType<MithrilBlockEntity>> MITHRIL_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register("mithril_block", () -> BlockEntityType.Builder.of(MithrilBlockEntity::new, MITHRIL_BLOCK.get()).build(null));
 	public static final RegistryObject<BlockEntityType<HeatExchangerBlockEntity>> HEAT_EXCHANGER_ENTITY = BLOCK_ENTITY_TYPES.register("heat_exchanger", () -> BlockEntityType.Builder.of(HeatExchangerBlockEntity::new, HEAT_EXCHANGER.get()).build(null));
+	public static final RegistryObject<BlockEntityType<HeatInsulationBlockEntity>> HEAT_INSULATION_ENTITY = BLOCK_ENTITY_TYPES.register("heat_insulation", () -> BlockEntityType.Builder.of(HeatInsulationBlockEntity::new, HEAT_INSULATION.get()).build(null));
 
 	//creative tabs
 	public static final RegistryObject<CreativeModeTab> EMBERS_TAB = CREATIVE_TABS.register("main_tab", () -> CreativeModeTab.builder()

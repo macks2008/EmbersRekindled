@@ -1,5 +1,6 @@
 package com.rekindled.embers.util;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -177,6 +178,19 @@ public class Misc {
 
 	public static Vector3f colorFromInt(int color) {
 		return new Vector3f(((0xFF0000 & color) >> 16) / 255.0f, ((0x00FF00 & color) >> 8) / 255.0f, (0x0000FF & color) / 255.0f);
+	}
+
+	public static Color lerpColor(Color color1, Color color2, double scale) {
+		return new Color(
+				lerp(color1.getRed(),color2.getRed(),scale),
+				lerp(color1.getGreen(),color2.getGreen(),scale),
+				lerp(color1.getBlue(),color2.getBlue(),scale),
+				lerp(color1.getAlpha(),color2.getAlpha(),scale)
+				);
+	}
+
+	public static int lerp(int a, int b, double scale) {
+		return (int)(a*(1-scale)+b*(scale));
 	}
 
 	@SuppressWarnings("unchecked")

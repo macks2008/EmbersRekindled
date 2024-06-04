@@ -162,7 +162,7 @@ public class EmberBoreBlockEntity extends BlockEntity implements ISoundControlle
 		blockEntity.isRunning = false;
 		blockEntity.ticksExisted++;
 
-		double fuelConsumption = UpgradeUtil.getOtherParameter(blockEntity, "fuel_consumption", ConfigManager.EMBER_BORE_FUEL_CONSUMPTION.get(), blockEntity.upgrades);
+		double fuelConsumption = UpgradeUtil.getOtherParameter(blockEntity, "fuel_consumption", (double) ConfigManager.EMBER_BORE_FUEL_CONSUMPTION.get(), blockEntity.upgrades);
 		boolean cancel = false;
 		if (blockEntity.ticksFueled >= fuelConsumption) {
 			blockEntity.isRunning = true;

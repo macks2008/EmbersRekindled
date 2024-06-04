@@ -108,7 +108,7 @@ public class EmberInjectorBlockEntity extends BlockEntity implements ISoundContr
 		int previousDist = blockEntity.distance;
 		if (!UpgradeUtil.doTick(blockEntity, upgrades)) {
 			Direction facing = state.getValue(BlockStateProperties.FACING);
-			int maxDist = UpgradeUtil.getOtherParameter(blockEntity, "distance", ConfigManager.INJECTOR_MAX_DISTANCE.get(), upgrades);
+			int maxDist = UpgradeUtil.getOtherParameter(blockEntity, "distance", (int) ConfigManager.INJECTOR_MAX_DISTANCE.get(), upgrades);
 			BlockPos hitPos = pos;
 			BlockEntity tile = null;
 			for (int i = 1; i <= maxDist + 1; i++) {

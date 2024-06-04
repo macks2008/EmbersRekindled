@@ -25,7 +25,7 @@ public class CharInstillerUpgrade extends DefaultUpgradeProvider {
 
 	@Override
 	public int getPriority() {
-		return -90; //after the clockwork attenuator
+		return -80; //after the clockwork attenuator
 	}
 
 	@Override

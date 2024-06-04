@@ -154,6 +154,7 @@ public class EmbersLang extends LanguageProvider {
 		addBlock(RegistryManager.ATMOSPHERIC_BELLOWS, "Atmospheric Bellows");
 		addBlock(RegistryManager.ENTROPIC_ENUMERATOR, "Entropic Enumerator");
 		addBlock(RegistryManager.HEAT_EXCHANGER, "Heat Exchanger");
+		addBlock(RegistryManager.HEAT_INSULATION, "Heat Insulation");
 
 		addItem(RegistryManager.TINKER_HAMMER, "Tinker's Hammer");
 		addItem(RegistryManager.TINKER_LENS, "Tinker's Lens");
@@ -587,6 +588,11 @@ public class EmbersLang extends LanguageProvider {
 		add(Embers.MODID + ".research.page.atmospheric_bellows.title", "Having a Blast");
 		add(Embers.MODID + ".research.page.atmospheric_bellows.tags", "Blasting;Coil;Hearth;Upgrade;Fast;Speed;");
 		add(Embers.MODID + ".research.page.atmospheric_bellows.desc", "The Atmospheric Bellows are a specialization upgrade for the Hearth Coil. Attaching one to a Hearth Coil will limit it to only Blasting recipes but the speed will be doubled. This upgrade is not compatible with the Char Instiller.");
+
+		add(Embers.MODID + ".research.page.heat_insulation", "Insulation");
+		add(Embers.MODID + ".research.page.heat_insulation.title", "Heat Conservation");
+		add(Embers.MODID + ".research.page.heat_insulation.tags", "Heat;Coil;Hearth;Upgrade;Max;");
+		add(Embers.MODID + ".research.page.heat_insulation.desc", "The Hearth Coil is a spectacular machine. And just as spectacular is its Ember consumption to stay lit. These new Insulation upgrades may just help that a little. Each Insulation upgrade increases the maximum heat of the coil significantly and additionally reduces the cooling speed by 30%%. With some redstone design you may be able to significantly increase the efficiency of the coil this way...");
 
 		add(Embers.MODID + ".research.page.mixer", "Mixer Centrifuge");
 		add(Embers.MODID + ".research.page.mixer.title", "Mix It Up");

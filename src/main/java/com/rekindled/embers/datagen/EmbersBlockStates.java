@@ -671,6 +671,10 @@ public class EmbersBlockStates extends BlockStateProvider {
 		ExistingModelFile exchangererModel = models().getExistingFile(new ResourceLocation(Embers.MODID, "heat_exchanger"));
 		horizontalBlock(RegistryManager.HEAT_EXCHANGER.get(), exchangererModel);
 		simpleBlockItem(RegistryManager.HEAT_EXCHANGER.get(), exchangererModel);
+
+		ExistingModelFile insulationModel = models().getExistingFile(new ResourceLocation(Embers.MODID, "heat_insulation"));
+		directionalBlock(RegistryManager.HEAT_INSULATION.get(), insulationModel);
+		simpleBlockItem(RegistryManager.HEAT_INSULATION.get(), insulationModel);
 	}
 
 	public void blockWithItem(RegistryObject<? extends Block> registryObject) {

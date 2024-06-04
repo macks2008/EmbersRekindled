@@ -42,7 +42,7 @@ public class ResearchManager {
 	public static List<ResearchCategory> researches = new ArrayList<ResearchCategory>();
 
 	public static ResearchBase dials, ores, hammer, ancient_golem, gauge, caminite, access, bore, crystals, activator, tinker_lens, reaction_chamber, heat_exchanger, //WORLD
-	copper_cell, emitters, relays, dawnstone, melter, stamper, mixer, breaker, hearth_coil, char_instiller, atmospheric_bellows, pressureRefinery, mini_boiler, pump, clockwork_attenuator, geo_separator, //MECHANISMS
+	copper_cell, emitters, relays, dawnstone, melter, stamper, mixer, breaker, hearth_coil, char_instiller, atmospheric_bellows, heat_insulation, pressureRefinery, mini_boiler, pump, clockwork_attenuator, geo_separator, //MECHANISMS
 	beam_cannon, pulser, splitter, crystal_cell, cinder_staff, clockwork_tools, blazing_ray, charger, jars, alchemy, cinder_plinth, aspecti, ember_siphon, //METALLURGY
 	tyrfing, waste, slate, mnemonic_inscriber, entropic_enumerator, catalytic_plug, cluster, ashen_cloak, inflictor, materia, field_chart, glimmer, metallurgic_dust, //ALCHEMY
 	augments, inferno_forge, heat, dawnstone_anvil, autohammer, dismantling //SMITHING
@@ -221,6 +221,7 @@ public class ResearchManager {
 		hearth_coil = new ResearchBase("hearth_coil", new ItemStack(RegistryManager.HEARTH_COIL_ITEM.get()), 6, 6).addAncestor(copper_cell);
 		char_instiller = new ResearchBase("char_instiller", new ItemStack(RegistryManager.CHAR_INSTILLER_ITEM.get()), 8, 7).addAncestor(hearth_coil);
 		atmospheric_bellows = new ResearchBase("atmospheric_bellows", new ItemStack(RegistryManager.ATMOSPHERIC_BELLOWS_ITEM.get()), 10, 7).addAncestor(hearth_coil);
+		heat_insulation = new ResearchBase("heat_insulation", new ItemStack(RegistryManager.HEAT_INSULATION_ITEM.get()), 4, 7).addAncestor(hearth_coil);
 		clockwork_attenuator = new ResearchBase("clockwork_attenuator", new ItemStack(RegistryManager.CLOCKWORK_ATTENUATOR.get()), 12, 7);
 
 		//METALLURGY
@@ -427,6 +428,7 @@ public class ResearchManager {
 		.addResearch(hearth_coil)
 		.addResearch(char_instiller)
 		.addResearch(atmospheric_bellows)
+		.addResearch(heat_insulation)
 		.addResearch(mixer)
 		.addResearch(pump)
 		.addResearch(pressureRefinery)

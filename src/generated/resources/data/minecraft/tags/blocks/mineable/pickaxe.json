@@ -132,6 +132,7 @@
     "embers:mnemonic_inscriber",
     "embers:entropic_enumerator",
     "embers:heat_exchanger",
+    "embers:heat_insulation",
     {
       "id": "embers:explosion_pedestal",
       "required": false

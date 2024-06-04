@@ -174,19 +174,19 @@ public class HearthCoilBlockEntity extends BlockEntity implements ISoundControll
 				UpgradeUtil.throwEvent(blockEntity, new EmberEvent(blockEntity, EmberEvent.EnumType.CONSUME, emberCost), blockEntity.upgrades);
 				blockEntity.capability.removeAmount(emberCost, true);
 				if (blockEntity.ticksExisted % 20 == 0) {
-					blockEntity.heat += UpgradeUtil.getOtherParameter(blockEntity, "heating_speed", ConfigManager.HEARTH_COIL_HEATING_SPEED.get(), blockEntity.upgrades);
+					blockEntity.heat += UpgradeUtil.getOtherParameter(blockEntity, "heating_speed", (double) ConfigManager.HEARTH_COIL_HEATING_SPEED.get(), blockEntity.upgrades);
 				}
 			} else {
 				if (blockEntity.ticksExisted % 20 == 0) {
-					blockEntity.heat -= UpgradeUtil.getOtherParameter(blockEntity, "cooling_speed", ConfigManager.HEARTH_COIL_COOLING_SPEED.get(), blockEntity.upgrades);
+					blockEntity.heat -= UpgradeUtil.getOtherParameter(blockEntity, "cooling_speed", (double) ConfigManager.HEARTH_COIL_COOLING_SPEED.get(), blockEntity.upgrades);
 				}
 			}
 		} else {
 			if (blockEntity.ticksExisted % 20 == 0) {
-				blockEntity.heat -= UpgradeUtil.getOtherParameter(blockEntity, "cooling_speed", ConfigManager.HEARTH_COIL_COOLING_SPEED.get(), blockEntity.upgrades);
+				blockEntity.heat -= UpgradeUtil.getOtherParameter(blockEntity, "cooling_speed", (double) ConfigManager.HEARTH_COIL_COOLING_SPEED.get(), blockEntity.upgrades);
 			}
 		}
-		double maxHeat = UpgradeUtil.getOtherParameter(blockEntity, "max_heat", ConfigManager.HEARTH_COIL_MAX_HEAT.get(), blockEntity.upgrades);
+		double maxHeat = UpgradeUtil.getOtherParameter(blockEntity, "max_heat", (double) ConfigManager.HEARTH_COIL_MAX_HEAT.get(), blockEntity.upgrades);
 		blockEntity.heat = Mth.clamp(blockEntity.heat, 0, maxHeat);
 		blockEntity.isWorking = false;
 		if (blockEntity.heat != prevHeat)
@@ -341,7 +341,7 @@ public class HearthCoilBlockEntity extends BlockEntity implements ISoundControll
 	public void addDialInformation(Direction facing, List<String> information, String dialType) {
 		if (EmberDialBlock.DIAL_TYPE.equals(dialType)) {
 			DecimalFormat heatFormat = DecimalFormats.getDecimalFormat(Embers.MODID + ".decimal_format.heat");
-			double maxHeat = UpgradeUtil.getOtherParameter(this, "max_heat", ConfigManager.HEARTH_COIL_MAX_HEAT.get(), upgrades);
+			double maxHeat = UpgradeUtil.getOtherParameter(this, "max_heat", (double) ConfigManager.HEARTH_COIL_MAX_HEAT.get(), upgrades);
 			double heat = Mth.clamp(this.heat, 0, maxHeat);
 			information.add(I18n.get(Embers.MODID + ".tooltip.dial.heat", heatFormat.format(heat), heatFormat.format(maxHeat)));
 		}
