@@ -141,8 +141,15 @@ public class InfernoForgeBottomBlockEntity extends BlockEntity implements IExtra
 			}
 		}
 
-		if (blockEntity.progress <= 0)
+		if (blockEntity.progress <= 0) {
+			if (level.getGameTime() % 20 == 1) {
+				List<ItemEntity> items = level.getEntitiesOfClass(ItemEntity.class, new AABB(pos.getX(), pos.getY() + 0.25, pos.getZ(), pos.getX() + 1.0, pos.getY() + 1.5, pos.getZ() + 1.0));
+				for (ItemEntity e : items) {
+					e.setExtendedLifetime();
+				}
+			}
 			return;
+		}
 		boolean cancel = UpgradeUtil.doWork(blockEntity, blockEntity.upgrades);
 		double emberCost = UpgradeUtil.getTotalEmberConsumption(blockEntity, EMBER_COST, blockEntity.upgrades);
 		if (cancel || blockEntity.capability.getEmber() < emberCost) {
@@ -154,8 +161,10 @@ public class InfernoForgeBottomBlockEntity extends BlockEntity implements IExtra
 		blockEntity.progress--;
 		blockEntity.capability.removeAmount(emberCost, true);
 		List<ItemEntity> items = blockEntity.getValidItems();
-		for (ItemEntity e : items)
+		for (ItemEntity e : items) {
+			e.setExtendedLifetime();
 			e.setPickUpDelay(20);
+		}
 		if (blockEntity.progress != 0) {
 			return;
 		}
@@ -218,7 +227,7 @@ public class InfernoForgeBottomBlockEntity extends BlockEntity implements IExtra
 	}
 
 	private List<ItemEntity> getValidItems() {
-		List<ItemEntity> items = level.getEntitiesOfClass(ItemEntity.class, new AABB(worldPosition.getX(), worldPosition.getY() + 0.25, worldPosition.getZ(), worldPosition.getX() + 1.5, worldPosition.getY() + 1.5, worldPosition.getZ() + 1.5));
+		List<ItemEntity> items = level.getEntitiesOfClass(ItemEntity.class, new AABB(worldPosition.getX(), worldPosition.getY() + 0.25, worldPosition.getZ(), worldPosition.getX() + 1.0, worldPosition.getY() + 1.5, worldPosition.getZ() + 1.0));
 		ItemStack pickedItem = ItemStack.EMPTY;
 		emberValue = 0;
 		for (ItemEntity item : items) {
