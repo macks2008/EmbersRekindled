@@ -29,7 +29,7 @@ public class ClockworkToolItem extends DiggerItem implements IEmberChargedTool {
 	@Override
 	public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
 		if (hasEmber(stack)) {
-			entity.setSecondsOnFire(1);
+			entity.setSecondsOnFire(2);
 			return false;
 		}
 		return true;

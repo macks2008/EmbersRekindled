@@ -25,7 +25,7 @@ import net.minecraftforge.common.ToolActions;
 public class ClockworkAxeItem extends ClockworkToolItem {
 
 	public ClockworkAxeItem(Properties properties) {
-		super(3, -3.0f, EmbersTiers.CLOCKWORK_AXE, BlockTags.MINEABLE_WITH_AXE, properties);
+		super(2, -3.0f, EmbersTiers.CLOCKWORK_AXE, BlockTags.MINEABLE_WITH_AXE, properties);
 	}
 
 	public InteractionResult useOn(UseOnContext pContext) {
