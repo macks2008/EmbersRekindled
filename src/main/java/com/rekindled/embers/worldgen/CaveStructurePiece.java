@@ -22,30 +22,32 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.StructureTemp
 public class CaveStructurePiece extends PoolElementStructurePiece {
 
 	public Structure.GenerationContext context;
+	public int maxHeight;
 
-	public CaveStructurePiece(StructureTemplateManager pStructureTemplateManager, StructurePoolElement pElement, BlockPos pPosition, int pGroundLevelDelta, Rotation pRotation, BoundingBox pBox, Structure.GenerationContext context) {
+	public CaveStructurePiece(StructureTemplateManager pStructureTemplateManager, StructurePoolElement pElement, BlockPos pPosition, int pGroundLevelDelta, Rotation pRotation, BoundingBox pBox, Structure.GenerationContext context, int maxHeight) {
 		super(pStructureTemplateManager, pElement, pPosition, pGroundLevelDelta, pRotation, pBox);
 		this.context = context;
+		this.maxHeight = maxHeight;
 	}
 
 	@Override
 	public void postProcess(WorldGenLevel worldGenLevel, StructureManager structureManager, ChunkGenerator chunkGenerator, RandomSource randomSource, BoundingBox boundingBox, ChunkPos chunkPos, BlockPos pos) {
 		BlockPos center = StructureTemplate.transform(new BlockPos(this.getBoundingBox().getXSpan() / 2, 0, this.getBoundingBox().getZSpan() / 2), Mirror.NONE, this.getRotation(), BlockPos.ZERO).offset(this.position);
-		int caveHeight = getCaveFloor(center, worldGenLevel, context);
+		int caveHeight = getCaveFloor(center, maxHeight, worldGenLevel, context);
 		if (caveHeight != Integer.MIN_VALUE) {
 			this.position = new BlockPos(this.position.getX(), caveHeight, this.position.getZ());
 			super.postProcess(worldGenLevel, structureManager, chunkGenerator, randomSource, boundingBox, chunkPos, new BlockPos(pos.getX(), caveHeight, pos.getZ()));
 		}
 	}
 
-	public static int getCaveFloor(BlockPos endPos, WorldGenLevel level, Structure.GenerationContext context) {
+	public static int getCaveFloor(BlockPos endPos, int maxHeight, WorldGenLevel level, Structure.GenerationContext context) {
 		List<Integer> heights = new ArrayList<Integer>();
 		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(endPos.getX(), level.getMinBuildHeight() + 9, endPos.getZ());
-		for (int i = level.getMinBuildHeight() + 9; i <= endPos.getY(); i++) {
+		for (int i = level.getMinBuildHeight() + 9; i <= endPos.getY() && i <= maxHeight; i++) {
 			boolean solid = !level.getBlockState(pos).canBeReplaced();
 			pos.setY(i + 1);
 			boolean replaceable = level.getBlockState(pos).canBeReplaced();
-			if (solid && replaceable && isValidBiome(pos.below(), context)) {
+			if (solid && replaceable && isValidBiome(pos, context)) {
 				heights.add(i);
 			}
 		}

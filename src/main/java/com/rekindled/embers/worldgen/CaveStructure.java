@@ -25,8 +25,10 @@ import net.minecraft.world.level.LevelHeightAccessor;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.chunk.ChunkGenerator;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.WorldGenerationContext;
 import net.minecraft.world.level.levelgen.WorldgenRandom;
+import net.minecraft.world.level.levelgen.heightproviders.ConstantHeight;
 import net.minecraft.world.level.levelgen.heightproviders.HeightProvider;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.level.levelgen.structure.PoolElementStructurePiece;
@@ -54,6 +56,8 @@ public class CaveStructure extends Structure {
 			return structure.maxDepth;
 		}), HeightProvider.CODEC.fieldOf("start_height").forGetter((structure) -> {
 			return structure.startHeight;
+		}), HeightProvider.CODEC.optionalFieldOf("max_height", ConstantHeight.of(VerticalAnchor.top())).forGetter((structure) -> {
+			return structure.maxHeight;
 		}), Codec.BOOL.fieldOf("use_expansion_hack").forGetter((structure) -> {
 			return structure.useExpansionHack;
 		}), Heightmap.Types.CODEC.optionalFieldOf("project_start_to_heightmap").forGetter((structure) -> {
@@ -66,6 +70,7 @@ public class CaveStructure extends Structure {
 	private final Optional<ResourceLocation> startJigsawName;
 	private final int maxDepth;
 	private final HeightProvider startHeight;
+	private final HeightProvider maxHeight;
 	private final boolean useExpansionHack;
 	private final Optional<Heightmap.Types> projectStartToHeightmap;
 	private final int maxDistanceFromCenter;
@@ -91,30 +96,32 @@ public class CaveStructure extends Structure {
 		}) : DataResult.success(structure);
 	}
 
-	protected CaveStructure(Structure.StructureSettings settings, Holder<StructureTemplatePool> startPool, Optional<ResourceLocation> startJigsawName, int maxDepth, HeightProvider startHeight, boolean useExpansionHack, Optional<Heightmap.Types> projectStartToHeightmap, int maxDistanceFromCenter) {
+	protected CaveStructure(Structure.StructureSettings settings, Holder<StructureTemplatePool> startPool, Optional<ResourceLocation> startJigsawName, int maxDepth, HeightProvider startHeight, HeightProvider maxHeight, boolean useExpansionHack, Optional<Heightmap.Types> projectStartToHeightmap, int maxDistanceFromCenter) {
 		super(settings);
 		this.startPool = startPool;
 		this.startJigsawName = startJigsawName;
 		this.maxDepth = maxDepth;
 		this.startHeight = startHeight;
+		this.maxHeight = maxHeight;
 		this.useExpansionHack = useExpansionHack;
 		this.projectStartToHeightmap = projectStartToHeightmap;
 		this.maxDistanceFromCenter = maxDistanceFromCenter;
 	}
 
-	public CaveStructure(Structure.StructureSettings settings, Holder<StructureTemplatePool> startPool, int maxDepth, HeightProvider startHeight, boolean useExpansionHack, Heightmap.Types projectStartToHeightmap) {
-		this(settings, startPool, Optional.empty(), maxDepth, startHeight, useExpansionHack, Optional.of(projectStartToHeightmap), 80);
+	public CaveStructure(Structure.StructureSettings settings, Holder<StructureTemplatePool> startPool, int maxDepth, HeightProvider startHeight, HeightProvider maxHeight, boolean useExpansionHack, Heightmap.Types projectStartToHeightmap) {
+		this(settings, startPool, Optional.empty(), maxDepth, startHeight, maxHeight, useExpansionHack, Optional.of(projectStartToHeightmap), 80);
 	}
 
-	public CaveStructure(Structure.StructureSettings settings, Holder<StructureTemplatePool> startPool, int maxDepth, HeightProvider startHeight, boolean useExpansionHack) {
-		this(settings, startPool, Optional.empty(), maxDepth, startHeight, useExpansionHack, Optional.empty(), 80);
+	public CaveStructure(Structure.StructureSettings settings, Holder<StructureTemplatePool> startPool, int maxDepth, HeightProvider startHeight, HeightProvider maxHeight, boolean useExpansionHack) {
+		this(settings, startPool, Optional.empty(), maxDepth, startHeight, maxHeight, useExpansionHack, Optional.empty(), 80);
 	}
 
 	public Optional<Structure.GenerationStub> findGenerationPoint(Structure.GenerationContext context) {
 		ChunkPos chunkpos = context.chunkPos();
 		int i = this.startHeight.sample(context.random(), new WorldGenerationContext(context.chunkGenerator(), context.heightAccessor()));
+		int max = this.maxHeight.sample(context.random(), new WorldGenerationContext(context.chunkGenerator(), context.heightAccessor()));
 		BlockPos blockpos = new BlockPos(chunkpos.getMinBlockX(), i, chunkpos.getMinBlockZ());
-		return addPieces(context, this.startPool, this.startJigsawName, this.maxDepth, blockpos, this.useExpansionHack, this.projectStartToHeightmap, this.maxDistanceFromCenter);
+		return addPieces(context, this.startPool, this.startJigsawName, this.maxDepth, blockpos, max, this.useExpansionHack, this.projectStartToHeightmap, this.maxDistanceFromCenter);
 	}
 
 	public StructureType<?> type() {
@@ -123,7 +130,7 @@ public class CaveStructure extends Structure {
 
 	static final Logger LOGGER = LogUtils.getLogger();
 
-	public static Optional<Structure.GenerationStub> addPieces(Structure.GenerationContext pContext, Holder<StructureTemplatePool> pStartPool, Optional<ResourceLocation> pStartJigsawName, int pMaxDepth, BlockPos pPos, boolean pUseExpansionHack, Optional<Heightmap.Types> pProjectStartToHeightmap, int pMaxDistanceFromCenter) {
+	public static Optional<Structure.GenerationStub> addPieces(Structure.GenerationContext pContext, Holder<StructureTemplatePool> pStartPool, Optional<ResourceLocation> pStartJigsawName, int pMaxDepth, BlockPos pPos, int maxHeight, boolean pUseExpansionHack, Optional<Heightmap.Types> pProjectStartToHeightmap, int pMaxDistanceFromCenter) {
 		RegistryAccess registryaccess = pContext.registryAccess();
 		ChunkGenerator chunkgenerator = pContext.chunkGenerator();
 		StructureTemplateManager structuretemplatemanager = pContext.structureTemplateManager();
@@ -154,7 +161,7 @@ public class CaveStructure extends Structure {
 
 			Vec3i vec3i = blockpos.subtract(pPos);
 			BlockPos blockpos1 = pPos.subtract(vec3i);
-			PoolElementStructurePiece poolelementstructurepiece = new CaveStructurePiece(structuretemplatemanager, structurepoolelement, blockpos1, structurepoolelement.getGroundLevelDelta(), rotation, structurepoolelement.getBoundingBox(structuretemplatemanager, blockpos1, rotation), pContext);
+			PoolElementStructurePiece poolelementstructurepiece = new CaveStructurePiece(structuretemplatemanager, structurepoolelement, blockpos1, structurepoolelement.getGroundLevelDelta(), rotation, structurepoolelement.getBoundingBox(structuretemplatemanager, blockpos1, rotation), pContext, maxHeight);
 			BoundingBox boundingbox = poolelementstructurepiece.getBoundingBox();
 			int i = (boundingbox.maxX() + boundingbox.minX()) / 2;
 			int j = (boundingbox.maxZ() + boundingbox.minZ()) / 2;
