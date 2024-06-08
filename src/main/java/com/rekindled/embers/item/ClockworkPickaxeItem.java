@@ -12,7 +12,7 @@ import net.minecraftforge.common.ToolActions;
 public class ClockworkPickaxeItem extends ClockworkToolItem {
 
 	public ClockworkPickaxeItem(Properties properties) {
-		super(1, -3.0f, EmbersTiers.CLOCKWORK_PICK, EmbersBlockTags.MINABLE_WITH_PICKAXE_SHOVEL, properties);
+		super(1, -2.8f, EmbersTiers.CLOCKWORK_PICK, EmbersBlockTags.MINABLE_WITH_PICKAXE_SHOVEL, properties);
 	}
 
 	@Override

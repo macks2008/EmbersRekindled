@@ -13,7 +13,7 @@ import net.minecraftforge.common.ToolActions;
 public class ClockworkHammerItem extends ClockworkToolItem {
 
 	public ClockworkHammerItem(Properties properties) {
-		super(3, -3.0f, EmbersTiers.CLOCKWORK_HAMMER, EmbersBlockTags.MINABLE_WITH_HAMMER, properties);
+		super(3, -3.2f, EmbersTiers.CLOCKWORK_HAMMER, EmbersBlockTags.MINABLE_WITH_HAMMER, properties);
 	}
 
 	@Override
