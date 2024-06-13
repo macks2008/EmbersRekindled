@@ -39,6 +39,7 @@ public class JEIPlugin implements IModPlugin {
 	public static ResourceLocation pluginID = new ResourceLocation(Embers.MODID, "jei_plugin");
 
 	public static final RecipeType<IBoringRecipe> BORING = RecipeType.create(Embers.MODID, "boring", IBoringRecipe.class);
+	public static final RecipeType<IBoringRecipe> EXCAVATION = RecipeType.create(Embers.MODID, "excavation", IBoringRecipe.class);
 	public static final RecipeType<IEmberActivationRecipe> EMBER_ACTIVATION = RecipeType.create(Embers.MODID, "ember_activation", IEmberActivationRecipe.class);
 	public static final RecipeType<IMeltingRecipe> MELTING = RecipeType.create(Embers.MODID, "melting", IMeltingRecipe.class);
 	public static final RecipeType<IMeltingRecipe> MELTING_BONUS = RecipeType.create(Embers.MODID, "melting_bonus", IMeltingRecipe.class);
@@ -61,6 +62,7 @@ public class JEIPlugin implements IModPlugin {
 		IGuiHelper guiHelper = registry.getJeiHelpers().getGuiHelper();
 
 		registry.addRecipeCategories(new BoringCategory(guiHelper));
+		registry.addRecipeCategories(new ExcavationCategory(guiHelper));
 		registry.addRecipeCategories(new EmberActivationCategory(guiHelper));
 		registry.addRecipeCategories(new MeltingCategory(guiHelper));
 		registry.addRecipeCategories(new MeltingBonusCategory(guiHelper));
@@ -96,6 +98,8 @@ public class JEIPlugin implements IModPlugin {
 
 		addRecipes(register, manager, BORING, RegistryManager.BORING.get());
 
+		addRecipes(register, manager, EXCAVATION, RegistryManager.EXCAVATION.get());
+
 		addRecipes(register, manager, EMBER_ACTIVATION, RegistryManager.EMBER_ACTIVATION.get());
 
 		List<IMeltingRecipe> meltingRecipes = manager.getAllRecipesFor(RegistryManager.MELTING.get());
@@ -129,6 +133,8 @@ public class JEIPlugin implements IModPlugin {
 	@Override
 	public void registerRecipeCatalysts(IRecipeCatalystRegistration registry) {
 		registry.addRecipeCatalyst(new ItemStack(RegistryManager.EMBER_BORE_ITEM.get()), BORING);
+		registry.addRecipeCatalyst(new ItemStack(RegistryManager.EMBER_BORE_ITEM.get()), EXCAVATION);
+		registry.addRecipeCatalyst(new ItemStack(RegistryManager.EXCAVATION_BUCKETS_ITEM.get()), EXCAVATION);
 		registry.addRecipeCatalyst(new ItemStack(RegistryManager.EMBER_ACTIVATOR_ITEM.get()), EMBER_ACTIVATION);
 		registry.addRecipeCatalyst(new ItemStack(RegistryManager.PRESSURE_REFINERY_ITEM.get()), EMBER_ACTIVATION);
 		registry.addRecipeCatalyst(new ItemStack(RegistryManager.IGNEM_REACTOR_ITEM.get()), EMBER_ACTIVATION);

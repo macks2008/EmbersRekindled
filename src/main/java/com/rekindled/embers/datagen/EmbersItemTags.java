@@ -101,6 +101,7 @@ public class EmbersItemTags extends ItemTagsProvider {
 	public static final TagKey<Item> ASH_DUST = ItemTags.create(new ResourceLocation("forge", "dusts/ash"));
 
 	public static final TagKey<Item> WORLD_BOTTOM = ItemTags.create(new ResourceLocation(Embers.MODID, "world_bottom"));
+	public static final TagKey<Item> SNOW = ItemTags.create(new ResourceLocation(Embers.MODID, "snow"));
 
 	public static final TagKey<Item> PRISTINE_COPPER = ItemTags.create(new ResourceLocation(Embers.MODID, "pristine_copper"));
 	public static final TagKey<Item> EXPOSED_COPPER = ItemTags.create(new ResourceLocation(Embers.MODID, "exposed_copper"));
@@ -233,6 +234,7 @@ public class EmbersItemTags extends ItemTagsProvider {
 
 		//tags shared by blocks
 		copy(EmbersBlockTags.WORLD_BOTTOM, WORLD_BOTTOM);
+		copy(EmbersBlockTags.SNOW, SNOW);
 
 		copy(EmbersBlockTags.PRISTINE_COPPER, PRISTINE_COPPER);
 		copy(EmbersBlockTags.EXPOSED_COPPER, EXPOSED_COPPER);

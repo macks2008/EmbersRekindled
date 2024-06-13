@@ -23,12 +23,14 @@ import com.rekindled.embers.blockentity.render.AtmosphericBellowsBlockEntityRend
 import com.rekindled.embers.blockentity.render.AutomaticHammerBlockEntityRenderer;
 import com.rekindled.embers.blockentity.render.EmberBoreBlockEntityRenderer;
 import com.rekindled.embers.blockentity.render.EntropicEnumeratorBlockEntityRenderer;
+import com.rekindled.embers.blockentity.render.ExcavationBucketsBlockEntityRenderer;
 import com.rekindled.embers.blockentity.render.InfernoForgeTopBlockEntityRenderer;
 import com.rekindled.embers.blockentity.render.MechanicalPumpBlockEntityRenderer;
 import com.rekindled.embers.blockentity.render.StamperBlockEntityRenderer;
 import com.rekindled.embers.datagen.EmbersBlockTags;
 import com.rekindled.embers.datagen.EmbersItemTags;
 import com.rekindled.embers.render.EmbersRenderTypes;
+import com.rekindled.embers.upgrade.ExcavationBucketsUpgrade;
 import com.rekindled.embers.util.EmberGenUtil;
 import com.rekindled.embers.util.GlowingTextTooltip;
 import com.rekindled.embers.util.HeatBarTooltip;
@@ -360,6 +362,8 @@ public class EmbersClientEvents {
 		EntropicEnumeratorBlockEntityRenderer.cubies[1][0][1] = getModel(bakery, "entropic_enumerator_dlb");
 		EntropicEnumeratorBlockEntityRenderer.cubies[0][1][1] = getModel(bakery, "entropic_enumerator_urb");
 		EntropicEnumeratorBlockEntityRenderer.cubies[1][1][1] = getModel(bakery, "entropic_enumerator_ulb");
+		ExcavationBucketsBlockEntityRenderer.wheel = getModel(bakery, "excavation_buckets_wheel");
+		ExcavationBucketsUpgrade.buckets = getModel(bakery, "ember_bore_excavation_buckets");
 	}
 
 	public static BakedModel getModel(ModelBakery bakery, String name) {

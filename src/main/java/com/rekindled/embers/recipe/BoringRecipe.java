@@ -29,7 +29,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class BoringRecipe implements IBoringRecipe {
 
-	public static final Serializer SERIALIZER = new Serializer(); 
+	public static final Serializer SERIALIZER = new Serializer();
 
 	public final ResourceLocation id;
 

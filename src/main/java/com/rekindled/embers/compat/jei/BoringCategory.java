@@ -29,7 +29,7 @@ import net.minecraft.world.item.ItemStack;
 public class BoringCategory implements IRecipeCategory<IBoringRecipe> {
 
 	private final IDrawable background;
-	private final IDrawable icon;
+	public IDrawable icon;
 	public static Component title = Component.translatable(Embers.MODID + ".jei.recipe.boring");
 	public static ResourceLocation texture = new ResourceLocation(Embers.MODID, "textures/gui/jei_boring.png");
 

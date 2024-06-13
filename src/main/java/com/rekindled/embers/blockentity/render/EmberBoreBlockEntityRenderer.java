@@ -3,6 +3,8 @@ package com.rekindled.embers.blockentity.render;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import com.rekindled.embers.RegistryManager;
+import com.rekindled.embers.api.event.EmberBoreBladeRenderEvent;
+import com.rekindled.embers.api.upgrades.UpgradeUtil;
 import com.rekindled.embers.blockentity.EmberBoreBlockEntity;
 
 import net.minecraft.client.Minecraft;
@@ -53,6 +55,9 @@ public class EmberBoreBlockEntityRenderer implements BlockEntityRenderer<EmberBo
 			poseStack.translate(-0.5D, -0.5D, -0.5D);
 			if (blades != null)
 				blockrendererdispatcher.getModelRenderer().renderModel(poseStack.last(), bufferSource.getBuffer(Sheets.solidBlockSheet()), blockState, blades, 0.0f, 0.0f, 0.0f, packedLight, packedOverlay, ModelData.EMPTY, Sheets.solidBlockSheet());
+
+			UpgradeUtil.throwEvent(blockEntity, new EmberBoreBladeRenderEvent(blockEntity, poseStack, blockState, bufferSource, packedLight, packedOverlay), blockEntity.upgrades);
+
 			poseStack.popPose();
 		}
 	}

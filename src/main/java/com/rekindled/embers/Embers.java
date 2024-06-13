@@ -27,6 +27,7 @@ import com.rekindled.embers.blockentity.render.CrystalSeedBlockEntityRenderer;
 import com.rekindled.embers.blockentity.render.DawnstoneAnvilBlockEntityRenderer;
 import com.rekindled.embers.blockentity.render.EmberBoreBlockEntityRenderer;
 import com.rekindled.embers.blockentity.render.EntropicEnumeratorBlockEntityRenderer;
+import com.rekindled.embers.blockentity.render.ExcavationBucketsBlockEntityRenderer;
 import com.rekindled.embers.blockentity.render.FieldChartBlockEntityRenderer;
 import com.rekindled.embers.blockentity.render.FluidTransferBlockEntityRenderer;
 import com.rekindled.embers.blockentity.render.FluidVesselBlockEntityRenderer;
@@ -369,6 +370,7 @@ public class Embers {
 			event.registerBlockEntityRenderer(RegistryManager.ATMOSPHERIC_BELLOWS_ENTITY.get(), AtmosphericBellowsBlockEntityRenderer::new);
 			event.registerBlockEntityRenderer(RegistryManager.ENTROPIC_ENUMERATOR_ENTITY.get(), EntropicEnumeratorBlockEntityRenderer::new);
 			event.registerBlockEntityRenderer(RegistryManager.MITHRIL_BLOCK_ENTITY.get(), MithrilBlockEntityRenderer::new);
+			event.registerBlockEntityRenderer(RegistryManager.EXCAVATION_BUCKETS_ENTITY.get(), ExcavationBucketsBlockEntityRenderer::new);
 		}
 
 		@OnlyIn(Dist.CLIENT)

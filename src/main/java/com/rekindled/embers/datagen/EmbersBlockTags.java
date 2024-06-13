@@ -54,6 +54,7 @@ public class EmbersBlockTags extends BlockTagsProvider {
 
 	//tags shared with items
 	public static final TagKey<Block> WORLD_BOTTOM = BlockTags.create(new ResourceLocation(Embers.MODID, "world_bottom"));
+	public static final TagKey<Block> SNOW = BlockTags.create(new ResourceLocation(Embers.MODID, "snow"));
 
 	public static final TagKey<Block> PRISTINE_COPPER = BlockTags.create(new ResourceLocation(Embers.MODID, "pristine_copper"));
 	public static final TagKey<Block> EXPOSED_COPPER = BlockTags.create(new ResourceLocation(Embers.MODID, "exposed_copper"));
@@ -236,7 +237,8 @@ public class EmbersBlockTags extends BlockTagsProvider {
 				RegistryManager.MNEMONIC_INSCRIBER.get(),
 				RegistryManager.ENTROPIC_ENUMERATOR.get(),
 				RegistryManager.HEAT_EXCHANGER.get(),
-				RegistryManager.HEAT_INSULATION.get()).addOptional(CuriosCompat.EXPLOSION_PEDESTAL.getId());
+				RegistryManager.HEAT_INSULATION.get(),
+				RegistryManager.EXCAVATION_BUCKETS.get()).addOptional(CuriosCompat.EXPLOSION_PEDESTAL.getId());
 
 		tag(BlockTags.MINEABLE_WITH_AXE).add(
 				RegistryManager.SEALED_PLANKS.get(),
@@ -317,6 +319,7 @@ public class EmbersBlockTags extends BlockTagsProvider {
 
 		//tags shared with items
 		tag(WORLD_BOTTOM).add(Blocks.BEDROCK);
+		tag(SNOW).add(Blocks.SNOW_BLOCK);
 
 		tag(PRISTINE_COPPER).addTag(Tags.Blocks.STORAGE_BLOCKS_COPPER).add(Blocks.CUT_COPPER);
 		tag(EXPOSED_COPPER).add(Blocks.EXPOSED_COPPER).add(Blocks.EXPOSED_CUT_COPPER);

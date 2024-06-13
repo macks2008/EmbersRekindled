@@ -10,6 +10,7 @@ import com.rekindled.embers.ConfigManager;
 import com.rekindled.embers.Embers;
 import com.rekindled.embers.RegistryManager;
 import com.rekindled.embers.api.event.DialInformationEvent;
+import com.rekindled.embers.api.event.MachineRecipeEvent;
 import com.rekindled.embers.api.tile.IExtraCapabilityInformation;
 import com.rekindled.embers.api.tile.IExtraDialInformation;
 import com.rekindled.embers.api.tile.IMechanicallyPowered;
@@ -64,11 +65,11 @@ public class EmberBoreBlockEntity extends BlockEntity implements ISoundControlle
 	public float angle = 0;
 	public double ticksFueled = 0;
 	public float lastAngle;
-	boolean isRunning;
+	public boolean isRunning;
 
 	HashSet<Integer> soundsPlaying = new HashSet<>();
-	protected List<UpgradeContext> upgrades = new ArrayList<>();
-	private double speedMod;
+	public List<UpgradeContext> upgrades = new ArrayList<>();
+	public double speedMod;
 
 	public EmberBoreInventory inventory = new EmberBoreInventory(9);
 	public LazyOptional<IItemHandler> holder = LazyOptional.of(() -> inventory);
@@ -122,6 +123,7 @@ public class EmberBoreBlockEntity extends BlockEntity implements ISoundControlle
 			if (biome != null) {
 				BoringContext context = new BoringContext(level.dimension().location(), biome.location(), worldPosition.getY(), level.getBlockStatesIfLoaded(getBladeBoundingBox()).toArray(i -> new BlockState[i]));
 				List<IBoringRecipe> recipes = level.getRecipeManager().getRecipesFor(RegistryManager.BORING.get(), context, level);
+				UpgradeUtil.throwEvent(this, new MachineRecipeEvent<List<IBoringRecipe>>(this, recipes), this.upgrades);
 				canMine = !recipes.isEmpty();
 			} else {
 				canMine = false;
@@ -194,6 +196,7 @@ public class EmberBoreBlockEntity extends BlockEntity implements ISoundControlle
 					if (biome != null) {
 						BoringContext context = new BoringContext(level.dimension().location(), biome.location(), pos.getY(), level.getBlockStatesIfLoaded(blockEntity.getBladeBoundingBox()).toArray(i -> new BlockState[i]));
 						List<IBoringRecipe> recipes = level.getRecipeManager().getRecipesFor(RegistryManager.BORING.get(), context, level);
+						UpgradeUtil.throwEvent(blockEntity, new MachineRecipeEvent<List<IBoringRecipe>>(blockEntity, recipes), blockEntity.upgrades);
 						ArrayList<WeightedItemStack> stacks = new ArrayList<>();
 						float rand = blockEntity.random.nextFloat();
 						double chance = EmberGenUtil.getEmberDensity(((ServerLevel) level).getSeed(), pos.getX(), pos.getZ());

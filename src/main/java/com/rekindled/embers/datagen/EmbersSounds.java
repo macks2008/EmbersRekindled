@@ -118,7 +118,7 @@ public class EmbersSounds extends SoundDefinitionsProvider {
 
 	public static final RegistryObject<SoundEvent> PIPE_CONNECT = registerSound("block.pipe.connect");
 	public static final RegistryObject<SoundEvent> PIPE_DISCONNECT = registerSound("block.pipe.disconnect");
-	public static final RegistryObject<SoundEvent> PIPE_VENT_LOOP = registerSound("block.pipe.vent");
+	public static final RegistryObject<SoundEvent> PIPE_VENT_LOOP = registerSound("block.pipe.vent"); //unused
 
 	public static final RegistryObject<SoundEvent> FIREBALL_BIG = registerSound("fireball.big.fire");
 	public static final RegistryObject<SoundEvent> FIREBALL_BIG_HIT = registerSound("fireball.big.hit");

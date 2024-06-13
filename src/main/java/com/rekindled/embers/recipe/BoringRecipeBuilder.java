@@ -29,6 +29,7 @@ public class BoringRecipeBuilder {
 	public TagKey<Block> requiredBlock = null;
 	public int amountRequired = 0;
 	public double chance = -1.0;
+	public RecipeSerializer<?> type = RegistryManager.BORING_SERIALIZER.get();
 
 	public static BoringRecipeBuilder create(ItemStack itemStack) {
 		BoringRecipeBuilder builder = new BoringRecipeBuilder();
@@ -53,6 +54,11 @@ public class BoringRecipeBuilder {
 
 	public BoringRecipeBuilder folder(String folder) {
 		this.id = new ResourceLocation(id.getNamespace(), folder + "/" + id.getPath());
+		return this;
+	}
+
+	public BoringRecipeBuilder type(RecipeSerializer<?> type) {
+		this.type = type;
 		return this;
 	}
 
@@ -109,15 +115,17 @@ public class BoringRecipeBuilder {
 	}
 
 	public void save(Consumer<FinishedRecipe> consumer) {
-		consumer.accept(new Finished(build()));
+		consumer.accept(new Finished(build(), type));
 	}
 
 	public static class Finished implements FinishedRecipe {
 
 		public final BoringRecipe recipe;
+		public final RecipeSerializer<?> type;
 
-		public Finished(BoringRecipe recipe) {
+		public Finished(BoringRecipe recipe, RecipeSerializer<?> type) {
 			this.recipe = recipe;
+			this.type = type;
 		}
 
 		@Override
@@ -167,7 +175,7 @@ public class BoringRecipeBuilder {
 
 		@Override
 		public RecipeSerializer<?> getType() {
-			return RegistryManager.BORING_SERIALIZER.get();
+			return type;
 		}
 
 		@Override

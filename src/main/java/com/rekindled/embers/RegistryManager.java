@@ -70,6 +70,7 @@ import com.rekindled.embers.block.EmberReceiverBlock;
 import com.rekindled.embers.block.EmberRelayBlock;
 import com.rekindled.embers.block.EmberSiphonBlock;
 import com.rekindled.embers.block.EntropicEnumeratorBlock;
+import com.rekindled.embers.block.ExcavationBucketsBlock;
 import com.rekindled.embers.block.FieldChartBlock;
 import com.rekindled.embers.block.FieldChartEdgeBlock;
 import com.rekindled.embers.block.FluidDialBlock;
@@ -141,6 +142,7 @@ import com.rekindled.embers.blockentity.EmberReceiverBlockEntity;
 import com.rekindled.embers.blockentity.EmberRelayBlockEntity;
 import com.rekindled.embers.blockentity.EmberSiphonBlockEntity;
 import com.rekindled.embers.blockentity.EntropicEnumeratorBlockEntity;
+import com.rekindled.embers.blockentity.ExcavationBucketsBlockEntity;
 import com.rekindled.embers.blockentity.FieldChartBlockEntity;
 import com.rekindled.embers.blockentity.FluidExtractorBlockEntity;
 import com.rekindled.embers.blockentity.FluidPipeBlockEntity;
@@ -227,6 +229,7 @@ import com.rekindled.embers.recipe.BoilingRecipe;
 import com.rekindled.embers.recipe.BoringRecipe;
 import com.rekindled.embers.recipe.CatalysisCombustionRecipe;
 import com.rekindled.embers.recipe.EmberActivationRecipe;
+import com.rekindled.embers.recipe.ExcavationRecipe;
 import com.rekindled.embers.recipe.GaseousFuelRecipe;
 import com.rekindled.embers.recipe.GemSocketRecipe;
 import com.rekindled.embers.recipe.GemUnsocketRecipe;
@@ -531,6 +534,7 @@ public class RegistryManager {
 	public static final RegistryObject<Block> ENTROPIC_ENUMERATOR = BLOCKS.register("entropic_enumerator", () -> new EntropicEnumeratorBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).sound(EmbersSounds.ASHEN_STONE).requiresCorrectToolForDrops().strength(1.6f)));
 	public static final RegistryObject<Block> HEAT_EXCHANGER = BLOCKS.register("heat_exchanger", () -> new HeatExchangerBlock(Properties.of().mapColor(MapColor.COLOR_ORANGE).sound(EmbersSounds.SOLID_METAL).requiresCorrectToolForDrops().strength(1.6f)));
 	public static final RegistryObject<Block> HEAT_INSULATION = BLOCKS.register("heat_insulation", () -> new HeatInsulationBlock(Properties.of().mapColor(MapColor.COLOR_BLACK).sound(EmbersSounds.MACHINE).requiresCorrectToolForDrops().strength(1.6f)));
+	public static final RegistryObject<Block> EXCAVATION_BUCKETS = BLOCKS.register("excavation_buckets", () -> new ExcavationBucketsBlock(Properties.of().mapColor(MapColor.TERRACOTTA_PURPLE).sound(EmbersSounds.SOLID_METAL).requiresCorrectToolForDrops().strength(1.6f)));
 
 	//items
 	public static final RegistryObject<Item> TINKER_HAMMER = ITEMS.register("tinker_hammer", () -> new TinkerHammerItem(new Item.Properties().stacksTo(1)));
@@ -621,6 +625,7 @@ public class RegistryManager {
 	public static final RegistryObject<Item> ENTROPIC_ENUMERATOR_ITEM = ITEMS.register("entropic_enumerator", () -> new BlockItem(ENTROPIC_ENUMERATOR.get(), new Item.Properties()));
 	public static final RegistryObject<Item> HEAT_EXCHANGER_ITEM = ITEMS.register("heat_exchanger", () -> new BlockItem(HEAT_EXCHANGER.get(), new Item.Properties()));
 	public static final RegistryObject<Item> HEAT_INSULATION_ITEM = ITEMS.register("heat_insulation", () -> new BlockItem(HEAT_INSULATION.get(), new Item.Properties()));
+	public static final RegistryObject<Item> EXCAVATION_BUCKETS_ITEM = ITEMS.register("excavation_buckets", () -> new BlockItem(EXCAVATION_BUCKETS.get(), new Item.Properties()));
 
 	public static final RegistryObject<Item> EMBER_CRYSTAL = ITEMS.register("ember_crystal", () -> new Item(new Item.Properties()));
 	public static final RegistryObject<Item> EMBER_SHARD = ITEMS.register("ember_shard", () -> new Item(new Item.Properties()));
@@ -929,6 +934,7 @@ public class RegistryManager {
 	public static final RegistryObject<BlockEntityType<MithrilBlockEntity>> MITHRIL_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register("mithril_block", () -> BlockEntityType.Builder.of(MithrilBlockEntity::new, MITHRIL_BLOCK.get()).build(null));
 	public static final RegistryObject<BlockEntityType<HeatExchangerBlockEntity>> HEAT_EXCHANGER_ENTITY = BLOCK_ENTITY_TYPES.register("heat_exchanger", () -> BlockEntityType.Builder.of(HeatExchangerBlockEntity::new, HEAT_EXCHANGER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<HeatInsulationBlockEntity>> HEAT_INSULATION_ENTITY = BLOCK_ENTITY_TYPES.register("heat_insulation", () -> BlockEntityType.Builder.of(HeatInsulationBlockEntity::new, HEAT_INSULATION.get()).build(null));
+	public static final RegistryObject<BlockEntityType<ExcavationBucketsBlockEntity>> EXCAVATION_BUCKETS_ENTITY = BLOCK_ENTITY_TYPES.register("excavation_buckets", () -> BlockEntityType.Builder.of(ExcavationBucketsBlockEntity::new, EXCAVATION_BUCKETS.get()).build(null));
 
 	//creative tabs
 	public static final RegistryObject<CreativeModeTab> EMBERS_TAB = CREATIVE_TABS.register("main_tab", () -> CreativeModeTab.builder()
@@ -986,6 +992,7 @@ public class RegistryManager {
 
 	//recipe types
 	public static final RegistryObject<RecipeType<IBoringRecipe>> BORING = registerRecipeType("boring");
+	public static final RegistryObject<RecipeType<IBoringRecipe>> EXCAVATION = registerRecipeType("excavation");
 	public static final RegistryObject<RecipeType<IEmberActivationRecipe>> EMBER_ACTIVATION = registerRecipeType("ember_activation");
 	public static final RegistryObject<RecipeType<IMeltingRecipe>> MELTING = registerRecipeType("melting");
 	public static final RegistryObject<RecipeType<IStampingRecipe>> STAMPING = registerRecipeType("stamping");
@@ -999,6 +1006,7 @@ public class RegistryManager {
 
 	//recipe serializers
 	public static final RegistryObject<RecipeSerializer<BoringRecipe>> BORING_SERIALIZER = RECIPE_SERIALIZERS.register("boring", () -> BoringRecipe.SERIALIZER);
+	public static final RegistryObject<RecipeSerializer<ExcavationRecipe>> EXCAVATION_SERIALIZER = RECIPE_SERIALIZERS.register("excavation", () -> ExcavationRecipe.SERIALIZER);
 	public static final RegistryObject<RecipeSerializer<EmberActivationRecipe>> EMBER_ACTIVATION_SERIALIZER = RECIPE_SERIALIZERS.register("ember_activation", () -> EmberActivationRecipe.SERIALIZER);
 	public static final RegistryObject<RecipeSerializer<MeltingRecipe>> MELTING_SERIALIZER = RECIPE_SERIALIZERS.register("melting", () -> MeltingRecipe.SERIALIZER);
 	public static final RegistryObject<RecipeSerializer<StampingRecipe>> STAMPING_SERIALIZER = RECIPE_SERIALIZERS.register("stamping", () -> StampingRecipe.SERIALIZER);

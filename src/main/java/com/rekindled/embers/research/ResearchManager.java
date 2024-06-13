@@ -41,7 +41,7 @@ public class ResearchManager {
 	public static final double PAGE_ICON_SIZE = 48;
 	public static List<ResearchCategory> researches = new ArrayList<ResearchCategory>();
 
-	public static ResearchBase dials, ores, hammer, ancient_golem, gauge, caminite, access, bore, crystals, activator, tinker_lens, reaction_chamber, heat_exchanger, //WORLD
+	public static ResearchBase dials, ores, hammer, ancient_golem, gauge, caminite, access, bore, excavation_buckets, crystals, activator, tinker_lens, reaction_chamber, heat_exchanger, //WORLD
 	copper_cell, emitters, relays, dawnstone, melter, stamper, mixer, breaker, hearth_coil, char_instiller, atmospheric_bellows, heat_insulation, pressureRefinery, mini_boiler, pump, clockwork_attenuator, geo_separator, //MECHANISMS
 	beam_cannon, pulser, splitter, crystal_cell, cinder_staff, clockwork_tools, blazing_ray, charger, jars, alchemy, cinder_plinth, aspecti, ember_siphon, //METALLURGY
 	tyrfing, waste, slate, mnemonic_inscriber, entropic_enumerator, catalytic_plug, cluster, ashen_cloak, inflictor, materia, field_chart, glimmer, metallurgic_dust, //ALCHEMY
@@ -178,6 +178,7 @@ public class ResearchManager {
 		caminite = new ResearchBase("caminite", new ItemStack(RegistryManager.CAMINITE_BRICK.get()), 6, 7);
 		access = new ResearchBase("access", new ItemStack(RegistryManager.MECHANICAL_CORE_ITEM.get()), 7, 2).addAncestor(caminite);
 		bore = new ResearchBase("bore", new ItemStack(RegistryManager.EMBER_BORE_ITEM.get()), 9, 0).addAncestor(hammer).addAncestor(access);
+		excavation_buckets = new ResearchBase("excavation_buckets", new ItemStack(RegistryManager.EXCAVATION_BUCKETS_ITEM.get()), 6, 0).addAncestor(bore);
 		crystals = new ResearchBase("crystals", new ItemStack(RegistryManager.EMBER_CRYSTAL.get()), 12, 3).addAncestor(bore);
 		activator = new ResearchBase("activator", new ItemStack(RegistryManager.EMBER_ACTIVATOR_ITEM.get()), 10, 6).addAncestor(crystals);
 		dials = new ResearchBase("dials", new ItemStack(RegistryManager.EMBER_DIAL_ITEM.get()), 5, 5).addAncestor(hammer);
@@ -416,6 +417,7 @@ public class ResearchManager {
 		.addResearch(caminite)
 		.addResearch(access)
 		.addResearch(bore)
+		.addResearch(excavation_buckets)
 		.addResearch(pipeSwitch)
 		.addResearch(crystals)
 		.addResearch(activator)

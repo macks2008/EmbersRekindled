@@ -155,6 +155,7 @@ public class EmbersLang extends LanguageProvider {
 		addBlock(RegistryManager.ENTROPIC_ENUMERATOR, "Entropic Enumerator");
 		addBlock(RegistryManager.HEAT_EXCHANGER, "Heat Exchanger");
 		addBlock(RegistryManager.HEAT_INSULATION, "Heat Insulation");
+		addBlock(RegistryManager.EXCAVATION_BUCKETS, "Excavation Buckets");
 
 		addItem(RegistryManager.TINKER_HAMMER, "Tinker's Hammer");
 		addItem(RegistryManager.TINKER_LENS, "Tinker's Lens");
@@ -409,6 +410,7 @@ public class EmbersLang extends LanguageProvider {
 
 		//jei stuff
 		add(Embers.MODID + ".jei.recipe.boring", "Boring");
+		add(Embers.MODID + ".jei.recipe.excavation", "Excavation");
 		add(Embers.MODID + ".jei.recipe.boring.weight", "Weight: %s");
 		add(Embers.MODID + ".jei.recipe.boring.required_blocks", "Touching blades");
 		add(Embers.MODID + ".jei.recipe.boring.min_height", "Min. Height: %s");
@@ -488,7 +490,7 @@ public class EmbersLang extends LanguageProvider {
 		add(Embers.MODID + ".research.page.heat_exchanger", "Heat Exchanger");
 		add(Embers.MODID + ".research.page.heat_exchanger.title", "Inequivalent Exchange");
 		add(Embers.MODID + ".research.page.heat_exchanger.tags", "Ember;Upgrade;Bonus;Grit;");
-		add(Embers.MODID + ".research.page.heat_exchanger.desc", "By itself, the Ember Activator is unfortunately insufficient to process all the products from your Ember Bore. The Heat Exchanger multiplies the produced ember by 0.9 but adds a flat bonus of 300 ember, allowing you to process Ember Grit as well as getting some extra ember for Shards and Crystals.");
+		add(Embers.MODID + ".research.page.heat_exchanger.desc", "You've noticed that Ember Grit doesn't seem to produce any Ember when processed. The Heat Exchanger multiplies the produced ember by 0.9 but adds a flat bonus of 300 ember when attached to the bottom of an Ember Activator. This allows you to produce Ember using Grit and to get some extra ember for Shards and Crystals.");
 
 		add(Embers.MODID + ".research.page.crystals", "Crystallized Ember");
 		add(Embers.MODID + ".research.page.crystals.title", "Solid Heat");
@@ -499,6 +501,11 @@ public class EmbersLang extends LanguageProvider {
 		add(Embers.MODID + ".research.page.bore.title", "Diggy Diggy Hole");
 		add(Embers.MODID + ".research.page.bore.tags", "Ember;Bore;Ore;");
 		add(Embers.MODID + ".research.page.bore.desc", "While bedrock may halt your downward advances, it will not halt your machines. The Ember Bore must be fueled with normal furnace fuel items, and must be placed at a position where the blades of the Bore can touch bedrock. When fueled, the Bore will dig up Ember Crystals from deeper into the earth, for your future use. Hoppers and other item transporters must be used to extract and insert fuel and crystals from the Bore.");
+
+		add(Embers.MODID + ".research.page.excavation_buckets", "Excavation Buckets");
+		add(Embers.MODID + ".research.page.excavation_buckets.title", "Boooring");
+		add(Embers.MODID + ".research.page.excavation_buckets.tags", "Ember;Upgrade;Bore;Dig;Scoop;Gravel;Snow;");
+		add(Embers.MODID + ".research.page.excavation_buckets.desc", "The Excavation Buckets are an upgrade for the Ember Bore that allow it to harvest additional items. They allow the Bore to dig up gravel and flint or snow. The gravel or snow must be placed touching the bore blades");
 
 		add(Embers.MODID + ".research.page.pipes", "Pipes");
 		add(Embers.MODID + ".research.page.pipes.title", "Transportation");

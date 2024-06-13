@@ -675,6 +675,9 @@ public class EmbersBlockStates extends BlockStateProvider {
 		ExistingModelFile insulationModel = models().getExistingFile(new ResourceLocation(Embers.MODID, "heat_insulation"));
 		directionalBlock(RegistryManager.HEAT_INSULATION.get(), insulationModel);
 		simpleBlockItem(RegistryManager.HEAT_INSULATION.get(), insulationModel);
+
+		directionalBlock(RegistryManager.EXCAVATION_BUCKETS.get(), models().getExistingFile(new ResourceLocation(Embers.MODID, "excavation_buckets")));
+		simpleBlockItem(RegistryManager.EXCAVATION_BUCKETS.get(), models().getExistingFile(new ResourceLocation(Embers.MODID, "excavation_buckets_inventory")));
 	}
 
 	public void blockWithItem(RegistryObject<? extends Block> registryObject) {

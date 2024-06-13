@@ -58,6 +58,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.crafting.CompoundIngredient;
 import net.minecraftforge.common.crafting.DifferenceIngredient;
@@ -97,6 +98,10 @@ public class EmbersRecipes extends RecipeProvider implements IConditionBuilder {
 		BoringRecipeBuilder.create(RegistryManager.EMBER_CRYSTAL.get()).folder(boringFolder + "/nether").dimension(Level.NETHER.location()).require(EmbersBlockTags.WORLD_BOTTOM, 3).weight(20).maxHeight(7).save(consumer);
 		BoringRecipeBuilder.create(RegistryManager.EMBER_SHARD.get()).folder(boringFolder + "/nether").dimension(Level.NETHER.location()).require(EmbersBlockTags.WORLD_BOTTOM, 3).weight(60).maxHeight(7).save(consumer);
 		BoringRecipeBuilder.create(RegistryManager.EMBER_GRIT.get()).folder(boringFolder + "/nether").dimension(Level.NETHER.location()).require(EmbersBlockTags.WORLD_BOTTOM, 3).weight(20).maxHeight(7).save(consumer);
+		//excavation
+		BoringRecipeBuilder.create(Items.GRAVEL).folder(boringFolder).require(Tags.Blocks.GRAVEL, 5).chance(0.9).weight(50).type(RegistryManager.EXCAVATION_SERIALIZER.get()).save(consumer);
+		BoringRecipeBuilder.create(Items.FLINT).folder(boringFolder).require(Tags.Blocks.GRAVEL, 5).chance(1.0).weight(5).type(RegistryManager.EXCAVATION_SERIALIZER.get()).save(consumer);
+		BoringRecipeBuilder.create(Items.SNOWBALL).folder(boringFolder).require(EmbersBlockTags.SNOW, 5).chance(0.9).weight(50).type(RegistryManager.EXCAVATION_SERIALIZER.get()).save(consumer);
 
 		//activation
 		EmberActivationRecipeBuilder.create(RegistryManager.EMBER_CRYSTAL.get()).folder(activationFolder).ember(2400).save(consumer);
@@ -145,6 +150,7 @@ public class EmbersRecipes extends RecipeProvider implements IConditionBuilder {
 		fullMeltingStampingRecipes("constantan", RegistryManager.MOLTEN_CONSTANTAN.FLUID.get(), consumer);
 		fullMeltingStampingRecipes("invar", RegistryManager.MOLTEN_INVAR.FLUID.get(), consumer);
 		MeltingRecipeBuilder.create(Ingredient.of(Items.SOUL_SAND, Items.SOUL_SOIL)).id(new ResourceLocation(Embers.MODID, meltingFolder + "/soul_crude")).output(RegistryManager.SOUL_CRUDE.FLUID.get(), 100).save(consumer);
+		MeltingRecipeBuilder.create(Items.SNOWBALL).id(new ResourceLocation(Embers.MODID, meltingFolder + "/snow_melting")).output(Fluids.WATER, 250).save(consumer);
 
 		//stamper crushing
 		StampingRecipeBuilder.create(RegistryManager.EMBER_GRIT.get()).domain(Embers.MODID).folder(stampingFolder).stamp(RegistryManager.FLAT_STAMP.get()).input(RegistryManager.EMBER_SHARD.get()).save(ConsumerWrapperBuilder.wrap().build(consumer)); //today is the day

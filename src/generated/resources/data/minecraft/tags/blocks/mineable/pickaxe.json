@@ -133,6 +133,7 @@
     "embers:entropic_enumerator",
     "embers:heat_exchanger",
     "embers:heat_insulation",
+    "embers:excavation_buckets",
     {
       "id": "embers:explosion_pedestal",
       "required": false
