@@ -45,7 +45,7 @@ public class FluidDialBlock extends DialBaseBlock {
 				}
 				if (totalContents >= totalCapacity)
 					return 15;
-				return (int) (15.0 * totalContents / totalCapacity);
+				return (int) (Math.ceil(14.0 * totalContents / totalCapacity));
 			}
 		}
 		return 0;

@@ -45,7 +45,7 @@ public class ItemDialBlock extends DialBaseBlock {
 				}
 				if (contents >= capacity)
 					return 15;
-				return (int) (15.0 * contents / capacity);
+				return (int) (Math.ceil(14.0 * contents / capacity));
 			}
 		}
 		return 0;

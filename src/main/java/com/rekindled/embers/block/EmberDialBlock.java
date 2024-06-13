@@ -38,7 +38,7 @@ public class EmberDialBlock extends DialBaseBlock {
 			if (cap != null) {
 				if (cap.getEmber() >= cap.getEmberCapacity())
 					return 15;
-				return (int) (15.0 * cap.getEmber() / cap.getEmberCapacity());
+				return (int) (Math.ceil(14.0 * cap.getEmber() / cap.getEmberCapacity()));
 			}
 		}
 		return 0;
