@@ -1,5 +1,6 @@
 package com.rekindled.embers.blockentity;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
@@ -7,9 +8,11 @@ import java.util.Random;
 import com.rekindled.embers.ConfigManager;
 import com.rekindled.embers.RegistryManager;
 import com.rekindled.embers.api.capabilities.EmbersCapabilities;
+import com.rekindled.embers.api.event.DialInformationEvent;
 import com.rekindled.embers.api.event.EmberEvent;
 import com.rekindled.embers.api.power.IEmberCapability;
 import com.rekindled.embers.api.tile.IEmberInjectable;
+import com.rekindled.embers.api.tile.IExtraDialInformation;
 import com.rekindled.embers.api.upgrades.UpgradeContext;
 import com.rekindled.embers.api.upgrades.UpgradeUtil;
 import com.rekindled.embers.datagen.EmbersSounds;
@@ -33,7 +36,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 
-public class EmberInjectorBlockEntity extends BlockEntity implements ISoundController {
+public class EmberInjectorBlockEntity extends BlockEntity implements ISoundController, IExtraDialInformation {
 
 	public IEmberCapability capability = new DefaultEmberCapability() {
 		@Override
@@ -51,6 +54,7 @@ public class EmberInjectorBlockEntity extends BlockEntity implements ISoundContr
 	public static final int[] SOUND_IDS = new int[]{SOUND_PROCESS};
 
 	HashSet<Integer> soundsPlaying = new HashSet<>();
+	public List<UpgradeContext> upgrades = new ArrayList<>();
 	public boolean isWorking;
 	public int distance;
 
@@ -89,6 +93,8 @@ public class EmberInjectorBlockEntity extends BlockEntity implements ISoundContr
 	}
 
 	public static void clientTick(Level level, BlockPos pos, BlockState state, EmberInjectorBlockEntity blockEntity) {
+		blockEntity.upgrades = UpgradeUtil.getUpgrades(level, pos, Direction.values());
+		UpgradeUtil.verifyUpgrades(blockEntity, blockEntity.upgrades);
 		blockEntity.handleSound();
 		if (blockEntity.isWorking) {
 			Direction facing = state.getValue(BlockStateProperties.FACING);
@@ -102,13 +108,13 @@ public class EmberInjectorBlockEntity extends BlockEntity implements ISoundContr
 	}
 
 	public static void serverTick(Level level, BlockPos pos, BlockState state, EmberInjectorBlockEntity blockEntity) {
-		List<UpgradeContext> upgrades = UpgradeUtil.getUpgrades(level, pos, Direction.values());
-		UpgradeUtil.verifyUpgrades(blockEntity, upgrades);
+		blockEntity.upgrades = UpgradeUtil.getUpgrades(level, pos, Direction.values());
+		UpgradeUtil.verifyUpgrades(blockEntity, blockEntity.upgrades);
 		boolean wasWorking = blockEntity.isWorking;
 		int previousDist = blockEntity.distance;
-		if (!UpgradeUtil.doTick(blockEntity, upgrades)) {
+		if (!UpgradeUtil.doTick(blockEntity, blockEntity.upgrades)) {
 			Direction facing = state.getValue(BlockStateProperties.FACING);
-			int maxDist = UpgradeUtil.getOtherParameter(blockEntity, "distance", (int) ConfigManager.INJECTOR_MAX_DISTANCE.get(), upgrades);
+			int maxDist = UpgradeUtil.getOtherParameter(blockEntity, "distance", (int) ConfigManager.INJECTOR_MAX_DISTANCE.get(), blockEntity.upgrades);
 			BlockPos hitPos = pos;
 			BlockEntity tile = null;
 			for (int i = 1; i <= maxDist + 1; i++) {
@@ -121,13 +127,13 @@ public class EmberInjectorBlockEntity extends BlockEntity implements ISoundContr
 				}
 			}
 			blockEntity.isWorking = false;
-			double emberCost = UpgradeUtil.getTotalEmberConsumption(blockEntity, EMBER_COST, upgrades);
+			double emberCost = UpgradeUtil.getTotalEmberConsumption(blockEntity, EMBER_COST, blockEntity.upgrades);
 			if (tile instanceof IEmberInjectable injectable && injectable.isValid() && blockEntity.capability.getEmber() >= emberCost) {
-				boolean cancel = UpgradeUtil.doWork(blockEntity, upgrades);
+				boolean cancel = UpgradeUtil.doWork(blockEntity, blockEntity.upgrades);
 				if (!cancel) {
-					double enberInjected = EMBER_COST * UpgradeUtil.getTotalSpeedModifier(blockEntity, upgrades);
+					double enberInjected = EMBER_COST * UpgradeUtil.getTotalSpeedModifier(blockEntity, blockEntity.upgrades);
 					injectable.inject(blockEntity, enberInjected);
-					UpgradeUtil.throwEvent(blockEntity, new EmberEvent(blockEntity, EmberEvent.EnumType.CONSUME, emberCost), upgrades);
+					UpgradeUtil.throwEvent(blockEntity, new EmberEvent(blockEntity, EmberEvent.EnumType.CONSUME, emberCost), blockEntity.upgrades);
 					blockEntity.isWorking = true;
 					blockEntity.capability.removeAmount(emberCost, true);
 				}
@@ -189,5 +195,10 @@ public class EmberInjectorBlockEntity extends BlockEntity implements ISoundContr
 	@Override
 	public boolean shouldPlaySound(int id) {
 		return id == SOUND_PROCESS && isWorking;
+	}
+
+	@Override
+	public void addDialInformation(Direction facing, List<String> information, String dialType) {
+		UpgradeUtil.throwEvent(this, new DialInformationEvent(this, information, dialType), upgrades);
 	}
 }

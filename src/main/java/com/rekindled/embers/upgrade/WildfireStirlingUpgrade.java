@@ -6,6 +6,7 @@ import java.util.List;
 import com.rekindled.embers.Embers;
 import com.rekindled.embers.RegistryManager;
 import com.rekindled.embers.api.upgrades.UpgradeContext;
+import com.rekindled.embers.blockentity.CatalyticPlugBlockEntity;
 import com.rekindled.embers.blockentity.WildfireStirlingBlockEntity;
 import com.rekindled.embers.recipe.FluidHandlerContext;
 import com.rekindled.embers.util.Misc;
@@ -25,8 +26,7 @@ public class WildfireStirlingUpgrade extends DefaultUpgradeProvider {
 		super(new ResourceLocation(Embers.MODID, "wildfire_stirling"), tile);
 	}
 
-	public static double getMultiplier(int distance, int count) {
-		double multiplier = 2.0;
+	public static double getMultiplier(double multiplier, int distance, int count) {
 		if (distance > 1) {
 			multiplier = 1.0 + (multiplier - 1.0) / (distance * 0.5);
 		}
@@ -43,26 +43,26 @@ public class WildfireStirlingUpgrade extends DefaultUpgradeProvider {
 
 	@Override
 	public double transformEmberConsumption(BlockEntity tile, double ember, int distance, int count) {
-		return hasCatalyst() ? ember / getMultiplier(distance, count) : ember; //-50% if catalyst available
+		return ember / getMultiplier(getCatalystMultiplier(), distance, count);
 	}
 
 	@Override
 	public boolean doWork(BlockEntity tile, List<UpgradeContext> upgrades, int distance, int count) {
-		if(hasCatalyst() && this.tile instanceof WildfireStirlingBlockEntity) {
+		if (getCatalystMultiplier() != 1.0 && this.tile instanceof WildfireStirlingBlockEntity) {
 			depleteCatalyst(1);
 			((WildfireStirlingBlockEntity) this.tile).setActive(20);
 		}
 		return false; //No cancel
 	}
 
-	private boolean hasCatalyst() {
-		if (this.tile instanceof WildfireStirlingBlockEntity stirling) {
-			if (stirling.burnTime > 0)
-				return true;
-			stirling.cachedRecipe = Misc.getRecipe(stirling.cachedRecipe, RegistryManager.GASEOUS_FUEL.get(), new FluidHandlerContext(stirling.tank), stirling.getLevel());
-			return stirling.cachedRecipe != null;
+	private double getCatalystMultiplier() {
+		if (this.tile instanceof CatalyticPlugBlockEntity plug) {
+			FluidHandlerContext context = new FluidHandlerContext(plug.tank);
+			if (plug.burnTime <= 0 || plug.cachedRecipe == null)
+				plug.cachedRecipe = Misc.getRecipe(plug.cachedRecipe, RegistryManager.GASEOUS_FUEL.get(), context, plug.getLevel());
+			return plug.cachedRecipe == null ? 1.0 : plug.cachedRecipe.getPowerMultiplier(context);
 		}
-		return false;
+		return 1.0;
 	}
 
 	private void depleteCatalyst(int amt) {

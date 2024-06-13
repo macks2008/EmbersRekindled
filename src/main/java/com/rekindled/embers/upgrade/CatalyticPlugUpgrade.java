@@ -33,8 +33,7 @@ public class CatalyticPlugUpgrade extends DefaultUpgradeProvider {
 		super(new ResourceLocation(Embers.MODID, "catalytic_plug"), tile);
 	}
 
-	public static double getMultiplier(int distance, int count) {
-		double multiplier = 2.0;
+	public static double getMultiplier(double multiplier, int distance, int count) {
 		if (distance > 1) {
 			multiplier = 1.0 + (multiplier - 1.0) / (distance * 0.5);
 		}
@@ -51,31 +50,31 @@ public class CatalyticPlugUpgrade extends DefaultUpgradeProvider {
 
 	@Override
 	public double transformEmberConsumption(BlockEntity tile, double ember, int distance, int count) {
-		return hasCatalyst() ? ember * getMultiplier(distance, count) : ember; //+200% if catalyst available
+		return ember * getMultiplier(getCatalystMultiplier(), distance, count);
 	}
 
 	@Override
 	public double getSpeed(BlockEntity tile, double speed, int distance, int count) {
-		return hasCatalyst() ? speed * getMultiplier(distance, count) : speed; //+200% if catalyst available
+		return speed * getMultiplier(getCatalystMultiplier(), distance, count);
 	}
 
 	@Override
 	public boolean doWork(BlockEntity tile, List<UpgradeContext> upgrades, int distance, int count) {
-		if (hasCatalyst() && this.tile instanceof CatalyticPlugBlockEntity) {
+		if (getCatalystMultiplier() != 1.0 && this.tile instanceof CatalyticPlugBlockEntity) {
 			depleteCatalyst(1);
 			((CatalyticPlugBlockEntity) this.tile).setActive(20);
 		}
 		return false; //No cancel
 	}
 
-	private boolean hasCatalyst() {
+	private double getCatalystMultiplier() {
 		if (this.tile instanceof CatalyticPlugBlockEntity plug) {
-			if (plug.burnTime > 0)
-				return true;
-			plug.cachedRecipe = Misc.getRecipe(plug.cachedRecipe, RegistryManager.GASEOUS_FUEL.get(), new FluidHandlerContext(plug.tank), plug.getLevel());
-			return plug.cachedRecipe != null;
+			FluidHandlerContext context = new FluidHandlerContext(plug.tank);
+			if (plug.burnTime <= 0 || plug.cachedRecipe == null)
+				plug.cachedRecipe = Misc.getRecipe(plug.cachedRecipe, RegistryManager.GASEOUS_FUEL.get(), context, plug.getLevel());
+			return plug.cachedRecipe == null ? 1.0 : plug.cachedRecipe.getPowerMultiplier(context);
 		}
-		return false;
+		return 1.0;
 	}
 
 	private void depleteCatalyst(int amt) {
