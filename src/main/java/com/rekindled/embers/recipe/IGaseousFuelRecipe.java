@@ -29,6 +29,8 @@ public interface IGaseousFuelRecipe extends Recipe<FluidHandlerContext> {
 
 	public int getDisplayBurnTime();
 
+	public double getDisplayMultiplier();
+
 	@Override
 	@Deprecated
 	public default ItemStack assemble(FluidHandlerContext context, RegistryAccess registry) {

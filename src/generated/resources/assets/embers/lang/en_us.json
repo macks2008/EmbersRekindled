@@ -206,6 +206,7 @@
   "embers.jei.recipe.excavation": "Excavation",
   "embers.jei.recipe.gaseous_fuel": "Gaseous Fuel",
   "embers.jei.recipe.gaseous_fuel.burn_time": "Burn Time: %s",
+  "embers.jei.recipe.gaseous_fuel.power_multiplier": "Multiplier: %s",
   "embers.jei.recipe.geologic_separator": "Geologic Separator Bonus",
   "embers.jei.recipe.melting": "Melting",
   "embers.jei.recipe.metal_coefficient": "Production Multiplier",

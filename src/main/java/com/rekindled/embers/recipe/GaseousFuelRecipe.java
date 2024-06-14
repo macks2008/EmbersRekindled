@@ -82,6 +82,11 @@ public class GaseousFuelRecipe implements IGaseousFuelRecipe {
 		return burnTime;
 	}
 
+	@Override
+	public double getDisplayMultiplier() {
+		return powerMultiplier;
+	}
+
 	public static class Serializer implements RecipeSerializer<GaseousFuelRecipe> {
 
 		@Override

@@ -428,6 +428,7 @@ public class EmbersLang extends LanguageProvider {
 		add(Embers.MODID + ".jei.recipe.boiling", "Boiling");
 		add(Embers.MODID + ".jei.recipe.gaseous_fuel", "Gaseous Fuel");
 		add(Embers.MODID + ".jei.recipe.gaseous_fuel.burn_time", "Burn Time: %s");
+		add(Embers.MODID + ".jei.recipe.gaseous_fuel.power_multiplier", "Multiplier: %s");
 		add(Embers.MODID + ".jei.recipe.catalysis_combustion", "Catalysis & Combustion");
 		add(Embers.MODID + ".jei.recipe.catalysis_combustion.burn_time", "Burn Time: %s");
 		add(Embers.MODID + ".jei.recipe.catalysis_combustion.multiplier", "Multiplier: %s");
