@@ -5,7 +5,6 @@ import java.util.List;
 import com.rekindled.embers.Embers;
 import com.rekindled.embers.api.event.EmberEvent;
 import com.rekindled.embers.api.event.UpgradeEvent;
-import com.rekindled.embers.api.tile.IMechanicallyPowered;
 import com.rekindled.embers.api.upgrades.UpgradeContext;
 import com.rekindled.embers.blockentity.MiniBoilerBlockEntity;
 
@@ -21,11 +20,6 @@ public class MiniBoilerUpgrade extends DefaultUpgradeProvider {
 	@Override
 	public int getPriority() {
 		return 100; //after everything else
-	}
-
-	@Override
-	public int getLimit(BlockEntity tile) {
-		return tile instanceof IMechanicallyPowered ? 0 : super.getLimit(tile);
 	}
 
 	@Override
