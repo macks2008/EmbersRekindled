@@ -1540,6 +1540,16 @@ public class EmbersRecipes extends RecipeProvider implements IConditionBuilder {
 		.define('A', EmbersItemTags.ASHEN_STONE)
 		.unlockedBy("has_activator", has(RegistryManager.HEARTH_COIL.get()))
 		.save(consumer);
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, RegistryManager.EXCAVATION_BUCKETS.get())
+		.pattern("PPP")
+		.pattern("BIP")
+		.pattern("PPP")
+		.define('P', itemTag("forge", "plates/lead"))
+		.define('I', itemTag("forge", "ingots/iron"))
+		.define('B', itemTag("forge", "storage_blocks/lead"))
+		.unlockedBy("has_bore", has(RegistryManager.EMBER_BORE.get()))
+		.save(consumer);
 	}
 
 	public void fullOreRecipes(String name, ImmutableList<ItemLike> ores, Fluid fluid, Item raw, Item rawBlock, Item block, Item ingot, Item nugget, Item plate, Consumer<FinishedRecipe> consumer, MeltingBonus... bonusses) {
